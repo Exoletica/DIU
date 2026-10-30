@@ -13,6 +13,8 @@ const Inicio = () => {
   const navigate = useNavigate();
   const handleNavigate = useCallback((destination) => {
     if (destination === "prestamos") return navigate("/prestamos");
+    if (destination === "reservas") return navigate("/mis-reservas");
+    if (destination === "salas") return navigate("/reservas-de-sala");
     if (destination !== "inicio") window.console.info(`Navigation requested: ${destination}`);
   }, [navigate]);
   const handleSearch = useCallback((query) => window.console.info(`Search requested: ${query}`), []);
