@@ -1,0 +1,110 @@
+.container133,
+.container134 {
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+.container133 {
+  flex: 1;
+  box-shadow: var(--shadow-drop-1);
+  border-radius: var(--br-6);
+  background-color: var(--color-whitesmoke-100);
+  flex-direction: column;
+  padding: var(--padding-0) var(--padding-0) var(--padding-17);
+  gap: var(--gap-10);
+  min-width: var(--min-w-199);
+  max-width: var(--max-w-199);
+  text-align: left;
+  font-size: var(--fs-14);
+  color: var(--color-gray-100);
+  font-family: var(--font-ibm-plex-sans);
+}
+.container134 {
+  border: 0;
+  padding: var(--padding-1_9) var(--padding-0) var(--padding-0);
+  background-color: transparent;
+  height: var(--height-33_9);
+  flex-shrink: 0;
+}
+.container-icon41,
+.star-icon7 {
+  position: relative;
+  flex-shrink: 0;
+}
+.container-icon41 {
+  height: var(--height-265);
+  width: var(--width-199);
+  border-radius: var(--br-4) var(--br-4) var(--br-0) var(--br-0);
+  object-fit: cover;
+}
+.star-icon7 {
+  height: var(--height-12);
+  width: var(--width-12);
+}
+.container-row-27,
+.container136 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+.container-row-27 {
+  flex-direction: column;
+  padding: var(--padding-0) var(--padding-16) var(--padding-7);
+  flex-shrink: 0;
+}
+.container136 {
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+  padding: var(--padding-0) var(--padding-0) var(--padding-20);
+  z-index: 1;
+}
+.libros-fsicos2 {
+  position: relative;
+  letter-spacing: var(--ls-0_14);
+  line-height: var(--lh-20);
+}
+.catlogo-de-mas2 {
+  position: relative;
+  font-size: var(--fs-12);
+  line-height: var(--lh-16);
+  color: var(--color-dimgray-100);
+  z-index: 2;
+  margin-top: -13px;
+}
+.button59,
+.fsica-universitaria-con-fsic4 {
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+}
+.fsica-universitaria-con-fsic4 {
+  width: 734px;
+  max-width: 100%;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-0) var(--padding-6);
+  text-align: center;
+  font-size: var(--fs-12);
+}
+.button59 {
+  width: 166px;
+  border-radius: var(--br-4);
+  background-color: var(--color-whitesmoke-100);
+  border: var(--border-1);
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-5) var(--padding-0);
+  cursor: pointer;
+}
+.ver-detalles4 {
+  flex: 1;
+  position: relative;
+  line-height: var(--lh-20);
+  font-weight: 500;
+}
+@media screen and (max-width: 750px) {
+  .container133 {
+    max-width: 100%;
+  }
+}

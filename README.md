@@ -9,6 +9,9 @@ Interfaz web de una biblioteca universitaria para consultar recursos, reservar s
 - Recomendaciones de estudio con portadas y valoraciones.
 - Recursos útiles, novedades y asistencia en línea.
 - Diseño responsive con sidebar y barra superior.
+- Catálogo de préstamo de herramientas (libros físicos, Arduinos y calculadoras).
+- Fichas de detalle del libro con resumen, ficha técnica (ISBN, páginas, editorial, idioma) y recomendados.
+- Navegación entre el inicio y el catálogo de préstamos desde el sidebar.
 
 ## Tecnologías
 
@@ -51,21 +54,36 @@ El build se genera en la carpeta `build/`.
 ```text
 src/
 ├── components/
-│   ├── common/    # Encabezados y elementos compartidos
-│   ├── home/      # Secciones y tarjetas de la página de inicio
-│   └── layout/    # Sidebar, barra superior y footer
-├── pages/         # Página de inicio
+│   ├── common/      # Encabezados y elementos compartidos
+│   ├── home/        # Secciones y tarjetas de la página de inicio
+│   ├── layout/      # Sidebar, barra superior y footer
+│   ├── book-detail/ # Sidebar, barra superior, ficha técnica y tarjetas del detalle del libro
+│   └── loans/       # Catálogo y tarjetas de préstamo de herramientas
+├── pages/           # Inicio, préstamo de herramientas y detalle del libro
+├── styles/          # Tokens acotados a las páginas de préstamos y detalle
 ├── App.jsx
-├── global.scss    # Variables y estilos globales
+├── global.scss      # Variables y estilos globales
 └── index.jsx
-public/            # Imágenes, iconos y assets estáticos
+public/              # Imágenes, iconos y assets estáticos
+└── prestamos/       # Assets de las páginas de préstamos y detalle del libro
 ```
+
+## Rutas
+
+| Ruta | Página |
+| --- | --- |
+| `/` | Inicio |
+| `/prestamos` | Préstamo de Herramientas |
+| `/detalle-del-libro-1` | Calculus — Michael Spivak |
+| `/detalle-del-libro-2` | El Miedo en Occidente — Jean Delumeau |
+| `/detalle-del-libro-4` | Cálculo Trascendentes Tempranas — James Stewart |
 
 ## Notas
 
 - El script `npm run lint` requiere configurar `eslint.config.js` para ESLint 9.
 - Foto de la sección de novedades: [Eric Lozaga en Pexels](https://www.pexels.com/photo/spacious-library-aisle-with-bookshelves-and-study-tables-31138995/).
 
-## Autor
+## Autores
 
-[Exoletica](https://github.com/Exoletica)
+- [Exoletica](https://github.com/Exoletica) — Página de inicio, layout y componentes base.
+- Matías Santibáñez — Préstamo de herramientas y fichas de detalle del libro.
