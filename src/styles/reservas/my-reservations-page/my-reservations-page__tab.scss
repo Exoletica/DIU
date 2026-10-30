@@ -1,0 +1,22 @@
+.my-reservations-page__tab {
+  margin-bottom: -1px;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background-color: transparent;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  &--active {
+    border-bottom-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+}

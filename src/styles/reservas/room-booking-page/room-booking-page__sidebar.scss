@@ -1,0 +1,9 @@
+.room-booking-page__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (max-width: 900px) {
+    gap: 16px;
+  }
+}

@@ -1,0 +1,24 @@
+.room-card__status {
+  position: absolute;
+  top: 14px;
+  right: 13px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  color: var(--color-on-primary);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+
+  &--available {
+    background-color: var(--color-success);
+  }
+
+  &--occupied {
+    background-color: var(--color-danger);
+  }
+
+  &--reserved {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+  }
+}

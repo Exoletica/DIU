@@ -1,0 +1,9 @@
+.room-booking-page__empty {
+  margin: 0;
+  padding: 32px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  text-align: center;
+}

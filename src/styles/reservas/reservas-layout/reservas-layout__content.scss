@@ -1,0 +1,10 @@
+.reservas-layout__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 57px;
+
+  @media (max-width: 750px) {
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,15 @@
+.reservation-card__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  border-left: 1px solid var(--color-border-soft);
+
+  @media (max-width: 600px) {
+    flex-direction: row;
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-border-soft);
+    border-left: 0;
+  }
+}
