@@ -12,9 +12,9 @@ import "./Inicio.scss";
 const Inicio = () => {
   const navigate = useNavigate();
   const handleNavigate = useCallback((destination) => {
-    if (destination === "recomendaciones") navigate("/recomendaciones");
-    else if (destination === "inicio") navigate("/");
-    else window.console.info(`Navigation requested: ${destination}`);
+    if (destination === "prestamos") return navigate("/prestamos");
+    if (destination === "recomendaciones") return navigate("/recomendaciones");
+    if (destination !== "inicio") window.console.info(`Navigation requested: ${destination}`);
   }, [navigate]);
   const handleSearch = useCallback((query) => window.console.info(`Search requested: ${query}`), []);
 

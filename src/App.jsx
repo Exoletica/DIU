@@ -2,6 +2,21 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigationType } from "react-router-dom";
 import Inicio from "./pages/Inicio";
 import Recomendaciones from "./pages/Recomendaciones";
+import PrestamoHerramientas from "./pages/PrestamoHerramientas";
+import DetalleLibroCalculus from "./pages/DetalleLibroCalculus";
+import DetalleLibroMiedoOccidente from "./pages/DetalleLibroMiedoOccidente";
+import DetalleLibroCalculoTrascendentes from "./pages/DetalleLibroCalculoTrascendentes";
+import ResultadosDeBusqueda from "./pages/ResultadosDeBusqueda";
+
+const metadataPorRuta = {
+  "/": ["BibliotecaUSM | Inicio", "BibliotecaUSM: recursos, reservas y apoyo académico."],
+  "/recomendaciones": ["BibliotecaUSM | Recomendaciones de Estudio", "Selección académica de materiales de estudio de BibliotecaUSM."],
+  "/prestamos": ["BibliotecaUSM | Préstamo de Herramientas", "Catálogo de préstamo de libros físicos, Arduinos y calculadoras."],
+  "/prestamos/detalle-del-libro-1": ["BibliotecaUSM | Calculus", "Calculus de Michael Spivak: disponibilidad, reseñas y ficha técnica."],
+  "/prestamos/detalle-del-libro-2": ["BibliotecaUSM | El Miedo en Occidente", "El Miedo en Occidente de Jean Delumeau: disponibilidad, reseñas y ficha técnica."],
+  "/prestamos/detalle-del-libro-4": ["BibliotecaUSM | Cálculo Trascendentes Tempranas", "Cálculo Trascendentes Tempranas de James Stewart: disponibilidad, reseñas y ficha técnica."],
+  "/resultadosdebusqueda": ["BibliotecaUSM | Resultados de búsqueda"]
+};
 
 function App() {
   const action = useNavigationType();
@@ -12,15 +27,25 @@ function App() {
   }, [action, pathname]);
 
   useEffect(() => {
-    const metadata = pathname === "/recomendaciones"
-      ? { title: "BibliotecaUSM | Recomendaciones de Estudio", description: "Selección académica de materiales de estudio de BibliotecaUSM." }
-      : { title: "BibliotecaUSM | Inicio", description: "BibliotecaUSM: recursos, reservas y apoyo académico." };
-    document.title = metadata.title;
-    const description = document.querySelector('head > meta[name="description"]');
-    if (description) description.content = metadata.description;
+    const metadata = metadataPorRuta[pathname];
+    if (!metadata) return;
+    const [title, description] = metadata;
+    document.title = title;
+    const tag = document.querySelector('head > meta[name="description"]');
+    if (tag) tag.content = description;
   }, [pathname]);
 
-  return <Routes><Route path="/" element={<Inicio />} /><Route path="/recomendaciones" element={<Recomendaciones />} /></Routes>;
+  return (
+    <Routes>
+      <Route path="/" element={<Inicio />} />
+      <Route path="/recomendaciones" element={<Recomendaciones />} />
+      <Route path="/prestamos" element={<PrestamoHerramientas />} />
+      <Route path="/prestamos/detalle-del-libro-1" element={<DetalleLibroCalculus />} />
+      <Route path="/prestamos/detalle-del-libro-2" element={<DetalleLibroMiedoOccidente />} />
+      <Route path="/prestamos/detalle-del-libro-4" element={<DetalleLibroCalculoTrascendentes />} />
+      <Route path="/resultadosdebusqueda" element={<ResultadosDeBusqueda />} />
+    </Routes>
+  );
 }
 
 export default App;
