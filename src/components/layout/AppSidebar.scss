@@ -1,0 +1,9 @@
+.app-sidebar { min-height:2631px; padding:0 16px; color:var(--color-aliceblue-100); background:var(--color-darkslateblue-200); display:flex; flex-direction:column; font:14px var(--font-ibm-plex-sans); }
+.app-sidebar__brand { display:flex; align-items:center; gap:12px; padding:0 7px 36px; margin-top:12px; font-size:18px; line-height:28px; letter-spacing:-.45px; }
+.app-sidebar__brand img { width:40px; height:40px; border-radius:20px; box-shadow:var(--shadow-drop); }
+.app-sidebar__nav { display:flex; flex-direction:column; gap:4px; }
+.app-sidebar__item { min-height:40px; border-radius:4px; padding:9px 12px; display:flex; align-items:center; gap:10px; color:inherit; text-align:left; background:transparent; font:500 14px/22px var(--font-ibm-plex-sans); }
+.app-sidebar__item--active { color:var(--color-whitesmoke-100); background:var(--color-darkslateblue-100); }
+.app-sidebar__item img { width:20px; height:20px; }
+.app-sidebar__copyright { margin-top:auto; padding:0 0 1px; border-top:1px solid var(--color-lightgray-300); padding-top:24px; color:var(--color-dimgray); font-size:12px; line-height:16px; }
+@media (max-width:750px) { .app-sidebar { min-height:0; padding:12px 16px; } .app-sidebar__brand { margin:0; padding:0; } .app-sidebar__nav { flex-flow:row wrap; margin-top:12px; } .app-sidebar__item { flex:1; min-width:140px; } .app-sidebar__copyright { display:none; } }

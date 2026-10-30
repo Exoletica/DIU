@@ -1,0 +1,4 @@
+.quick-action-card { flex:1; min-width:310px; max-width:100%; min-height:188px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:8px; padding:24px 20px 24px 24px; overflow:hidden; border-radius:6px; color:var(--color-gray-100); background:var(--color-whitesmoke-100); box-shadow:var(--shadow-drop); text-align:left; }
+.quick-action-card--warm { padding:24px 67px 24px 23px; background:var(--color-oldlace); } .quick-action-card--extended { justify-content:unset; padding-bottom:47px; }
+.quick-action-card span { width:48px; height:56px; padding-bottom:8px; } .quick-action-card img { width:48px; height:48px; border-radius:6px; }
+.quick-action-card strong { font:600 20px/28px var(--font-ibm-plex-sans); } .quick-action-card small { max-width:287px; color:var(--color-dimgray); font:14px/23px var(--font-ibm-plex-sans); } @media (max-width:450px) { .quick-action-card strong { font-size:16px; line-height:22px; } }

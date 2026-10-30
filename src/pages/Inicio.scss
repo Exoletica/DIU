@@ -1,0 +1,5 @@
+.inicio { min-height:100vh; display:grid; grid-template-columns:256px minmax(0,1fr); background:var(--color-whitesmoke-100); box-shadow:0 3px 6px rgba(18,15,40,.12); }
+.inicio-main { min-width:0; }
+.inicio-content { display:flex; flex-direction:column; align-items:center; gap:63px; padding-top:57px; overflow:hidden; }
+@media (max-width:1200px) { .inicio-content { gap:31px; padding-top:37px; } }
+@media (max-width:750px) { .inicio { display:block; } .inicio-content { gap:16px; padding-top:20px; } }

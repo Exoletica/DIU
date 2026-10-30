@@ -1,0 +1,6 @@
+.app-top-bar { height:57px; background:var(--color-whitesmoke-100); border-bottom:1px solid var(--color-lightgray-300); position:absolute; inset:0 0 auto 256px; z-index:2; font:500 14px/20px var(--font-ibm-plex-sans); color:var(--color-dimgray); }
+.app-top-bar__content { height:56px; padding:15px 24px; display:flex; align-items:center; justify-content:space-between; }
+.app-top-bar__crumbs { display:flex; gap:7px; } .app-top-bar__crumbs span { display:flex; gap:7px; } .app-top-bar__current { color:var(--color-gray-100); font-weight:600; }
+.app-top-bar__user { display:flex; align-items:center; gap:12px; color:var(--color-gray-100); } .app-top-bar__notification { position:relative; display:grid; place-items:center; flex-shrink:0; width:32px; height:32px; } .app-top-bar__notification img { width:20px; height:20px; } .app-top-bar__notification i { position:absolute; top:3px; right:3px; box-sizing:content-box; width:8px; height:8px; border:2px solid var(--color-whitesmoke-100); border-radius:50%; background:var(--color-crimson); }
+.app-top-bar__avatar { flex-shrink:0; width:32px; height:32px; border-radius:16px; object-fit:cover; } .app-top-bar__user > span:last-child { white-space:nowrap; }
+@media (max-width:750px) { .app-top-bar { position:relative; left:0; } .app-top-bar__content { padding-inline:16px; } }
