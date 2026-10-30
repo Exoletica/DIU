@@ -1,0 +1,18 @@
+.calendario__boton-navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-border);
+    background-color: var(--color-muted-bg);
+  }
+}

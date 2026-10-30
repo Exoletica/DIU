@@ -1,0 +1,27 @@
+.tarjeta-reserva__estado {
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+
+  &--activa {
+    background-color: var(--color-success-soft);
+    color: var(--color-success-strong);
+  }
+
+  &--pendiente {
+    background-color: var(--color-warning-soft);
+    color: var(--color-warning-strong);
+  }
+
+  &--completada {
+    background-color: var(--color-muted-bg);
+    color: var(--color-text-muted);
+  }
+
+  &--cancelada {
+    background-color: var(--color-danger-soft);
+    color: var(--color-danger-strong);
+  }
+}

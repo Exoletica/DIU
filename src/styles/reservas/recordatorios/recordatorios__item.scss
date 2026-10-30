@@ -1,0 +1,16 @@
+.recordatorios__item {
+  position: relative;
+  padding-left: 18px;
+  line-height: 23px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--color-primary);
+  }
+}

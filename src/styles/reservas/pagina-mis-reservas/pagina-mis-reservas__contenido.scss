@@ -1,0 +1,13 @@
+.pagina-mis-reservas__contenido {
+  display: grid;
+  gap: 24px;
+
+  &--con-calendario {
+    grid-template-columns: minmax(280px, 352px) 1fr;
+    align-items: start;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

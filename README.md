@@ -61,14 +61,16 @@ src/
 │   ├── layout/      # Sidebar, barra superior y footer
 │   ├── book-detail/ # Sidebar, barra superior, ficha técnica y tarjetas del detalle del libro
 │   ├── loans/       # Catálogo y tarjetas de préstamo de herramientas
-│   └── reservas/    # Layout, calendario, tarjetas de sala y de reserva, filtros y ayuda
+│   ├── mis-reservas/      # Tarjeta de reserva y ayuda de Mis Reservas
+│   ├── reservas-de-sala/  # Tarjeta de sala, filtros y recordatorios de Reservas de Sala
+│   └── reservas-comun/    # Layout, encabezado y calendario compartidos por ambas páginas
 ├── data/
 │   └── reservas/    # Salas, reservas de ejemplo y estado compartido de las reservas
-├── pages/           # Inicio, préstamo de herramientas y detalle del libro
-│   └── reservas/    # Mis Reservas y Reservas de Sala
+├── pages/           # Inicio, préstamo de herramientas, detalle del libro,
+│                    # mis_reservas.jsx y reservas_de_sala.jsx
 ├── styles/          # Tokens acotados a las páginas de préstamos y detalle
 │   └── reservas/    # Estilos BEM de reservas: una carpeta por bloque y un archivo por elemento
-├── utils/           # Utilidades de fechas
+├── utils/           # fechas.js: utilidades de fechas
 ├── App.jsx
 ├── global.scss      # Variables y estilos globales
 └── index.jsx
