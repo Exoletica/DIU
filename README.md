@@ -74,9 +74,9 @@ public/              # Imágenes, iconos y assets estáticos
 | --- | --- |
 | `/` | Inicio |
 | `/prestamos` | Préstamo de Herramientas |
-| `/detalle-del-libro-1` | Calculus — Michael Spivak |
-| `/detalle-del-libro-2` | El Miedo en Occidente — Jean Delumeau |
-| `/detalle-del-libro-4` | Cálculo Trascendentes Tempranas — James Stewart |
+| `/prestamos/detalle-del-libro-1` | Calculus — Michael Spivak |
+| `/prestamos/detalle-del-libro-2` | El Miedo en Occidente — Jean Delumeau |
+| `/prestamos/detalle-del-libro-4` | Cálculo Trascendentes Tempranas — James Stewart |
 
 ## Notas
 
