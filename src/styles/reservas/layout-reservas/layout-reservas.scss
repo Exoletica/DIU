@@ -1,0 +1,17 @@
+.layout-reservas {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  background-color: var(--color-whitesmoke-100);
+
+  // El sidebar del grupo trae un min-height pensado para el largo de Inicio
+  @media (min-width: 751px) {
+    .app-sidebar {
+      min-height: 100vh;
+    }
+  }
+
+  @media (max-width: 750px) {
+    display: block;
+  }
+}

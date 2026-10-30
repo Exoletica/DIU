@@ -1,0 +1,9 @@
+.pagina-reservas-de-sala__panel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (max-width: 900px) {
+    gap: 16px;
+  }
+}

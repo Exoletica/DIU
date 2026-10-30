@@ -5,6 +5,8 @@ import PrestamoHerramientas from "./pages/PrestamoHerramientas";
 import DetalleLibroCalculus from "./pages/DetalleLibroCalculus";
 import DetalleLibroMiedoOccidente from "./pages/DetalleLibroMiedoOccidente";
 import DetalleLibroCalculoTrascendentes from "./pages/DetalleLibroCalculoTrascendentes";
+import MisReservas from "./pages/mis_reservas";
+import ReservasDeSala from "./pages/reservas_de_sala";
 
 const metadataPorRuta = {
   "/": ["BibliotecaUSM | Inicio", "BibliotecaUSM: recursos, reservas y apoyo académico."],
@@ -12,6 +14,8 @@ const metadataPorRuta = {
   "/prestamos/detalle-del-libro-1": ["BibliotecaUSM | Calculus", "Calculus de Michael Spivak: disponibilidad, reseñas y ficha técnica."],
   "/prestamos/detalle-del-libro-2": ["BibliotecaUSM | El Miedo en Occidente", "El Miedo en Occidente de Jean Delumeau: disponibilidad, reseñas y ficha técnica."],
   "/prestamos/detalle-del-libro-4": ["BibliotecaUSM | Cálculo Trascendentes Tempranas", "Cálculo Trascendentes Tempranas de James Stewart: disponibilidad, reseñas y ficha técnica."],
+  "/mis-reservas": ["BibliotecaUSM | Mis Reservas", "Gestiona tus reservas actuales de libros y salas de estudio."],
+  "/reservas-de-sala": ["BibliotecaUSM | Reservas de Sala", "Reserva salas de estudio y colaboración grupal en la biblioteca."],
 };
 
 function App() {
@@ -38,6 +42,8 @@ function App() {
       <Route path="/prestamos/detalle-del-libro-1" element={<DetalleLibroCalculus />} />
       <Route path="/prestamos/detalle-del-libro-2" element={<DetalleLibroMiedoOccidente />} />
       <Route path="/prestamos/detalle-del-libro-4" element={<DetalleLibroCalculoTrascendentes />} />
+      <Route path="/mis-reservas" element={<MisReservas />} />
+      <Route path="/reservas-de-sala" element={<ReservasDeSala />} />
     </Routes>
   );
 }
