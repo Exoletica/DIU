@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CalendarDays, CalendarPlus, List, CircleCheck, Clock } from 'lucide-react'
 
-import ReservasLayout from '../components/reservas/reservas_layout'
-import PageHeader from '../components/reservas/page_header'
-import Calendar from '../components/reservas/calendar'
-import ReservationCard from '../components/reservas/reservation_card'
-import HelpBox from '../components/reservas/help_box'
-import { isOpen } from '../data/reservas/reservations'
-import { useReservations, updateStatus, cancelReservation } from '../data/reservas/store'
-import { toDateKey, formatShortDate } from '../utils/dates'
+import ReservasLayout from '../../components/reservas/reservas_layout'
+import PageHeader from '../../components/reservas/page_header'
+import Calendar from '../../components/reservas/calendar'
+import ReservationCard from '../../components/reservas/reservation_card'
+import HelpBox from '../../components/reservas/help_box'
+import { isOpen } from '../../data/reservas/reservations'
+import { useReservations, updateStatus, cancelReservation } from '../../data/reservas/store'
+import { toDateKey, formatShortDate } from '../../utils/dates'
 
-export const MisReservas = () => {
+export const MyReservationsPage = () => {
   const navigate = useNavigate()
   const reservations = useReservations()
   const [activeTab, setActiveTab] = useState('active')
@@ -148,4 +148,4 @@ export const MisReservas = () => {
   )
 }
 
-export default MisReservas
+export default MyReservationsPage

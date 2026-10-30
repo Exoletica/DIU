@@ -1,14 +1,10 @@
 @use 'sass:meta';
-@use './variables';
+@use './base/index' as base;
 @use './reservas-layout/index' as reservas-layout;
 
 // Todo queda anidado bajo .reservas para no chocar con clases globales
 // del resto del proyecto (por ejemplo .button en otras páginas)
 .reservas {
-  font-family: var(--font-body);
-  line-height: 1.5;
-  color: var(--color-text);
-
   @include meta.load-css('./button/index');
   @include meta.load-css('./page-header/index');
   @include meta.load-css('./calendar/index');

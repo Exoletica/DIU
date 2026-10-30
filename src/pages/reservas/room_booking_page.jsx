@@ -2,20 +2,20 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Info, ArrowRight, ChevronDown } from 'lucide-react'
 
-import ReservasLayout from '../components/reservas/reservas_layout'
-import PageHeader from '../components/reservas/page_header'
-import Calendar from '../components/reservas/calendar'
-import Reminders from '../components/reservas/reminders'
-import RoomFilters from '../components/reservas/room_filters'
-import RoomCard from '../components/reservas/room_card'
-import ROOMS, { CAPACITY_OPTIONS, TIME_SLOTS, MAX_DAILY_ROOM_RESERVATIONS } from '../data/reservas/rooms'
-import { isOpen } from '../data/reservas/reservations'
-import { useReservations, addReservation, cancelReservation } from '../data/reservas/store'
-import { toDateKey, formatLongDate } from '../utils/dates'
+import ReservasLayout from '../../components/reservas/reservas_layout'
+import PageHeader from '../../components/reservas/page_header'
+import Calendar from '../../components/reservas/calendar'
+import Reminders from '../../components/reservas/reminders'
+import RoomFilters from '../../components/reservas/room_filters'
+import RoomCard from '../../components/reservas/room_card'
+import ROOMS, { CAPACITY_OPTIONS, TIME_SLOTS, MAX_DAILY_ROOM_RESERVATIONS } from '../../data/reservas/rooms'
+import { isOpen } from '../../data/reservas/reservations'
+import { useReservations, addReservation, cancelReservation } from '../../data/reservas/store'
+import { toDateKey, formatLongDate } from '../../utils/dates'
 
 const PAGE_SIZE = 4
 
-export const ReservasDeSala = () => {
+export const RoomBookingPage = () => {
   const navigate = useNavigate()
   const reservations = useReservations()
   const [searchQuery, setSearchQuery] = useState('')
@@ -144,4 +144,4 @@ export const ReservasDeSala = () => {
   )
 }
 
-export default ReservasDeSala
+export default RoomBookingPage

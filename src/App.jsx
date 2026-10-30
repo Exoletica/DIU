@@ -5,8 +5,8 @@ import PrestamoHerramientas from "./pages/PrestamoHerramientas";
 import DetalleLibroCalculus from "./pages/DetalleLibroCalculus";
 import DetalleLibroMiedoOccidente from "./pages/DetalleLibroMiedoOccidente";
 import DetalleLibroCalculoTrascendentes from "./pages/DetalleLibroCalculoTrascendentes";
-import MisReservas from "./pages/MisReservas";
-import ReservasDeSala from "./pages/ReservasDeSala";
+import MyReservationsPage from "./pages/reservas/my_reservations_page";
+import RoomBookingPage from "./pages/reservas/room_booking_page";
 
 const metadataPorRuta = {
   "/": ["BibliotecaUSM | Inicio", "BibliotecaUSM: recursos, reservas y apoyo académico."],
@@ -42,8 +42,8 @@ function App() {
       <Route path="/prestamos/detalle-del-libro-1" element={<DetalleLibroCalculus />} />
       <Route path="/prestamos/detalle-del-libro-2" element={<DetalleLibroMiedoOccidente />} />
       <Route path="/prestamos/detalle-del-libro-4" element={<DetalleLibroCalculoTrascendentes />} />
-      <Route path="/mis-reservas" element={<MisReservas />} />
-      <Route path="/reservas-de-sala" element={<ReservasDeSala />} />
+      <Route path="/mis-reservas" element={<MyReservationsPage />} />
+      <Route path="/reservas-de-sala" element={<RoomBookingPage />} />
     </Routes>
   );
 }

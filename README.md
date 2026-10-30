@@ -12,6 +12,8 @@ Interfaz web de una biblioteca universitaria para consultar recursos, reservar s
 - Catálogo de préstamo de herramientas (libros físicos, Arduinos y calculadoras).
 - Fichas de detalle del libro con resumen, ficha técnica (ISBN, páginas, editorial, idioma) y recomendados.
 - Navegación entre el inicio y el catálogo de préstamos desde el sidebar.
+- Reserva de salas de estudio con calendario, horarios, filtros por capacidad y disponibilidad, y límite diario por estudiante.
+- Mis Reservas: reservas activas e historial de libros y salas, con vista de calendario, confirmación, cancelación y ayuda (FAQ y contacto con soporte).
 
 ## Tecnologías
 
@@ -58,9 +60,15 @@ src/
 │   ├── home/        # Secciones y tarjetas de la página de inicio
 │   ├── layout/      # Sidebar, barra superior y footer
 │   ├── book-detail/ # Sidebar, barra superior, ficha técnica y tarjetas del detalle del libro
-│   └── loans/       # Catálogo y tarjetas de préstamo de herramientas
+│   ├── loans/       # Catálogo y tarjetas de préstamo de herramientas
+│   └── reservas/    # Layout, calendario, tarjetas de sala y de reserva, filtros y ayuda
+├── data/
+│   └── reservas/    # Salas, reservas de ejemplo y estado compartido de las reservas
 ├── pages/           # Inicio, préstamo de herramientas y detalle del libro
+│   └── reservas/    # Mis Reservas y Reservas de Sala
 ├── styles/          # Tokens acotados a las páginas de préstamos y detalle
+│   └── reservas/    # Estilos BEM de reservas: una carpeta por bloque y un archivo por elemento
+├── utils/           # Utilidades de fechas
 ├── App.jsx
 ├── global.scss      # Variables y estilos globales
 └── index.jsx
@@ -77,6 +85,8 @@ public/              # Imágenes, iconos y assets estáticos
 | `/prestamos/detalle-del-libro-1` | Calculus — Michael Spivak |
 | `/prestamos/detalle-del-libro-2` | El Miedo en Occidente — Jean Delumeau |
 | `/prestamos/detalle-del-libro-4` | Cálculo Trascendentes Tempranas — James Stewart |
+| `/mis-reservas` | Mis Reservas |
+| `/reservas-de-sala` | Reservas de Sala |
 
 ## Notas
 
