@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import AppSidebar from "../components/layout/AppSidebar";
 import AppTopBar from "../components/layout/AppTopBar";
 import SiteFooter from "../components/layout/SiteFooter";
@@ -9,9 +10,11 @@ import NewsAndResourcesSection from "../components/home/NewsAndResourcesSection"
 import "./Inicio.scss";
 
 const Inicio = () => {
+  const navigate = useNavigate();
   const handleNavigate = useCallback((destination) => {
+    if (destination === "prestamos") return navigate("/prestamos");
     if (destination !== "inicio") window.console.info(`Navigation requested: ${destination}`);
-  }, []);
+  }, [navigate]);
   const handleSearch = useCallback((query) => window.console.info(`Search requested: ${query}`), []);
 
   return (

@@ -1,0 +1,113 @@
+.container126,
+.container127 {
+  display: flex;
+  align-items: flex-start;
+}
+.container126 {
+  flex: 1;
+  box-shadow: var(--shadow-drop-1);
+  border-radius: var(--br-12);
+  background-color: var(--color-gray-200);
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--padding-8);
+  box-sizing: border-box;
+  gap: var(--gap-2);
+  min-width: 256px;
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--fs-9);
+  color: var(--color-darkslateblue-200);
+  font-family: var(--font-ibm-plex-sans);
+}
+.container127 {
+  align-self: stretch;
+  padding: var(--padding-0) var(--padding-0) var(--padding-16);
+}
+.container-icon40 {
+  height: var(--height-328);
+  flex: 1;
+  position: relative;
+  box-shadow: var(--shadow-drop-1);
+  border-radius: var(--br-6);
+  max-width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+.frame8,
+.tag16,
+.tag17 {
+  display: flex;
+  align-items: flex-start;
+}
+.tag16 {
+  width: 100%;
+  padding: var(--padding-0) var(--padding-3);
+  box-sizing: border-box;
+  max-width: var(--max-w-90_9);
+}
+.frame8,
+.tag17 {
+  background-color: var(--color-gray-200);
+}
+.frame8 {
+  height: var(--height-20);
+  flex: 1;
+  border-radius: var(--br-10);
+  border: var(--border-3);
+  box-sizing: border-box;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-2) var(--padding-9);
+}
+.matemticas7 {
+  position: relative;
+  line-height: var(--lh-14);
+}
+.container128,
+.container129 {
+  display: flex;
+  align-items: flex-start;
+}
+.container128 {
+  width: 100%;
+  padding: var(--padding-0) var(--padding-0) var(--padding-2) var(--padding-3);
+  box-sizing: border-box;
+  max-width: var(--max-w-241_9);
+  font-size: var(--fs-14);
+  color: var(--color-gray-100);
+}
+.container129 {
+  flex: 1;
+  background-color: var(--color-gray-200);
+  overflow: hidden;
+}
+.qumica-la-ciencia {
+  flex: 1;
+  position: relative;
+  letter-spacing: var(--ls-0_14);
+  line-height: var(--lh-20);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.container130 {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-4) var(--padding-0) var(--padding-3);
+  box-sizing: border-box;
+  max-width: var(--max-w-246);
+  font-size: var(--fs-12);
+  color: var(--color-dimgray-100);
+}
+.brown-lemay-bursten {
+  flex: 1;
+  position: relative;
+  line-height: var(--lh-16);
+}
+@media screen and (max-width: 450px) {
+  .container126 {
+    flex: 1;
+  }
+}
