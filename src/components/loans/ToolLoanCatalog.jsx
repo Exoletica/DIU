@@ -12,8 +12,11 @@ const ToolLoanCatalog = ({ className = "" }) => {
   const onContainerClick = useCallback(() => {
     navigate("/prestamos/detalle-del-libro-1");
   }, [navigate]);
+  const onArduinosClick = useCallback(() => {
+    navigate("/prestamos/detalle-del-libro-2");
+  }, [navigate]);
   const onContainerClick1 = useCallback(() => {
-    navigate("/prestamos");
+    navigate("/prestamos/detalle-del-libro-4");
   }, [navigate]);
   return (
     <section className="container96">
@@ -95,7 +98,7 @@ const ToolLoanCatalog = ({ className = "" }) => {
               </div>
             </button>
           </div>
-          <div className="container103" onClick={onCatlogoTextClick}>
+          <div className="container103" onClick={onArduinosClick}>
             <div className="container110">
               <img
                 className="container-icon32"
@@ -155,7 +158,7 @@ const ToolLoanCatalog = ({ className = "" }) => {
               </div>
             </div>
             <button className="button41">
-              <div className="button40" onClick={onContainerClick1}>
+              <div className="button40">
                 <div className="ver-detalles3">Ver Detalles</div>
               </div>
             </button>
