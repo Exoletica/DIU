@@ -1,0 +1,18 @@
+@use 'sass:meta';
+@use './base/index' as base;
+@use './layout-reservas/index' as layout-reservas;
+
+// Todo queda anidado bajo .reservas para no chocar con clases globales
+// del resto del proyecto (por ejemplo .button en otras páginas)
+.reservas {
+  @include meta.load-css('./boton/index');
+  @include meta.load-css('./encabezado-pagina/index');
+  @include meta.load-css('./calendario/index');
+  @include meta.load-css('./recordatorios/index');
+  @include meta.load-css('./filtros-salas/index');
+  @include meta.load-css('./tarjeta-sala/index');
+  @include meta.load-css('./pagina-reservas-de-sala/index');
+  @include meta.load-css('./pagina-mis-reservas/index');
+  @include meta.load-css('./tarjeta-reserva/index');
+  @include meta.load-css('./ayuda-reservas/index');
+}
