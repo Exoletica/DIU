@@ -1,4 +1,5 @@
 import { useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ToolLoanCard.scss";
 const ToolLoanCard = ({
   className = "",
@@ -23,6 +24,7 @@ const ToolLoanCard = ({
   verDetallesFontFamily,
   verDetallesFlex,
 }) => {
+  const navigate = useNavigate();
   const containerRow2Style = useMemo(() => {
     return {
       padding: containerRow2Padding,
@@ -73,11 +75,11 @@ const ToolLoanCard = ({
     };
   }, [verDetallesFontFamily, verDetallesFlex]);
   const onContainerClick1 = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   const onButtonContainerClick = useCallback(() => {
-    // Please sync "Cátalogo Completo" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   return (
     <div className="container133" onClick={onContainerClick}>
       <button className="container134">

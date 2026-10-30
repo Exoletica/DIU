@@ -7,8 +7,8 @@ const BookDetailTopBar = ({ className = "" }) => {
     navigate("/");
   }, [navigate]);
   const onTextboxContainerClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   return (
     <header className="container122">
       <img className="line-icon29" alt="" src="/prestamos/Line1.svg" />
@@ -35,7 +35,7 @@ const BookDetailTopBar = ({ className = "" }) => {
               </div>
             </div>
             <div className="merged-asset-32">
-              <img className="merged-asset-3-icon2" alt="" />
+              <img className="merged-asset-3-icon2" alt="" src="/prestamos/merged-asset-1.png" />
             </div>
             <button className="container125">
               <img
@@ -61,7 +61,7 @@ const BookDetailTopBar = ({ className = "" }) => {
           alt=""
           src="/prestamos/Container.svg"
         />
-        <img className="merged-asset-2-icon2" alt="" />
+        <img className="merged-asset-2-icon2" alt="" src="/prestamos/merged-asset-1.png" />
         <div className="estudiante6">Estudiante</div>
         <div className="biblioteca6">Biblioteca</div>
         <div className="search-wrapper">/</div>
@@ -79,7 +79,7 @@ const BookDetailTopBar = ({ className = "" }) => {
           type="text"
         />
       </div>
-      <img className="merged-asset-2-icon2" alt="" />
+      <img className="merged-asset-2-icon2" alt="" src="/prestamos/merged-asset-1.png" />
       <img className="container-icon38" alt="" src="/prestamos/Container.svg" />
       <div className="estudiante6">Estudiante</div>
     </header>

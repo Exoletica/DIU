@@ -21,7 +21,7 @@ const BookDetailTopBarAlt = ({ className = "" }) => {
           alt=""
           src="/prestamos/Container.svg"
         />
-        <img className="merged-asset-2-icon3" alt="" />
+        <img className="merged-asset-2-icon3" alt="" src="/prestamos/merged-asset-1.png" />
         <div className="estudiante9">Estudiante</div>
         <div className="biblioteca9">Biblioteca</div>
         <div className="header-info">/</div>
@@ -37,7 +37,7 @@ const BookDetailTopBarAlt = ({ className = "" }) => {
         />
       </div>
       <img className="container-icon46" alt="" src="/prestamos/Container.svg" />
-      <img className="merged-asset-2-icon3" alt="" />
+      <img className="merged-asset-2-icon3" alt="" src="/prestamos/merged-asset-1.png" />
       <div className="estudiante9">Estudiante</div>
       <div className="biblioteca9">Biblioteca</div>
       <div className="header-info">/</div>

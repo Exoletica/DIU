@@ -8,11 +8,10 @@
   position: relative;
   box-shadow: var(--shadow-drop);
   background-color: var(--color-whitesmoke-100);
-  overflow-y: auto;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: var(--gap-0);
-  max-height: 1572.9px;
+  min-height: 100vh;
   line-height: normal;
   letter-spacing: normal;
 }

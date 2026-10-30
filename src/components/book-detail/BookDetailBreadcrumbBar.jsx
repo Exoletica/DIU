@@ -33,8 +33,8 @@ const BookDetailBreadcrumbBar = ({
     navigate("/");
   }, [navigate]);
   const onTextboxContainerClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   return (
     <div className="container143">
       <div className="container-row-05">
@@ -59,7 +59,7 @@ const BookDetailBreadcrumbBar = ({
           </div>
         </div>
         <button className="merged-asset-33">
-          <img className="merged-asset-3-icon3" loading="lazy" alt="" />
+          <img className="merged-asset-3-icon3" loading="lazy" alt="" src="/prestamos/merged-asset-1.png" />
         </button>
         <button className="container144" style={container6Style}>
           <img

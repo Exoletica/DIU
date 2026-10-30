@@ -1,27 +1,20 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import AppSidebar from "../components/layout/AppSidebar";
 import "../styles/prestamos-tokens.scss";
 import "./DetalleLibroMiedoOccidente.scss";
 const DetalleLibroMiedoOccidente = () => {
   const navigate = useNavigate();
+  const handleNavigate = useCallback((destination) => {
+    if (destination === "inicio") navigate("/");
+    if (destination === "prestamos") navigate("/prestamos");
+  }, [navigate]);
   const onButtonContainerClick = useCallback(() => {
     navigate("/");
   }, [navigate]);
-  const onButtonContainerClick1 = useCallback(() => {
-    // Please sync "Mis Reservas" to the project
-  }, []);
-  const onButtonContainerClick2 = useCallback(() => {
+  const onTextboxContainerClick = useCallback(() => {
     navigate("/prestamos");
   }, [navigate]);
-  const onButtonContainerClick3 = useCallback(() => {
-    // Please sync "Recomendaciones" to the project
-  }, []);
-  const onButtonContainerClick4 = useCallback(() => {
-    // Please sync "Reservas de Sala" to the project
-  }, []);
-  const onTextboxContainerClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
   const onButtonClick = useCallback(() => {
     // Please sync "Página en Mantenimiento" to the project
   }, []);
@@ -39,139 +32,7 @@ const DetalleLibroMiedoOccidente = () => {
   }, []);
   return (
     <div className="detalle-del-libro-2">
-      <section className="container17">
-        <img className="line-icon6" alt="" src="/prestamos/Line.svg" />
-        <div className="container18">
-          <img className="line-icon6" alt="" src="/prestamos/Line.svg" />
-          <div className="container19">
-            <div className="container-column-02">
-              <div className="container-column-0-row-02">
-                <img
-                  className="container-icon9"
-                  alt=""
-                  src="/prestamos/Container1.svg"
-                />
-                <div className="bibliotecausm2">BibliotecaUSM</div>
-              </div>
-              <div className="button11" onClick={onButtonContainerClick}>
-                <img className="file-text" alt="" src="/prestamos/House.svg" />
-                <div className="inicio5">Inicio</div>
-              </div>
-              <div className="button12" onClick={onButtonContainerClick1}>
-                <img
-                  className="file-text"
-                  alt=""
-                  src="/prestamos/Calendar-days.svg"
-                />
-                <div className="inicio5">Mis Reservas</div>
-              </div>
-              <div className="button12" onClick={onButtonContainerClick2}>
-                <img
-                  className="file-text"
-                  alt=""
-                  src="/prestamos/Book-marked.svg"
-                />
-                <div className="inicio5">Mis Préstamos</div>
-              </div>
-              <div className="button14" onClick={onButtonContainerClick3}>
-                <img
-                  className="file-text"
-                  alt=""
-                  src="/prestamos/Lightbulb.svg"
-                />
-                <div className="recomendaciones2">Recomendaciones</div>
-              </div>
-              <button className="button15">
-                <div className="button16" onClick={onButtonContainerClick4}>
-                  <img
-                    className="file-text"
-                    alt=""
-                    src="/prestamos/Users.svg"
-                  />
-                  <div className="reservas-de-sala2">Reservas de Sala</div>
-                </div>
-              </button>
-              <div className="container20">
-                <img className="line-icon8" alt="" src="/prestamos/Line1.svg" />
-                <div className="biblioteca-usm2">© 2024 Biblioteca USM</div>
-              </div>
-            </div>
-            <img className="line-icon9" alt="" src="/prestamos/Line.svg" />
-          </div>
-          <img
-            className="container-icon10"
-            alt=""
-            src="/prestamos/Container1.svg"
-          />
-          <div className="bibliotecausm3">BibliotecaUSM</div>
-          <div className="button17" onClick={onButtonContainerClick}>
-            <img className="file-text" alt="" src="/prestamos/House.svg" />
-            <div className="inicio5">Inicio</div>
-          </div>
-          <div className="button18" onClick={onButtonContainerClick1}>
-            <img
-              className="file-text"
-              alt=""
-              src="/prestamos/Calendar-days.svg"
-            />
-            <div className="inicio5">Mis Reservas</div>
-          </div>
-          <div className="button19" onClick={onButtonContainerClick2}>
-            <img
-              className="file-text"
-              alt=""
-              src="/prestamos/Book-marked.svg"
-            />
-            <div className="inicio5">Mis Préstamos</div>
-          </div>
-          <div className="button20" onClick={onButtonContainerClick3}>
-            <img className="file-text" alt="" src="/prestamos/Lightbulb.svg" />
-            <div className="recomendaciones2">Recomendaciones</div>
-          </div>
-          <div className="button21" onClick={onButtonContainerClick4}>
-            <img className="file-text" alt="" src="/prestamos/Users.svg" />
-            <div className="inicio5">Reservas de Sala</div>
-          </div>
-          <div className="container21">
-            <img className="line-icon8" alt="" src="/prestamos/Line1.svg" />
-            <div className="biblioteca-usm2">© 2024 Biblioteca USM</div>
-          </div>
-        </div>
-        <img
-          className="container-icon10"
-          alt=""
-          src="/prestamos/Container1.svg"
-        />
-        <div className="bibliotecausm3">BibliotecaUSM</div>
-        <div className="button17" onClick={onButtonContainerClick}>
-          <img className="file-text" alt="" src="/prestamos/House.svg" />
-          <div className="inicio5">Inicio</div>
-        </div>
-        <div className="button18" onClick={onButtonContainerClick1}>
-          <img
-            className="file-text"
-            alt=""
-            src="/prestamos/Calendar-days.svg"
-          />
-          <div className="inicio5">Mis Reservas</div>
-        </div>
-        <div className="button19" onClick={onButtonContainerClick2}>
-          <img className="file-text" alt="" src="/prestamos/Book-marked.svg" />
-          <div className="inicio5">Mis Préstamos</div>
-        </div>
-        <div className="button20" onClick={onButtonContainerClick3}>
-          <img className="file-text" alt="" src="/prestamos/Lightbulb.svg" />
-          <div className="recomendaciones2">Recomendaciones</div>
-        </div>
-        <div className="button21" onClick={onButtonContainerClick4}>
-          <img className="file-text" alt="" src="/prestamos/Users.svg" />
-          <div className="inicio5">Reservas de Sala</div>
-        </div>
-        <div className="container21">
-          <img className="line-icon8" alt="" src="/prestamos/Line1.svg" />
-          <div className="biblioteca-usm2">© 2024 Biblioteca USM</div>
-        </div>
-      </section>
+      <AppSidebar activeItem="prestamos" onNavigate={handleNavigate} />
       <main className="main-column2">
         <header className="container23">
           <div className="container24">
@@ -198,7 +59,7 @@ const DetalleLibroMiedoOccidente = () => {
                   </div>
                 </div>
                 <button className="merged-asset-3">
-                  <img className="merged-asset-3-icon" loading="lazy" alt="" />
+                  <img className="merged-asset-3-icon" loading="lazy" alt="" src="/prestamos/merged-asset-1.png" />
                 </button>
                 <button className="container26">
                   <img
@@ -226,7 +87,7 @@ const DetalleLibroMiedoOccidente = () => {
                 type="text"
               />
             </div>
-            <img className="merged-asset-2-icon" alt="" />
+            <img className="merged-asset-2-icon" alt="" src="/prestamos/merged-asset-1.png" />
             <img
               className="container-icon13"
               alt=""
@@ -247,7 +108,7 @@ const DetalleLibroMiedoOccidente = () => {
             alt=""
             src="/prestamos/Container.svg"
           />
-          <img className="merged-asset-2-icon" alt="" />
+          <img className="merged-asset-2-icon" alt="" src="/prestamos/merged-asset-1.png" />
           <div className="estudiante3">Estudiante</div>
           <div className="biblioteca4">Biblioteca</div>
           <div className="header-title">/</div>
@@ -286,7 +147,7 @@ const DetalleLibroMiedoOccidente = () => {
           <div className="book-detail-main">
             <section className="book-left-panel2">
               <div className="container29">
-                <img className="container-icon15" alt="" />
+                <img className="container-icon15" alt="" src="/Frame1@3x.png" />
               </div>
               <button className="button27" onClick={onButtonClick}>
                 <div className="reservar-ahora2">Reservar ahora</div>
@@ -380,14 +241,11 @@ const DetalleLibroMiedoOccidente = () => {
                 </div>
               </div>
               <div className="resumen-header2">
-                <div
+                <img
                   className="file-text"
                   alt=""
                   src="/prestamos/file-text.svg"
-                >
-                  <label className="label" htmlFor="file-102:16077" />
-                  <input className="input" type="file" id="file-102:16077" />
-                </div>
+                />
                 <h3 className="resumen2">Resumen</h3>
               </div>
               <div className="fsica-universitaria-con-fsic2">
@@ -487,7 +345,7 @@ const DetalleLibroMiedoOccidente = () => {
               <section className="book-cards-row2">
                 <div className="container39" onClick={onContainerClick}>
                   <div className="container40">
-                    <img className="container-icon21" alt="" />
+                    <img className="container-icon21" alt="" src="/Frame2@3x.png" />
                   </div>
                   <div className="tag-container">
                     <div className="tag-row">

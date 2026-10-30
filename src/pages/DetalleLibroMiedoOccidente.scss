@@ -8,11 +8,10 @@
   width: 100%;
   box-shadow: var(--shadow-drop);
   background-color: var(--color-whitesmoke-100);
-  overflow-y: auto;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: var(--gap-0);
-  max-height: 1572.9px;
+  min-height: 100vh;
   line-height: normal;
   letter-spacing: normal;
 }
@@ -139,7 +138,7 @@
 }
 .button15 {
   border: 0;
-  padding: var(--padding-0) var(--padding-0) var(--padding-1273);
+  padding: var(--padding-0);
   background-color: transparent;
   align-self: stretch;
   align-items: flex-start;
@@ -1543,7 +1542,6 @@
 }
 @media screen and (max-width: 1200px) {
   .button15 {
-    padding-bottom: var(--padding-827);
     box-sizing: border-box;
   }
   .container-row-02 {
@@ -1571,7 +1569,6 @@
 @media screen and (max-width: 750px) {
   .button15,
   .container27 {
-    padding-bottom: var(--padding-538);
     box-sizing: border-box;
   }
   .container27 {
@@ -1653,5 +1650,10 @@
   }
   .container-row-2 {
     flex-wrap: wrap;
+  }
+}
+@media screen and (min-width: 751px) {
+  .book-cards-row2 > * {
+    max-width: calc((100% - 2 * var(--gap-24)) / 3);
   }
 }

@@ -224,3 +224,25 @@
   --top-calc50-17: calc(50% - 17px);
   --top-calc50-21_5: calc(50% - 21.5px);
 }
+
+// Sidebar compartido con Inicio: ancho fijo y alto de la pagina, sin el
+// min-height pensado para el largo de Inicio.
+.prestamo-herramientas,
+.detalle-del-libro-1,
+.detalle-del-libro-2,
+.detalle-del-libro-4 {
+  flex-wrap: nowrap;
+
+  > .app-sidebar {
+    width: 256px;
+    flex-shrink: 0;
+    align-self: stretch;
+    min-height: 0;
+    box-sizing: border-box;
+  }
+
+  > main {
+    flex: 1;
+    min-width: 0;
+  }
+}

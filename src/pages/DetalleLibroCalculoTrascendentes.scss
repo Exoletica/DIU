@@ -3,13 +3,12 @@
   position: relative;
   box-shadow: var(--shadow-drop);
   background-color: var(--color-whitesmoke-100);
-  overflow-y: auto;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: var(--gap-0);
-  max-height: 1572.9px;
+  min-height: 100vh;
   line-height: normal;
   letter-spacing: normal;
 }
@@ -215,6 +214,7 @@
   box-sizing: border-box;
 }
 .heart-icon3 {
+  height: var(--height-20);
   width: var(--width-20);
   position: relative;
 }
@@ -465,7 +465,7 @@
   font-family: inherit;
 }
 .fsica-universitaria-con3 {
-  width: 734px;
+  width: 100%;
   position: relative;
   font-size: var(--fs-16);
   line-height: var(--lh-26);
@@ -490,11 +490,10 @@
   flex: 1;
   background-color: var(--color-gray-200);
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: var(--padding-17) var(--padding-0) var(--padding-0);
   position: relative;
   isolation: isolate;
-  max-height: 561px;
   max-width: 100%;
 }
 .line-icon19 {
@@ -910,5 +909,10 @@
   }
   .container-row-22 {
     flex-wrap: wrap;
+  }
+}
+@media screen and (min-width: 751px) {
+  .books-row > * {
+    max-width: calc((100% - 2 * var(--gap-24)) / 3);
   }
 }

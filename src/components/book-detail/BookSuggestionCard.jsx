@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./BookSuggestionCard.scss";
 const BookSuggestionCard = ({
   className = "",
+  coverSrc = "/prestamos/Container14@2x.png",
   onContainerClick1,
   containerMinWidth,
   containerHeight,
@@ -69,7 +70,7 @@ const BookSuggestionCard = ({
         <img
           className="container-icon40"
           alt=""
-          src="/prestamos/Container14@2x.png"
+          src={coverSrc}
           onClick={onContainerImageClick}
           style={containerIconStyle}
         />

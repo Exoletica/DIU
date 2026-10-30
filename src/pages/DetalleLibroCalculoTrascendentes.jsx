@@ -1,18 +1,22 @@
 import { useCallback } from "react";
-import BookDetailSidebarAlt from "../components/book-detail/BookDetailSidebarAlt";
 import BookDetailTopBarAlt from "../components/book-detail/BookDetailTopBarAlt";
 import BookTechnicalDetails from "../components/book-detail/BookTechnicalDetails";
 import { useNavigate } from "react-router-dom";
+import AppSidebar from "../components/layout/AppSidebar";
 import "../styles/prestamos-tokens.scss";
 import "./DetalleLibroCalculoTrascendentes.scss";
 const DetalleLibroCalculoTrascendentes = () => {
   const navigate = useNavigate();
+  const handleNavigate = useCallback((destination) => {
+    if (destination === "inicio") navigate("/");
+    if (destination === "prestamos") navigate("/prestamos");
+  }, [navigate]);
   const onInicioTextClick = useCallback(() => {
     navigate("/");
   }, [navigate]);
   const onResultadosTextClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   const onButtonClick = useCallback(() => {
     // Please sync "Página en Mantenimiento" to the project
   }, []);
@@ -30,7 +34,7 @@ const DetalleLibroCalculoTrascendentes = () => {
   }, []);
   return (
     <div className="detalle-del-libro-4">
-      <BookDetailSidebarAlt />
+      <AppSidebar activeItem="prestamos" onNavigate={handleNavigate} />
       <main className="main-column3">
         <BookDetailTopBarAlt />
         <section className="container64">
@@ -65,7 +69,7 @@ const DetalleLibroCalculoTrascendentes = () => {
           <div className="book-detail-main2">
             <section className="book-left-panel3">
               <div className="container66">
-                <img className="container-icon25" alt="" />
+                <img className="container-icon25" alt="" src="/prestamos/Container14@2x.png" />
               </div>
               <button className="button32" onClick={onButtonClick}>
                 <div className="reservar-ahora3">Reservar ahora</div>
@@ -154,14 +158,11 @@ const DetalleLibroCalculoTrascendentes = () => {
               </div>
               <section className="resumen-section">
                 <div className="resumen-header3">
-                  <div
+                  <img
                     className="heart-icon3"
                     alt=""
                     src="/prestamos/file-text.svg"
-                  >
-                    <label className="label2" htmlFor="file-119:17127" />
-                    <input className="input2" type="file" id="file-119:17127" />
-                  </div>
+                  />
                   <h3 className="resumen3">Resumen</h3>
                 </div>
                 <div className="fsica-universitaria-con3">
@@ -198,7 +199,7 @@ const DetalleLibroCalculoTrascendentes = () => {
               <section className="books-row">
                 <div className="container70" onClick={onContainerClick}>
                   <div className="container71">
-                    <img className="container-icon26" alt="" />
+                    <img className="container-icon26" alt="" src="/Frame1@3x.png" />
                   </div>
                   <div className="tag-container2">
                     <div className="tag-list">

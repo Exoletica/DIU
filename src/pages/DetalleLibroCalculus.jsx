@@ -1,14 +1,17 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import BookDetailSidebar from "../components/book-detail/BookDetailSidebar";
 import BookDetailTopBar from "../components/book-detail/BookDetailTopBar";
-import RelatedBookCard from "../components/book-detail/RelatedBookCard";
 import BookSuggestionCard from "../components/book-detail/BookSuggestionCard";
 import BookDetailFooter from "../components/book-detail/BookDetailFooter";
+import AppSidebar from "../components/layout/AppSidebar";
 import "../styles/prestamos-tokens.scss";
 import "./DetalleLibroCalculus.scss";
 const DetalleLibroCalculus = () => {
   const navigate = useNavigate();
+  const handleNavigate = useCallback((destination) => {
+    if (destination === "inicio") navigate("/");
+    if (destination === "prestamos") navigate("/prestamos");
+  }, [navigate]);
   const [containerItems] = useState([
     {
       containerMinWidth: "256px",
@@ -26,29 +29,31 @@ const DetalleLibroCalculus = () => {
     },
     {
       containerMinWidth: "262px",
-      containerHeight: "unset",
-      containerIconFlex: "unset",
-      containerIconOverflow: "unset",
-      containerIconWidth: "246px",
+      containerHeight: undefined,
+      containerIconFlex: 1,
+      containerIconOverflow: undefined,
+      containerIconWidth: undefined,
       tagPadding: undefined,
       framePadding: "2px 9px",
       mATEMTICAS: "MATEMÁTICAS",
       containerPadding: "0px 4px 2px 3px",
       qumicaLaCienciaCentral: "El libro de las matemáticas",
+      coverSrc: "/prestamos/Container6@2x.png",
       brownLeMayBursten: "DK",
       brownLeMayBurstenFlex: "unset",
     },
     {
       containerMinWidth: "262px",
-      containerHeight: "344px",
-      containerIconFlex: "unset",
-      containerIconOverflow: "unset",
-      containerIconWidth: "246px",
+      containerHeight: undefined,
+      containerIconFlex: 1,
+      containerIconOverflow: undefined,
+      containerIconWidth: undefined,
       tagPadding: "0px 8px 0px 0px",
       framePadding: "2px 9px 2px 10px",
       mATEMTICAS: "LITERATURA",
       containerPadding: "0px 4px 2px 3px",
       qumicaLaCienciaCentral: "eL GRAN GATSBY",
+      coverSrc: "/prestamos/Container11@2x.png",
       brownLeMayBursten: "F. Scott Fitzgerald",
       brownLeMayBurstenFlex: 1,
     },
@@ -66,25 +71,19 @@ const DetalleLibroCalculus = () => {
     navigate("/");
   }, [navigate]);
   const onResultadosTextClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   const onButtonClick = useCallback(() => {
     // Please sync "Página en Mantenimiento" to the project
   }, []);
   const onContainer1ItemClick = useCallback((index) => {
     if (index === 0) {
-      onContainerClick1();
-    }
-    if (index === 1) {
-      onContainerClick();
-    }
-    if (index === 2) {
       onContainerClick();
     }
   }, []);
   return (
     <div className="detalle-del-libro-1">
-      <BookDetailSidebar />
+      <AppSidebar activeItem="prestamos" onNavigate={handleNavigate} />
       <main className="main-column">
         <BookDetailTopBar />
         <section className="container">
@@ -117,7 +116,7 @@ const DetalleLibroCalculus = () => {
           <div className="book-detail-section">
             <section className="book-left-panel">
               <div className="container3">
-                <img className="container-icon" alt="" />
+                <img className="container-icon" alt="" src="/prestamos/Container10@2x.png" />
               </div>
               <button className="button" onClick={onButtonClick}>
                 <div className="reservar-ahora">Reservar ahora</div>
@@ -304,10 +303,19 @@ const DetalleLibroCalculus = () => {
                 Basado en tus búsquedas de Ciencias e Ingeniería
               </div>
               <div className="book-cards-row">
-                <RelatedBookCard />
+                <BookSuggestionCard
+                  coverSrc="/Frame1@3x.png"
+                  framePadding="2px 9px"
+                  mATEMTICAS="HISTORIA"
+                  qumicaLaCienciaCentral="El miedo en Occidente"
+                  brownLeMayBursten="Jean Delumeau"
+                  brownLeMayBurstenFlex={1}
+                  onContainerClick1={() => navigate("/prestamos/detalle-del-libro-2")}
+                />
                 {containerItems.map((item, index) => (
                   <BookSuggestionCard
                     key={index}
+                    coverSrc={item.coverSrc}
                     containerMinWidth={item.containerMinWidth}
                     containerHeight={item.containerHeight}
                     containerIconFlex={item.containerIconFlex}

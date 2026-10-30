@@ -7,14 +7,14 @@ const ToolLoanCatalog = ({ className = "" }) => {
     navigate("/");
   }, [navigate]);
   const onCatlogoTextClick = useCallback(() => {
-    // Please sync "Cátalogo Completo" to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   const onContainerClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+    navigate("/prestamos/detalle-del-libro-1");
+  }, [navigate]);
   const onContainerClick1 = useCallback(() => {
-    // Please sync "Préstamo de Herramientas " to the project
-  }, []);
+    navigate("/prestamos");
+  }, [navigate]);
   return (
     <section className="container96">
       <header className="container97">
@@ -63,48 +63,15 @@ const ToolLoanCatalog = ({ className = "" }) => {
       <section className="container-row-3">
         <div className="container-row-32">
           <div className="container103" onClick={onContainerClick}>
-            <button className="container99">
+            <div className="container110">
               <img
-                className="container-icon30"
+                className="container-icon32"
                 loading="lazy"
                 alt=""
                 src="/prestamos/Container3@2x.png"
               />
-            </button>
-            <button className="container99">
-              <img
-                className="chevron-right-icon7"
-                loading="lazy"
-                alt=""
-                src="/prestamos/star.svg"
-              />
-            </button>
-            <div className="container-row-23">
-              <div className="container106">
-                <b className="libros-fsicos">Libros Físicos</b>
-              </div>
-              <div className="catlogo-de-mas">
-                Catálogo de mas de 800
-                <br />
-                libros.
-              </div>
             </div>
-            <div className="fsica-universitaria-con-fsic3">
-              <div className="button37" onClick={onCatlogoTextClick}>
-                <div className="ver-detalles">Ver Detalles</div>
-              </div>
-            </div>
-          </div>
-          <div className="container107">
-            <button className="button38">
-              <img
-                className="container-icon31"
-                loading="lazy"
-                alt=""
-                src="/prestamos/Container2@2x.png"
-              />
-            </button>
-            <div className="star5">
+            <div className="star6">
               <img
                 className="star-icon5"
                 loading="lazy"
@@ -112,18 +79,51 @@ const ToolLoanCatalog = ({ className = "" }) => {
                 src="/prestamos/star.svg"
               />
             </div>
-            <div className="container-row-24">
+            <div className="container-row-25">
+              <div className="container108">
+                <b className="libros-fsicos">Libros Físicos</b>
+              </div>
+              <div className="calculadoras-cientficasy-ti">
+                Catálogo de mas de 800
+                <br />
+                libros.
+              </div>
+            </div>
+            <button className="button41">
+              <div className="button40">
+                <div className="ver-detalles3">Ver Detalles</div>
+              </div>
+            </button>
+          </div>
+          <div className="container103" onClick={onCatlogoTextClick}>
+            <div className="container110">
+              <img
+                className="container-icon32"
+                loading="lazy"
+                alt=""
+                src="/prestamos/Container2@2x.png"
+              />
+            </div>
+            <div className="star6">
+              <img
+                className="star-icon5"
+                loading="lazy"
+                alt=""
+                src="/prestamos/star.svg"
+              />
+            </div>
+            <div className="container-row-25">
               <div className="container108">
                 <b className="libros-fsicos">Arduinos</b>
               </div>
-              <div className="ms-de-3" onClick={onCatlogoTextClick}>
+              <div className="calculadoras-cientficasy-ti">
                 Más de 3 versiones y 50 <br />
                 unidades disponibles.
               </div>
             </div>
-            <button className="button39">
-              <div className="button40" onClick={onCatlogoTextClick}>
-                <div className="ver-detalles2">Ver Detalles</div>
+            <button className="button41">
+              <div className="button40">
+                <div className="ver-detalles3">Ver Detalles</div>
               </div>
             </button>
           </div>

@@ -13,6 +13,7 @@ const Inicio = () => {
   const navigate = useNavigate();
   const handleNavigate = useCallback((destination) => {
     if (destination === "prestamos") return navigate("/prestamos");
+    if (destination === "libro-2" || destination === "libro-4") return navigate(`/prestamos/detalle-del-${destination}`);
     if (destination !== "inicio") window.console.info(`Navigation requested: ${destination}`);
   }, [navigate]);
   const handleSearch = useCallback((query) => window.console.info(`Search requested: ${query}`), []);
