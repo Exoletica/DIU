@@ -41,3 +41,16 @@ h3 { min-height: var(--lh-20); margin: var(--padding-1) 0 var(--padding-4); colo
 .disabled { border: var(--border-lightgray-200); background: var(--color-whitesmoke); color: var(--color-gray-100); opacity: var(--opacity-50); cursor: not-allowed; }
 
 @media (max-width: 750px) { .cover { height: var(--height-300); } }
+
+.listCard { display: grid; grid-template-columns: 180px minmax(0, 1fr); }
+.listCard .cover { height: 100%; min-height: 240px; }
+.listCard .content { min-height: 0; padding: var(--padding-15) var(--padding-24) var(--padding-17) var(--padding-24); }
+.listCard .metadata { padding-top: 0; }
+.listCard .description { height: auto; max-height: var(--height-60); }
+.listCard .details { width: auto; align-self: flex-start; gap: var(--gap-12); margin-top: var(--padding-12); }
+
+@media (max-width: 750px) {
+  .listCard { grid-template-columns: 1fr; }
+  .listCard .cover { height: var(--height-300); }
+  .listCard .details { width: 100%; }
+}

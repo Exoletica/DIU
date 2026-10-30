@@ -24,7 +24,16 @@
 }
 
 
-.filter.selected .icon { width: var(--width-34); height: var(--height-34); }
+.icon {
+  width: var(--width-32, 32px);
+  height: var(--height-32, 32px);
+  flex-shrink: 0;
+  background-color: #003366;
+  -webkit-mask: var(--icon-url) center / contain no-repeat;
+  mask: var(--icon-url) center / contain no-repeat;
+}
+
+.filter.selected .icon { width: var(--width-34); height: var(--height-34); background-color: #f1f7ff; }
 
 @media (max-width: 750px) {
   .filter { flex: 1 1 var(--width-130); }

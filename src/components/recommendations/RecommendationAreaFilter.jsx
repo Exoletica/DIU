@@ -8,7 +8,11 @@ const RecommendationAreaFilter = ({ label, iconSrc, isSelected, onSelect }) => (
     aria-pressed={isSelected}
     onClick={onSelect}
   >
-    <img className={styles.icon} src={iconSrc} alt="" />
+    <span
+      className={styles.icon}
+      style={{ "--icon-url": `url(${iconSrc})` }}
+      aria-hidden="true"
+    />
     <span>{label}</span>
   </button>
 );

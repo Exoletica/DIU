@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import styles from "./RecommendationBookCard.module.scss";
 
-const RecommendationBookCard = ({ coverSrc, status, statusTone, category, rating, title, authorEdition, description, studyPurpose, availability, onDetails }) => {
+const RecommendationBookCard = ({ coverSrc, status, statusTone, category, rating, title, authorEdition, description, studyPurpose, availability, onDetails, layout = "grid" }) => {
   const isUnavailable = availability === "En préstamo";
   const actionLabel = isUnavailable ? "Notificar Disponibilidad" : "Ver Detalles";
 
   return (
-    <article className={styles.card}>
+    <article className={layout === "list" ? `${styles.card} ${styles.listCard}` : styles.card}>
       <div className={styles.cover} style={{ "--cover-image": coverSrc ? `url(${coverSrc})` : "linear-gradient(160deg, #1e3a6e, #0b2a5b)" }}>
         <span className={statusTone === "loan" ? `${styles.status} ${styles.statusLoan}` : styles.status}>{status}</span>
       </div>
@@ -36,6 +36,7 @@ RecommendationBookCard.propTypes = {
   studyPurpose: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   onDetails: PropTypes.func.isRequired,
+  layout: PropTypes.oneOf(["grid", "list"]),
 };
 
 export default RecommendationBookCard;
