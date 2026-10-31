@@ -1,0 +1,11 @@
+.pagina-reservas-de-sala__contenido {
+  display: grid;
+  grid-template-columns: minmax(280px, 352px) 1fr;
+  align-items: start;
+  gap: 32px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

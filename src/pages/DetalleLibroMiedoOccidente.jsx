@@ -8,17 +8,17 @@ const DetalleLibroMiedoOccidente = () => {
     navigate("/");
   }, [navigate]);
   const onButtonContainerClick1 = useCallback(() => {
-    // Please sync "Mis Reservas" to the project
-  }, []);
+    navigate("/mis-reservas");
+  }, [navigate]);
   const onButtonContainerClick2 = useCallback(() => {
     navigate("/prestamos");
   }, [navigate]);
   const onButtonContainerClick3 = useCallback(() => {
-    // Please sync "Recomendaciones" to the project
-  }, []);
+    navigate("/recomendaciones");
+  }, [navigate]);
   const onButtonContainerClick4 = useCallback(() => {
-    // Please sync "Reservas de Sala" to the project
-  }, []);
+    navigate("/reservas-de-sala");
+  }, [navigate]);
   const onTextboxContainerClick = useCallback(() => {
     // Please sync "Resultados de Búsqueda" to the project
   }, []);

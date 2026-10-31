@@ -326,3 +326,15 @@
     flex: 1;
   }
 }
+
+.top-bar-slot {
+  align-self: stretch;
+}
+.top-bar-slot .app-top-bar {
+  position: relative;
+  inset: auto;
+}
+
+.prestamo-herramientas .main-area {
+  min-width: 0;
+}

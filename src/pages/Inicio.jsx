@@ -14,6 +14,9 @@ const Inicio = () => {
   const handleNavigate = useCallback((destination) => {
     if (destination === "mis-prestamos") return navigate("/mis-prestamos");
     if (destination === "prestamos") return navigate("/prestamos");
+    if (destination === "recomendaciones") return navigate("/recomendaciones");
+    if (destination === "reservas") return navigate("/mis-reservas");
+    if (destination === "salas") return navigate("/reservas-de-sala");
     if (destination !== "inicio") window.console.info(`Navigation requested: ${destination}`);
   }, [navigate]);
   const handleSearch = useCallback((query) => window.console.info(`Search requested: ${query}`), []);
@@ -23,13 +26,7 @@ const Inicio = () => {
       <AppSidebar activeItem="inicio" onNavigate={handleNavigate} />
       <div className="inicio-main">
         <AppTopBar breadcrumbs={["Inicio", "Biblioteca"]} userName="Estudiante" avatarSrc="/Container.svg" notificationCount={1} />
-        <main className="inicio-content">
-          <HeroSearchBanner onSearch={handleSearch} onSuggestionSelect={handleSearch} />
-          <QuickActionsSection onNavigate={handleNavigate} />
-          <StudyRecommendationsSection onNavigate={handleNavigate} />
-          <NewsAndResourcesSection onNavigate={handleNavigate} />
-          <SiteFooter onNavigate={handleNavigate} />
-        </main>
+        <main className="inicio-content"><HeroSearchBanner onSearch={handleSearch} onSuggestionSelect={handleSearch} /><QuickActionsSection onNavigate={handleNavigate} /><StudyRecommendationsSection onNavigate={handleNavigate} /><NewsAndResourcesSection onNavigate={handleNavigate} /><SiteFooter onNavigate={handleNavigate} /></main>
       </div>
     </div>
   );
