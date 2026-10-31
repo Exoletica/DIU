@@ -1,0 +1,140 @@
+.container-column-0,
+.container-column-0-row-0 {
+  display: flex;
+  align-items: center;
+  max-width: var(--max-w-223);
+}
+.container-column-0 {
+  align-self: stretch;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-4);
+  text-align: left;
+  font-size: var(--fs-14);
+  color: var(--color-aliceblue);
+  font-family: var(--font-ibm-plex-sans);
+}
+.container-column-0-row-0 {
+  width: 100%;
+  padding: var(--padding-0) var(--padding-7) var(--padding-36);
+  box-sizing: border-box;
+  gap: var(--gap-12);
+  font-size: var(--fs-18);
+}
+.container-icon4 {
+  height: var(--height-40);
+  width: var(--width-40);
+  position: relative;
+  box-shadow: var(--shadow-drop-1);
+  border-radius: var(--br-20);
+}
+.bibliotecausm {
+  position: relative;
+  letter-spacing: -0.45px;
+  line-height: var(--lh-28);
+  font-weight: 600;
+}
+.button22 {
+  align-self: stretch;
+  border-radius: var(--br-4);
+  background-color: var(--color-darkslateblue-100);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: var(--padding-9) var(--padding-12);
+  gap: var(--gap-10);
+  cursor: pointer;
+  color: var(--color-whitesmoke-100);
+}
+.house-icon {
+  height: var(--height-20);
+  width: var(--width-20);
+  position: relative;
+}
+.button23 {
+  align-self: stretch;
+  border-radius: var(--br-4);
+  background-color: var(--color-gray-300);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: var(--padding-9) var(--padding-12);
+  gap: var(--gap-10);
+  cursor: pointer;
+}
+.mis-reservas {
+  flex: 1;
+  position: relative;
+  line-height: var(--lh-22);
+  font-weight: 500;
+}
+.button25 {
+  align-self: stretch;
+  border-radius: var(--br-4);
+  background-color: var(--color-gray-300);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: var(--padding-9) var(--padding-11);
+  gap: var(--gap-12);
+  cursor: pointer;
+}
+.recomendaciones {
+  position: relative;
+  line-height: var(--lh-22);
+  font-weight: 500;
+}
+.button26 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-0) 1183px;
+}
+.button27,
+.container36 {
+  background-color: var(--color-gray-300);
+  display: flex;
+  align-items: center;
+}
+.button27 {
+  flex: 1;
+  border-radius: var(--br-4);
+  overflow: hidden;
+  padding: var(--padding-9) var(--padding-12);
+  gap: var(--gap-10);
+  cursor: pointer;
+}
+.container36 {
+  align-self: stretch;
+  flex-direction: column;
+  gap: 25px;
+  font-size: var(--fs-12);
+  color: var(--color-dimgray);
+}
+.line-icon10 {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.biblioteca-usm {
+  width: 100%;
+  position: relative;
+  line-height: var(--lh-16);
+  display: inline-block;
+  max-width: 203px;
+}
+@media screen and (max-width: 1200px) {
+  .button26 {
+    padding-bottom: 769px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .button26 {
+    padding-bottom: 500px;
+    box-sizing: border-box;
+  }
+}

@@ -8,6 +8,8 @@ import DetalleLibroMiedoOccidente from "./pages/DetalleLibroMiedoOccidente";
 import DetalleLibroCalculoTrascendentes from "./pages/DetalleLibroCalculoTrascendentes";
 import MisReservas from "./pages/mis_reservas";
 import ReservasDeSala from "./pages/reservas_de_sala";
+import ResultadosDeBusqueda from "./pages/ResultadosDeBsqueda";
+import ContactoBibliotecario from "./pages/ContactoBibliotecario";
 
 const metadataPorRuta = {
   "/": ["BibliotecaUSM | Inicio", "BibliotecaUSM: recursos, reservas y apoyo académico."],
@@ -18,6 +20,8 @@ const metadataPorRuta = {
   "/prestamos/detalle-del-libro-4": ["BibliotecaUSM | Cálculo Trascendentes Tempranas", "Cálculo Trascendentes Tempranas de James Stewart: disponibilidad, reseñas y ficha técnica."],
   "/mis-reservas": ["BibliotecaUSM | Mis Reservas", "Gestiona tus reservas actuales de libros y salas de estudio."],
   "/reservas-de-sala": ["BibliotecaUSM | Reservas de Sala", "Reserva salas de estudio y colaboración grupal en la biblioteca."],
+  "/resultados-de-busqueda": ["BibliotecaUSM | Resultados de búsqueda"],
+  "/contacto-bibliotecario": ["BibliotecaUSM | Contacto con bibliotecario"],
 };
 
 function App() {
@@ -47,6 +51,8 @@ function App() {
       <Route path="/prestamos/detalle-del-libro-4" element={<DetalleLibroCalculoTrascendentes />} />
       <Route path="/mis-reservas" element={<MisReservas />} />
       <Route path="/reservas-de-sala" element={<ReservasDeSala />} />
+      <Route path="/resultados-de-busqueda" element={<ResultadosDeBusqueda />} />
+      <Route path="/contacto-bibliotecario" element={<ContactoBibliotecario />} />
     </Routes>
   );
 }
