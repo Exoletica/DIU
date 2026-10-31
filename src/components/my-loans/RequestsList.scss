@@ -1,0 +1,64 @@
+.requests {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--color-lightgray-100);
+  border-radius: 6px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-gainsboro-100);
+    flex-wrap: wrap;
+    &:last-child { border-bottom: 0; }
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+  }
+  &__item--pendiente &__icon { background: var(--color-oldlace); color: #876500; }
+  &__item--aprobada &__icon { background: #e7f8f1; color: #0b7a55; }
+  &__item--rechazada &__icon { background: #fdecec; color: var(--color-crimson); }
+
+  &__info {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    font-size: 13px;
+    color: var(--color-dimgray);
+    small { font-size: 11px; text-transform: uppercase; letter-spacing: .3px; }
+    b { font-size: 14px; color: var(--color-gray-100); font-weight: 600; }
+  }
+
+  &__status {
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    &--pendiente { background: var(--color-oldlace); color: #876500; }
+    &--aprobada { background: #e7f8f1; color: #0b7a55; }
+    &--rechazada { background: #fdecec; color: var(--color-crimson); }
+  }
+
+  &__cancel {
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid var(--color-lightgray-200);
+    color: var(--color-gray-100);
+    font-size: 12px;
+    &:hover { border-color: var(--color-crimson); color: var(--color-crimson); }
+  }
+
+  &__empty { padding: 32px; text-align: center; color: var(--color-dimgray); background: #fff; border-radius: 6px; border: 1px dashed var(--color-lightgray-200); }
+}
