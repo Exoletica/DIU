@@ -1,0 +1,115 @@
+.container31 {
+  width: 1184px;
+  background-color: var(--color-whitesmoke-200);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-1);
+  top: 0;
+  z-index: 99;
+  position: sticky;
+  max-width: 100%;
+}
+.container-row-02 {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: var(--padding-16) var(--padding-30);
+  box-sizing: border-box;
+  gap: var(--gap-7);
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--fs-12);
+  color: var(--color-dimgray);
+  font-family: var(--font-ibm-plex-sans);
+}
+.inicio2 {
+  position: relative;
+  line-height: var(--lh-16);
+  font-weight: 500;
+}
+.chevron-right {
+  height: var(--height-12);
+  display: flex;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-1) var(--padding-0) var(--padding-0);
+  box-sizing: border-box;
+}
+.chevron-right-icon {
+  height: var(--height-12);
+  width: var(--width-12);
+  position: relative;
+}
+.catlogo {
+  position: relative;
+  line-height: var(--lh-16);
+  font-weight: 500;
+  color: var(--color-gray-100);
+}
+.chevron-right2 {
+  height: var(--height-12);
+  display: flex;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-2) var(--padding-0) var(--padding-0);
+  box-sizing: border-box;
+}
+.bsqueda-fsica {
+  position: relative;
+  color: var(--color-darkslateblue-200);
+}
+.mostrando-1-4-de-128-resultado {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-6) var(--padding-0) var(--padding-0);
+  box-sizing: border-box;
+  min-width: 186px;
+  max-width: 742px;
+  text-align: right;
+}
+.mostrando-1-4-de {
+  flex: 1;
+  position: relative;
+  line-height: var(--lh-16);
+  display: inline-block;
+  max-width: 100%;
+}
+.container32 {
+  height: 34px;
+  border-radius: var(--br-4);
+  background-color: var(--color-whitesmoke-100);
+  border: 1px solid var(--color-lightgray);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-6) 13px var(--padding-6) var(--padding-12);
+  gap: var(--gap-7);
+  font-size: var(--fs-14);
+  color: var(--color-gray-100);
+}
+.arrow-up-narrow-wide-icon {
+  height: var(--height-16);
+  width: var(--width-16);
+  position: relative;
+}
+.relevancia {
+  position: relative;
+  line-height: var(--lh-20);
+  font-weight: 500;
+}
+.line-icon8 {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+@media screen and (max-width: 750px) {
+  .mostrando-1-4-de-128-resultado {
+    max-width: 100%;
+  }
+}
