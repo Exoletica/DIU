@@ -28,6 +28,14 @@ const recommendations = [
   { areaId: "historia", coverSrc: "/historia-de-la-filosofia.png", status: "Disponible", statusTone: "available", category: "Historia", rating: "4.9", title: "Historia de la Filosofía", authorEdition: "Julián Marías • 3ra Edición", description: "Publicada originalmente en 1941, las numerosas ediciones de la Historia de la Filosofía de Julián Marías son la ...", studyPurpose: "Panorama de los grandes pensadores para cursos de filosofía y ética profesional.", availability: "Disponible" },
 ];
 
+const routes = {
+  inicio: "/",
+  reservas: "/mis-reservas",
+  prestamos: "/prestamos",
+  recomendaciones: "/recomendaciones",
+  salas: "/reservas-de-sala",
+};
+
 const formatToday = () => {
   const today = new Date();
   const month = today.toLocaleDateString("es-CL", { month: "long" });
@@ -41,7 +49,7 @@ const Recomendaciones = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const todayLabel = formatToday();
   const visibleRecommendations = selectedArea === "todos" ? recommendations.filter((item) => item.featured) : recommendations.filter((item) => item.areaId === selectedArea);
-  const handleNavigate = useCallback((destination) => { if (destination === "inicio") navigate("/"); else if (destination === "recomendaciones") navigate("/recomendaciones"); else window.console.info(`Navigation requested: ${destination}`); }, [navigate]);
+  const handleNavigate = useCallback((destination) => { if (routes[destination]) navigate(routes[destination]); else window.console.info(`Navigation requested: ${destination}`); }, [navigate]);
   const handleUnavailableAction = useCallback((action) => window.console.info(`Action requested: ${action}`), []);
 
   return (

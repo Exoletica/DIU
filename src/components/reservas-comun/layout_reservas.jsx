@@ -10,7 +10,8 @@ const ROUTES = {
   inicio: '/',
   reservas: '/mis-reservas',
   salas: '/reservas-de-sala',
-  prestamos: '/prestamos'
+  prestamos: '/prestamos',
+  recomendaciones: '/recomendaciones'
 }
 
 export const LayoutReservas = ({ activeItem, title, children }) => {

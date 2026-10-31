@@ -14,8 +14,8 @@ const DetalleLibroMiedoOccidente = () => {
     navigate("/prestamos");
   }, [navigate]);
   const onButtonContainerClick3 = useCallback(() => {
-    // Please sync "Recomendaciones" to the project
-  }, []);
+    navigate("/recomendaciones");
+  }, [navigate]);
   const onButtonContainerClick4 = useCallback(() => {
     navigate("/reservas-de-sala");
   }, [navigate]);
