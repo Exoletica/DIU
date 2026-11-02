@@ -11,6 +11,7 @@ import MisReservas from "./pages/mis_reservas";
 import ReservasDeSala from "./pages/reservas_de_sala";
 import ResultadosDeBusqueda from "./pages/ResultadosDeBsqueda";
 import ContactoBibliotecario from "./pages/ContactoBibliotecario";
+import PrestamoCalculadoras from "./pages/PrestamoCalculadoras";
 
 const metadataPorRuta = {
   "/": ["BibliotecaUSM | Inicio", "BibliotecaUSM: recursos, reservas y apoyo académico."],
@@ -56,6 +57,7 @@ function App() {
       <Route path="/reservas-de-sala" element={<ReservasDeSala />} />
       <Route path="/resultados-de-busqueda" element={<ResultadosDeBusqueda />} />
       <Route path="/contacto-bibliotecario" element={<ContactoBibliotecario />} />
+      <Route path="/prestamos/calculadoras" element={<PrestamoCalculadoras />} />
     </Routes>
   );
 }

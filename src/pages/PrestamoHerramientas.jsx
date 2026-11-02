@@ -1,92 +1,98 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AppSidebar from "../components/layout/AppSidebar";
 import AppTopBar from "../components/layout/AppTopBar";
-import ToolLoanCatalog from "../components/loans/ToolLoanCatalog";
-import "../styles/prestamos-tokens.scss";
+import ToolCard from "../components/tool-loans/ToolCard";
 import "./PrestamoHerramientas.scss";
+
+const rutas = {
+  inicio: "/",
+  reservas: "/mis-reservas",
+  prestamos: "/prestamos",
+  "mis-prestamos": "/mis-prestamos",
+  recomendaciones: "/recomendaciones",
+  salas: "/reservas-de-sala",
+};
+
+const herramientas = [
+  {
+    id: "libros",
+    imagen: "/prestamos/Container3@2x.png",
+    titulo: "Libros Físicos",
+    descripcion: "Catálogo de más de 800 libros.",
+    ruta: "/resultados-de-busqueda",
+  },
+  {
+    id: "arduinos",
+    imagen: "/prestamos/Container2@2x.png",
+    titulo: "Arduinos",
+    descripcion: "Más de 3 versiones y 50 unidades disponibles.",
+    ruta: null, // Aún no tiene página
+  },
+  {
+    id: "calculadoras",
+    imagen: "/prestamos/Container4@2x.png",
+    titulo: "Calculadoras",
+    descripcion: "Calculadoras científicas y TI.",
+    ruta: "/prestamos/calculadoras",
+  },
+];
+
 const PrestamoHerramientas = () => {
   const navigate = useNavigate();
-  const onButtonContainerClick = useCallback(() => {
-    navigate("/");
+  const [busqueda, setBusqueda] = useState("");
+
+  const handleNavigate = useCallback((destino) => {
+    if (rutas[destino]) navigate(rutas[destino]);
   }, [navigate]);
-  const onButtonContainerClick1 = useCallback(() => {
-    navigate("/mis-reservas");
-  }, [navigate]);
-  const onButtonContainerClick2 = useCallback(() => {
-    navigate("/prestamos");
-  }, [navigate]);
-  const onButtonContainerClick3 = useCallback(() => {
-    navigate("/recomendaciones");
-  }, [navigate]);
-  const onButtonContainerClick4 = useCallback(() => {
-    navigate("/reservas-de-sala");
-  }, [navigate]);
-  const onTextboxContainerClick = useCallback(() => {
-    // Please sync "Resultados de Búsqueda" to the project
-  }, []);
+
   return (
-    <div className="prestamo-herramientas">
-      <section className="container13">
-        <div className="container-column-0">
-          <div className="container-column-0-row-0">
-            <img
-              className="container-icon7"
-              alt=""
-              src="/prestamos/Container1.svg"
-            />
-            <div className="bibliotecausm">BibliotecaUSM</div>
-          </div>
-          <div className="button6" onClick={onButtonContainerClick}>
-            <img className="house-icon" alt="" src="/prestamos/House.svg" />
-            <div className="mis-reservas">Inicio</div>
-          </div>
-          <div className="button7" onClick={onButtonContainerClick1}>
-            <img
-              className="house-icon"
-              alt=""
-              src="/prestamos/Calendar-days.svg"
-            />
-            <div className="mis-reservas">Mis Reservas</div>
-          </div>
-          <div className="button7" onClick={onButtonContainerClick2}>
-            <img
-              className="house-icon"
-              alt=""
-              src="/prestamos/Book-marked.svg"
-            />
-            <div className="mis-reservas">Mis Préstamos</div>
-          </div>
-          <div className="button9" onClick={onButtonContainerClick3}>
-            <img className="house-icon" alt="" src="/prestamos/Lightbulb.svg" />
-            <div className="recomendaciones">Recomendaciones</div>
-          </div>
-          <div className="star2">
-            <div className="button10" onClick={onButtonContainerClick4}>
-              <img className="house-icon" alt="" src="/prestamos/Users.svg" />
-              <div className="mis-reservas">Reservas de Sala</div>
+    <div className="prestamo-herramientas-page">
+      <AppSidebar activeItem="inicio" onNavigate={handleNavigate} />
+      <div className="ph-main">
+        <AppTopBar
+          breadcrumbs={["Inicio", "Biblioteca"]}
+          userName="Estudiante"
+          avatarSrc="/Container.svg"
+          notificationCount={1}
+          onBreadcrumbNavigate={() => navigate("/")}
+          search={{ value: busqueda, onChange: setBusqueda, placeholder: "Buscar libros, salas...", ariaLabel: "Buscar libros o salas" }}
+        />
+
+        <main className="ph-content">
+          <div className="ph-subbar">
+            <nav className="ph-crumbs" aria-label="Ruta">
+              <button type="button" onClick={() => navigate("/")}>Inicio</button>
+              <span aria-hidden="true">›</span>
+              <button type="button" onClick={() => navigate("/resultados-de-busqueda")}>Catálogo</button>
+              <span aria-hidden="true">›</span>
+              <b>Búsqueda: "Física"</b>
+            </nav>
+            <div className="ph-subbar__right">
+              <span>Mostrando 1-4 de 128 resultados</span>
+              <button type="button" className="ph-sort">
+                <img src="/prestamos/arrow-up-narrow-wide.svg" alt="" /> Relevancia
+              </button>
             </div>
           </div>
-          <div className="container14">
-            <img className="line-icon3" alt="" src="/prestamos/Line1.svg" />
-            <div className="biblioteca-usm">© 2024 Biblioteca USM</div>
+
+          <h1 className="ph-title">Préstamo de Herramientas</h1>
+
+          <div className="ph-grid">
+            {herramientas.map((h) => (
+              <ToolCard
+                key={h.id}
+                imagen={h.imagen}
+                titulo={h.titulo}
+                descripcion={h.descripcion}
+                onAction={h.ruta ? () => navigate(h.ruta) : undefined}
+              />
+            ))}
           </div>
-        </div>
-        <img className="line-icon4" alt="" src="/prestamos/Line.svg" />
-      </section>
-      <main className="main-area">
-        <div className="top-bar-slot">
-          <AppTopBar
-            breadcrumbs={["Inicio", "Biblioteca"]}
-            userName="Estudiante"
-            avatarSrc="/Container.svg"
-            notificationCount={1}
-            onBreadcrumbNavigate={onButtonContainerClick}
-            search={{ value: "", onChange: () => {}, placeholder: "Buscar libros o salas", ariaLabel: "Buscar libros o salas" }}
-          />
-        </div>
-        <ToolLoanCatalog />
-      </main>
+        </main>
+      </div>
     </div>
   );
 };
+
 export default PrestamoHerramientas;

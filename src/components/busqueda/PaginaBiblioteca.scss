@@ -1,0 +1,51 @@
+.pagina-biblioteca {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 256px minmax(0, 1fr);
+  background: var(--color-whitesmoke-100);
+  font-family: var(--font-ibm-plex-sans);
+  color: var(--color-gray-100);
+
+  .app-sidebar { min-height: 100vh; }
+
+  &__main { min-width: 0; }
+
+  &__content {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 77px 32px 48px;
+  }
+}
+
+// Migas de pan reutilizables
+.pb-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-dimgray);
+
+  button { padding: 0; background: transparent; color: inherit; font-size: 13px; &:hover { color: var(--color-darkslateblue-200); text-decoration: underline; } }
+  b { color: var(--color-darkslateblue-200); }
+}
+
+.pb-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 30;
+  max-width: 420px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--color-gray-100);
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+}
+
+@media (max-width: 750px) {
+  .pagina-biblioteca { display: block; }
+  .pagina-biblioteca .app-sidebar { min-height: 0; }
+  .pagina-biblioteca__content { padding: 20px 16px 32px; }
+}
