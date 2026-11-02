@@ -1,7 +1,7 @@
 import "./AppSidebar.scss";
 
 const navigationItems = [
-  ["inicio", "Inicio", "/House.svg"], ["reservas", "Mis Reservas", "/Calendar-days.svg"], ["prestamos", "Mis Préstamos", "/Book-marked.svg"], ["recomendaciones", "Recomendaciones", "/Lightbulb.svg"], ["salas", "Reservas de Sala", "/Users.svg"],
+  ["inicio", "Inicio", "/House.svg"], ["reservas", "Mis Reservas", "/Calendar-days.svg"], ["mis-prestamos", "Mis Préstamos", "/Book-marked.svg"], ["recomendaciones", "Recomendaciones", "/Lightbulb.svg"], ["salas", "Reservas de Sala", "/Users.svg"],
 ];
 
 const AppSidebar = ({ activeItem, onNavigate }) => (

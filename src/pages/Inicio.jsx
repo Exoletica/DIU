@@ -12,6 +12,7 @@ import "./Inicio.scss";
 const Inicio = () => {
   const navigate = useNavigate();
   const handleNavigate = useCallback((destination) => {
+    if (destination === "mis-prestamos") return navigate("/mis-prestamos");
     if (destination === "prestamos") return navigate("/prestamos");
     if (destination === "recomendaciones") return navigate("/recomendaciones");
     if (destination === "reservas") return navigate("/mis-reservas");

@@ -32,6 +32,7 @@ const routes = {
   inicio: "/",
   reservas: "/mis-reservas",
   prestamos: "/prestamos",
+  "mis-prestamos": "/mis-prestamos",
   recomendaciones: "/recomendaciones",
   salas: "/reservas-de-sala",
 };
