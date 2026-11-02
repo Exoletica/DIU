@@ -17,6 +17,7 @@ const Inicio = () => {
     if (destination === "recomendaciones") return navigate("/recomendaciones");
     if (destination === "reservas") return navigate("/mis-reservas");
     if (destination === "salas") return navigate("/reservas-de-sala");
+    if (destination === "contacto") return navigate("/contacto-bibliotecario");
     if (destination !== "inicio") window.console.info(`Navigation requested: ${destination}`);
   }, [navigate]);
   const handleSearch = useCallback((query) => window.console.info(`Search requested: ${query}`), []);

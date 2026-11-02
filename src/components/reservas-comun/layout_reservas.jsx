@@ -12,7 +12,8 @@ const ROUTES = {
   salas: '/reservas-de-sala',
   prestamos: '/prestamos',
   'mis-prestamos': '/mis-prestamos',
-  recomendaciones: '/recomendaciones'
+  recomendaciones: '/recomendaciones',
+  contacto: '/contacto-bibliotecario'
 }
 
 export const LayoutReservas = ({ activeItem, title, children }) => {

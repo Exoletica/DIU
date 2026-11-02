@@ -1,89 +1,91 @@
-import { Box, Typography, TextField, InputAdornment } from "@mui/material";
-import ContainerColumn0 from "../components/contacto_bibliotecario/ContainerColumn0";
-import Container1 from "../components/contacto_bibliotecario/Container1";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PaginaBiblioteca from "../components/busqueda/PaginaBiblioteca";
 import "./ContactoBibliotecario.scss";
 
+const hora = () => new Date().toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit" });
+
+const mensajeInicial = {
+  id: 0,
+  de: "bibliotecario",
+  texto: "📚 ¡Hola! Te estamos conectando con uno de nuestros bibliotecarios en línea para brindarte la ayuda que requieras. Te agradecemos la espera.",
+  hora: hora(),
+};
+
+// Chat de ejemplo: responde automáticamente después de un momento.
 const ContactoBibliotecario = () => {
+  const navigate = useNavigate();
+  const [mensajes, setMensajes] = useState([mensajeInicial]);
+  const [texto, setTexto] = useState("");
+  const [escribiendo, setEscribiendo] = useState(false);
+  const finRef = useRef(null);
+
+  useEffect(() => {
+    finRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [mensajes, escribiendo]);
+
+  const enviar = (e) => {
+    e.preventDefault();
+    const consulta = texto.trim();
+    if (!consulta) return;
+    setMensajes((m) => [...m, { id: Date.now(), de: "usuario", texto: consulta, hora: hora() }]);
+    setTexto("");
+    setEscribiendo(true);
+    setTimeout(() => {
+      setEscribiendo(false);
+      setMensajes((m) => [...m, {
+        id: Date.now() + 1,
+        de: "bibliotecario",
+        texto: `Gracias por tu consulta sobre "${consulta}". Estoy revisando el catálogo y en un momento te indico las mejores opciones disponibles.`,
+        hora: hora(),
+      }]);
+    }, 1500);
+  };
+
   return (
-    <Box className="contacto-bibliotecario">
-      <section className="container30">
-        <ContainerColumn0 />
-        <img className="line-icon7" alt="" src="/Line1.svg" />
+    <PaginaBiblioteca activeItem="inicio">
+      <nav className="pb-crumbs" aria-label="Ruta">
+        <button type="button" onClick={() => navigate("/")}>Inicio</button>
+        <span aria-hidden="true">›</span>
+        <button type="button" onClick={() => navigate("/resultados-de-busqueda")}>Resultados de búsqueda</button>
+        <span aria-hidden="true">›</span>
+        <b>Asesoría de búsqueda</b>
+      </nav>
+
+      <h1 className="cb-title">Asesoría de búsqueda</h1>
+      <p className="cb-sub">Conversa con un bibliotecario para encontrar el material que necesitas.</p>
+
+      <section className="cb-chat" aria-label="Chat con bibliotecario">
+        <header className="cb-chat__head">
+          <span className="cb-avatar" aria-hidden="true">B</span>
+          <div>
+            <b>Bibliotecario en línea</b>
+            <small><i className="cb-dot" aria-hidden="true" /> Disponible</small>
+          </div>
+        </header>
+
+        <div className="cb-chat__body" aria-live="polite">
+          {mensajes.map((m) => (
+            <div key={m.id} className={`cb-msg cb-msg--${m.de}`}>
+              <p>{m.texto}</p>
+              <small>{m.hora}</small>
+            </div>
+          ))}
+          {escribiendo && <div className="cb-msg cb-msg--bibliotecario cb-typing"><p>Escribiendo…</p></div>}
+          <div ref={finRef} />
+        </div>
+
+        <form className="cb-chat__form" onSubmit={enviar}>
+          <input
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+            placeholder="Haz tu consulta de libros"
+            aria-label="Escribe tu consulta"
+          />
+          <button type="submit" disabled={!texto.trim()}>Enviar</button>
+        </form>
       </section>
-
-      {/* Contenido Principal */}
-      <main className="main-layout">
-        <Container1 />
-
-        <Box className="page-body">
-          <Box className="breadcrumbs">
-            <Typography variant="body2" className="breadcrumb-link">Inicio</Typography>
-            <Typography variant="body2" className="breadcrumb-separator">{`>`}</Typography>
-            <Typography variant="body2" className="breadcrumb-link">Resultados de búsqueda</Typography>
-            <Typography variant="body2" className="breadcrumb-separator">{`>`}</Typography>
-            <Typography variant="body2" className="breadcrumb-current">Asesoría de búsqueda</Typography>
-          </Box>
-
-          {/* Título de la página */}
-          <Typography
-            className="prstamos-de-herramientas"
-            variant="inherit"
-            variantMapping={{ inherit: "h1" }}
-            sx={{
-              fontWeight: "600",
-              lineHeight: "40px",
-              letterSpacing: "-0.32px",
-              marginBottom: "24px",
-              marginTop: "24px",
-              color: "#1d1f23"
-            }}
-          >
-            Asesoría de búsqueda
-          </Typography>
-
-          <img className="line-icon8" alt="Separador" src="/Line.svg" />
-
-          {/* Caja principal del chat con el bibliotecario */}
-          <Box className="chat-container">
-            <Box className="chat-message">
-              <span className="emoji" role="img" aria-label="books">📚</span>
-              <Typography variant="body2" className="message-text">
-                ¡Hola! Te estamos conectando con uno de nuestros bibliotecarios en línea para brindarte la ayuda que requieras. Te agradecemos la espera.
-              </Typography>
-            </Box>
-
-            <Box className="chat-input-wrapper">
-              <TextField
-                className="chat-input"
-                placeholder="Haz tu consulta de libros"
-                variant="outlined"
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img width="16px" height="16px" src="/search.svg" alt="Buscar" />
-                    </InputAdornment>
-                  ),
-                }}
-                sx={{
-                  "& fieldset": { border: "none" },
-                  "& .MuiInputBase-root": {
-                    height: "44px",
-                    backgroundColor: "#ffffff",
-                    borderRadius: "4px",
-                    fontSize: "14px",
-                  },
-                  "& .MuiInputBase-input": {
-                    paddingLeft: "8px",
-                    color: "#696d72",
-                  }
-                }}
-              />
-            </Box>
-          </Box>
-        </Box>
-      </main>
-    </Box>
+    </PaginaBiblioteca>
   );
 };
 
