@@ -11,6 +11,7 @@ const ROUTES = {
   reservas: '/mis-reservas',
   salas: '/reservas-de-sala',
   prestamos: '/prestamos',
+  'mis-prestamos': '/mis-prestamos',
   recomendaciones: '/recomendaciones'
 }
 

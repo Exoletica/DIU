@@ -31,9 +31,14 @@ const MisPrestamos = () => {
   }, [toast]);
 
   const handleNavigate = useCallback((destino) => {
-    if (destino === "inicio") return navigate("/");
-    if (destino === "mis-prestamos") return navigate("/mis-prestamos");
-    window.console.info(`Navigation requested: ${destino}`);
+    const rutas = {
+      inicio: "/",
+      reservas: "/mis-reservas",
+      "mis-prestamos": "/mis-prestamos",
+      recomendaciones: "/recomendaciones",
+      salas: "/reservas-de-sala",
+    };
+    if (rutas[destino]) return navigate(rutas[destino]);
   }, [navigate]);
 
   const atrasados = prestamos.filter((p) => estadoPrestamo(p) === "atrasado");

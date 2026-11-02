@@ -13,8 +13,9 @@ const RenewLoanModal = ({ prestamo, onConfirmar, onCerrar }) => {
   const nuevaFecha = sumarDias(prestamo.fechaDevolucion, DIAS_POR_RENOVACION);
 
   return (
-    <div className="renew-modal__backdrop" onClick={onCerrar}>
-      <div className="renew-modal" role="dialog" aria-modal="true" aria-labelledby="renew-title" onClick={(e) => e.stopPropagation()}>
+    <div className="renew-modal__backdrop">
+      <button type="button" className="renew-modal__overlay" aria-label="Cerrar" onClick={onCerrar} />
+      <dialog open className="renew-modal" aria-modal="true" aria-labelledby="renew-title">
         <button className="renew-modal__close" onClick={onCerrar} aria-label="Cerrar"><XIcon size={18} /></button>
         <div className="renew-modal__icon"><RefreshIcon size={22} /></div>
         <h2 id="renew-title">Renovar préstamo</h2>
@@ -34,7 +35,7 @@ const RenewLoanModal = ({ prestamo, onConfirmar, onCerrar }) => {
           <button className="renew-modal__secondary" onClick={onCerrar}>Cancelar</button>
           <button className="renew-modal__primary" onClick={() => onConfirmar(prestamo, nuevaFecha)}>Confirmar renovación</button>
         </div>
-      </div>
+      </dialog>
     </div>
   );
 };

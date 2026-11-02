@@ -69,3 +69,21 @@
   &__secondary { background: #fff; border: 1px solid var(--color-lightgray-200); color: var(--color-gray-100); }
   &__primary { background: var(--color-darkslateblue-200); color: #fff; &:hover { background: var(--color-darkslateblue-100); } }
 }
+
+// Capa transparente detrás del modal: al hacer clic afuera, se cierra.
+.renew-modal__overlay {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  background: transparent;
+  cursor: default;
+}
+
+// Resetea los estilos por defecto del elemento <dialog>.
+dialog.renew-modal {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  border: 0;
+  color: inherit;
+}

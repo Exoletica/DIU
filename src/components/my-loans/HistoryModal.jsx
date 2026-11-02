@@ -11,8 +11,9 @@ const HistoryModal = ({ historial, onCerrar }) => {
   }, [onCerrar]);
 
   return (
-    <div className="history-modal__backdrop" onClick={onCerrar}>
-      <div className="history-modal" role="dialog" aria-modal="true" aria-labelledby="history-title" onClick={(e) => e.stopPropagation()}>
+    <div className="history-modal__backdrop">
+      <button type="button" className="history-modal__overlay" aria-label="Cerrar" onClick={onCerrar} />
+      <dialog open className="history-modal" aria-modal="true" aria-labelledby="history-title">
         <header className="history-modal__head">
           <h2 id="history-title"><HistoryIcon size={18} /> Historial de Préstamos</h2>
           <button onClick={onCerrar} aria-label="Cerrar"><XIcon size={18} /></button>
@@ -47,7 +48,7 @@ const HistoryModal = ({ historial, onCerrar }) => {
             })}
           </ul>
         )}
-      </div>
+      </dialog>
     </div>
   );
 };
