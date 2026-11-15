@@ -1,5 +1,6 @@
 import { estadoPrestamo, motivoNoRenovable, textoVencimiento, multaAcumulada, MAX_RENOVACIONES } from "../../data/misPrestamos";
 import { CalendarIcon, ClockIcon, RefreshIcon, PinIcon } from "./LoanIcons";
+import { formatShortDate } from "../../utils/fechas";
 import "./LoanCard.scss";
 
 const etiquetas = { activo: "Activo", renovado: "Renovado", atrasado: "Atrasado" };
@@ -32,11 +33,11 @@ const LoanCard = ({ prestamo, variante = "activo", onRenovar }) => {
           <div className="loan-card__dates">
             <div>
               <CalendarIcon size={14} />
-              <div><small>Fecha préstamo</small><b>{prestamo.fechaPrestamo}</b></div>
+              <div><small>Fecha préstamo</small><b>{formatShortDate(prestamo.fechaPrestamo)}</b></div>
             </div>
             <div>
               <ClockIcon size={14} />
-              <div><small>Fecha devolución</small><b className="loan-card__due">{prestamo.fechaDevolucion}</b></div>
+              <div><small>Fecha devolución</small><b className="loan-card__due">{formatShortDate(prestamo.fechaDevolucion)}</b></div>
             </div>
           </div>
         )}

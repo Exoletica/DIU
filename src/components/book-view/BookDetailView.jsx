@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AppSidebar from "../layout/AppSidebar";
 import AppTopBar from "../layout/AppTopBar";
 import Toast from "../common/Toast"
@@ -18,6 +18,7 @@ const Estrellas = ({ n }) => (
 // Página de detalle de un libro. Uso: <BookDetailView libroId="calculus" />
 const BookDetailView = ({ libroId }) => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const libro = libros[libroId];
   const [pestana, setPestana] = useState("info");
   const [favorito, setFavorito] = useState(false);
@@ -61,7 +62,7 @@ const BookDetailView = ({ libroId }) => {
           <nav className="bdv-crumbs" aria-label="Ruta">
             <button type="button" onClick={() => navigate("/")}>Inicio</button>
             <span aria-hidden="true">›</span>
-            <button type="button" onClick={() => navigate(RUTAS.catalogo)}>Resultados</button>
+            <button type="button" onClick={() => navigate(RUTAS.catalogo + (state?.busqueda ?? ""))}>Resultados</button>
             <span aria-hidden="true">›</span>
             <b>{libro.titulo}</b>
           </nav>
@@ -158,7 +159,7 @@ const BookDetailView = ({ libroId }) => {
                     key={id}
                     type="button"
                     className="bdv-rec"
-                    onClick={() => (r.ruta ? navigate(r.ruta) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`))}
+                    onClick={() => (r.ruta ? navigate(r.ruta, { state }) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`))}
                   >
                     <img src={r.portada} alt="" loading="lazy" />
                     <small>{r.area}</small>

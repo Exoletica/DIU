@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import useModal from "../common/useModal";
 import { sumarDias, DIAS_POR_RENOVACION, MAX_RENOVACIONES } from "../../data/misPrestamos";
 import { RefreshIcon, XIcon } from "./LoanIcons";
+import { formatShortDate } from "../../utils/fechas";
 import "./RenewLoanModal.scss";
 
 const RenewLoanModal = ({ prestamo, onConfirmar, onCerrar }) => {
@@ -19,9 +20,9 @@ const RenewLoanModal = ({ prestamo, onConfirmar, onCerrar }) => {
         <p className="renew-modal__book"><b>{prestamo.titulo}</b> · {prestamo.autor}</p>
 
         <dl className="renew-modal__dates">
-          <div><dt>Devolución actual</dt><dd>{prestamo.fechaDevolucion}</dd></div>
+          <div><dt>Devolución actual</dt><dd>{formatShortDate(prestamo.fechaDevolucion)}</dd></div>
           <div className="renew-modal__arrow" aria-hidden="true">→</div>
-          <div><dt>Nueva devolución</dt><dd className="renew-modal__new">{nuevaFecha}</dd></div>
+          <div><dt>Nueva devolución</dt><dd className="renew-modal__new">{formatShortDate(nuevaFecha)}</dd></div>
         </dl>
 
         <p className="renew-modal__count">

@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import useModal from "../common/useModal";
 import { diasEntre, MULTA_DIARIA } from "../../data/misPrestamos";
 import { HistoryIcon, XIcon } from "./LoanIcons";
+import { formatShortDate } from "../../utils/fechas";
 import "./HistoryModal.scss";
 
 const HistoryModal = ({ historial, onCerrar }) => {
@@ -30,8 +31,8 @@ const HistoryModal = ({ historial, onCerrar }) => {
                     <small>{h.autor}</small>
                   </div>
                   <div className="history-modal__dates">
-                    <span>Prestado: {h.fechaPrestamo}</span>
-                    <span>Devuelto: {h.fechaEntrega}</span>
+                    <span>Prestado: {formatShortDate(h.fechaPrestamo)}</span>
+                    <span>Devuelto: {formatShortDate(h.fechaEntrega)}</span>
                   </div>
                   {atraso > 0 ? (
                     <span className="history-modal__tag history-modal__tag--late">

@@ -12,15 +12,16 @@ import { leer, guardar } from "../utils/almacenamiento";
 import { useNavegacion } from "../routes";
 import { AlertIcon, BookIcon, CheckIcon, FileIcon, HistoryIcon, InfoIcon, RefreshIcon } from "../components/my-loans/LoanIcons";
 import {
-  HOY, MAX_PRESTAMOS, MAX_RENOVACIONES, DIAS_POR_RENOVACION, MULTA_DIARIA,
+  HOY, CLAVE_PRESTAMOS, CLAVE_SOLICITUDES, MAX_PRESTAMOS, MAX_RENOVACIONES, DIAS_POR_RENOVACION, MULTA_DIARIA,
   prestamosIniciales, solicitudesIniciales, historialPrestamos, estadoPrestamo, necesitaDevolucion, diasEntre,
 } from "../data/misPrestamos";
+import { formatShortDate } from "../utils/fechas";
 import "./MisPrestamos.scss";
 
 const MisPrestamos = () => {
   const navigate = useNavigate();
-  const [prestamos, setPrestamos] = useState(() => leer("bibliotecausm:prestamos", prestamosIniciales));
-  const [solicitudes, setSolicitudes] = useState(() => leer("bibliotecausm:solicitudes", solicitudesIniciales));
+  const [prestamos, setPrestamos] = useState(() => leer(CLAVE_PRESTAMOS, prestamosIniciales));
+  const [solicitudes, setSolicitudes] = useState(() => leer(CLAVE_SOLICITUDES, solicitudesIniciales));
   const [pestana, setPestana] = useState("activos");
   const [prestamoARenovar, setPrestamoARenovar] = useState(null);
   const [toast, setToast] = useState(null);
@@ -32,8 +33,8 @@ const MisPrestamos = () => {
     return () => clearTimeout(t);
   }, [toast]);
 
-  useEffect(() => guardar("bibliotecausm:prestamos", prestamos), [prestamos]);
-  useEffect(() => guardar("bibliotecausm:solicitudes", solicitudes), [solicitudes]);
+  useEffect(() => guardar(CLAVE_PRESTAMOS, prestamos), [prestamos]);
+  useEffect(() => guardar(CLAVE_SOLICITUDES, solicitudes), [solicitudes]);
 
   const handleNavigate = useNavegacion();
 
@@ -54,10 +55,10 @@ const MisPrestamos = () => {
       titulo: prestamo.titulo,
       fecha: HOY,
       estado: "aprobada",
-      detalle: `Nueva fecha de devolución: ${nuevaFecha}`,
+      detalle: `Nueva fecha de devolución: ${formatShortDate(nuevaFecha)}`,
     }, ...lista]);
     setPrestamoARenovar(null);
-    setToast(`Préstamo renovado hasta el ${nuevaFecha}`);
+    setToast(`Préstamo renovado hasta el ${formatShortDate(nuevaFecha)}`);
   };
 
   const cancelarSolicitud = (solicitud) => {
@@ -80,7 +81,7 @@ const MisPrestamos = () => {
     <div className="mis-prestamos">
       <AppSidebar activeItem="mis-prestamos" onNavigate={handleNavigate} />
       <div className="mis-prestamos-main">
-        <AppTopBar breadcrumbs={["Inicio", "Mis Préstamos"]} onBreadcrumbNavigate={() => navigate("/")} notificationCount={atrasados.length} showSearch />
+        <AppTopBar breadcrumbs={["Inicio", "Mis Préstamos"]} onBreadcrumbNavigate={() => navigate("/")} prestamos={prestamos} showSearch />
 
         <main className="mis-prestamos-content">
           <header className="mp-header">

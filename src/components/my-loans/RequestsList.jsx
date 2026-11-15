@@ -1,4 +1,5 @@
 import { CheckIcon, ClockIcon, XIcon } from "./LoanIcons";
+import { formatShortDate } from "../../utils/fechas";
 import "./RequestsList.scss";
 
 const estados = {
@@ -20,7 +21,7 @@ const RequestsList = ({ solicitudes, onCancelar }) => {
           <li key={s.id} className={`requests__item requests__item--${s.estado}`}>
             <span className="requests__icon"><Icon size={18} /></span>
             <div className="requests__info">
-              <small>{s.tipo} · enviada el {s.fecha}</small>
+              <small>{s.tipo} · enviada el {formatShortDate(s.fecha)}</small>
               <b>{s.titulo}</b>
               <span>{s.detalle}</span>
             </div>

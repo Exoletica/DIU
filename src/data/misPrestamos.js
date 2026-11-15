@@ -1,7 +1,7 @@
 // Datos de ejemplo para la página "Mis Préstamos".
 // Cuando exista backend, esto se reemplaza por una llamada a la API.
 
-import { diasDesdeHoy } from "../utils/fechas";
+import { diasDesdeHoy, formatShortDate } from "../utils/fechas";
 
 // Las fechas se calculan desde hoy para que los estados (activo, por vencer, atrasado)
 // se vean igual que en el diseño de Figma sin importar cuándo se abra la página.
@@ -11,6 +11,10 @@ export const MAX_PRESTAMOS = 5;
 export const MAX_RENOVACIONES = 2;
 export const DIAS_POR_RENOVACION = 7;
 export const DIAS_AVISO_VENCIMIENTO = 3;
+
+// Claves con que se guardan en el navegador los préstamos y solicitudes.
+export const CLAVE_PRESTAMOS = "bibliotecausm:prestamos";
+export const CLAVE_SOLICITUDES = "bibliotecausm:solicitudes";
 export const MULTA_DIARIA = 500;
 
 export const prestamosIniciales = [
@@ -60,7 +64,7 @@ export const solicitudesIniciales = [
     titulo: "El libro de las matemáticas",
     fecha: diasDesdeHoy(-6),
     estado: "aprobada",
-    detalle: `Nueva fecha de devolución: ${diasDesdeHoy(1)}`,
+    detalle: `Nueva fecha de devolución: ${formatShortDate(diasDesdeHoy(1))}`,
   },
   {
     id: "sol-2",

@@ -1,4 +1,5 @@
 import { HOY, estadoPrestamo } from "./misPrestamos";
+import { formatShortDate } from "../utils/fechas";
 
 const etiquetas = { activo: "Activo", renovado: "Renovado", atrasado: "Atrasado" };
 
@@ -9,8 +10,8 @@ export const descargarComprobante = (prestamos) => {
     <tr>
       <td><b>${p.titulo}</b><br><small>${p.autor}</small></td>
       <td>${p.isbn}</td>
-      <td>${p.fechaPrestamo}</td>
-      <td>${p.fechaDevolucion}</td>
+      <td>${formatShortDate(p.fechaPrestamo)}</td>
+      <td>${formatShortDate(p.fechaDevolucion)}</td>
       <td>${etiquetas[estadoPrestamo(p)]}</td>
     </tr>`).join("");
 
@@ -28,7 +29,7 @@ export const descargarComprobante = (prestamos) => {
 </style></head>
 <body>
   <h1>BibliotecaUSM — Comprobante de préstamos</h1>
-  <p>Usuario: Estudiante · Emitido el ${HOY}</p>
+  <p>Usuario: Estudiante · Emitido el ${formatShortDate(HOY)}</p>
   <table>
     <thead><tr><th>Título</th><th>ISBN</th><th>Préstamo</th><th>Devolución</th><th>Estado</th></tr></thead>
     <tbody>${filas}</tbody>

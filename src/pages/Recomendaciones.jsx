@@ -55,7 +55,7 @@ const Recomendaciones = () => {
   const [selectedArea, setSelectedArea] = useState("todos");
   const [viewMode, setViewMode] = useState("grid");
   const todayLabel = formatToday();
-  const visibleRecommendations = selectedArea === "todos" ? recommendations.filter((item) => item.featured) : recommendations.filter((item) => item.areaId === selectedArea);
+  const visibleRecommendations = selectedArea === "todos" ? [...recommendations].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))) : recommendations.filter((item) => item.areaId === selectedArea);
   const [toast, setToast] = useToast(3500);
   const handleNavigate = useNavegacion();
   const handleDetails = useCallback(({ title, detailPath, available }) => {

@@ -1,5 +1,6 @@
 import { estadoPrestamo } from "../../data/misPrestamos";
 import { ChevronIcon } from "./LoanIcons";
+import { formatShortDate } from "../../utils/fechas";
 import "./LoanDetailsTable.scss";
 
 const etiquetas = { activo: "Activo", renovado: "Renovado", atrasado: "Atrasado" };
@@ -20,7 +21,7 @@ const LoanDetailsTable = ({ prestamos, onVerDetalle }) => (
               <tr key={p.id}>
                 <td><b>{p.titulo}</b><small>{p.autor}</small></td>
                 <td><span className={`loan-badge loan-badge--${estado}`}>{etiquetas[estado]}</span></td>
-                <td className={estado === "atrasado" ? "loan-details__late" : ""}>{p.fechaDevolucion}</td>
+                <td className={estado === "atrasado" ? "loan-details__late" : ""}>{formatShortDate(p.fechaDevolucion)}</td>
                 <td>{p.ubicacion}</td>
                 <td className="loan-details__right">
                   <button onClick={() => onVerDetalle(p)}>Ver Detalle <ChevronIcon size={14} /></button>

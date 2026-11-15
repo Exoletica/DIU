@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import PaginaBiblioteca from "../components/busqueda/PaginaBiblioteca";
 import Toast from "../components/common/Toast"
 import useToast from "../components/common/useToast";
@@ -61,6 +61,7 @@ const Check = ({ label, checked, onChange }) => (
 
 const ResultadosDeBusqueda = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [params] = useSearchParams();
   const consulta = params.get("q")?.trim() ?? "";
   const [disp, setDisp] = useState([]);
@@ -70,6 +71,13 @@ const ResultadosDeBusqueda = () => {
   const reservas = useReservations();
   const [orden, setOrden] = useState("relevancia");
   const [toast, setToast] = useToast();
+
+  // Cada búsqueda nueva parte sin filtros, para no esconder resultados sin aviso.
+  useEffect(() => {
+    setDisp([]);
+    setAreas([]);
+    setPeriodo([]);
+  }, [consulta]);
 
   const visibles = useMemo(() => {
     const texto = normalizar(consulta);
@@ -85,7 +93,7 @@ const ResultadosDeBusqueda = () => {
 
   const hayFiltros = disp.length + areas.length + periodo.length > 0;
 
-  const verDetalle = (r) => (r.ruta ? navigate(r.ruta) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`));
+  const verDetalle = (r) => (r.ruta ? navigate(r.ruta, { state: { busqueda: location.search } }) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`));
   const reservar = (r) => {
     addItemReservation({ itemId: `libro-${r.id}`, type: "book", title: r.titulo, subtitle: r.autor, available: r.disponible });
     setToast(r.disponible ? `Reservaste "${r.titulo}". La verás en Mis Reservas.` : `Te uniste a la lista de espera de "${r.titulo}".`);
