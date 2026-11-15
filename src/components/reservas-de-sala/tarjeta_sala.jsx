@@ -1,4 +1,3 @@
-import React from 'react'
 import { MapPin, Users, Wifi, Tv } from 'lucide-react'
 
 const STATUS_LABELS = {
@@ -7,7 +6,7 @@ const STATUS_LABELS = {
   reservada: 'Reservada'
 }
 
-export const TarjetaSala = ({ room, isReserved, limitReached, onReserve, onCancel }) => {
+export const TarjetaSala = ({ room, isReserved, limitReached, slotTaken, onReserve, onCancel }) => {
   const { Icon } = room
   let status = 'disponible'
   if (!room.available) status = 'ocupada'
@@ -25,6 +24,13 @@ export const TarjetaSala = ({ room, isReserved, limitReached, onReserve, onCance
       return (
         <button type='button' className='boton boton--secundario boton--ancho-completo' onClick={onCancel}>
           Cancelar Reserva
+        </button>
+      )
+    }
+    if (slotTaken) {
+      return (
+        <button type='button' className='boton boton--primario boton--ancho-completo boton--deshabilitado' disabled>
+          Ya tienes una sala a esta hora
         </button>
       )
     }

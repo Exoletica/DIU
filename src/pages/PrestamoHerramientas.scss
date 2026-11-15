@@ -1,4 +1,4 @@
-// Estilos compartidos por "Préstamo de Herramientas" y "Calculadoras"
+// Estilos compartidos por "Préstamo de Herramientas" y las páginas de equipos
 .prestamo-herramientas-page {
   min-height: 100vh;
   display: grid;
@@ -16,20 +16,6 @@
   color: var(--color-gray-100);
 }
 
-.ph-subbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 10px 32px;
-  background: var(--color-whitesmoke-300, #eaecee);
-  border-bottom: 1px solid var(--color-lightgray-100);
-  font-size: 13px;
-
-  &__right { display: flex; align-items: center; gap: 12px; color: var(--color-dimgray); font-size: 12px; }
-}
-
 .ph-crumbs {
   display: flex;
   align-items: center;
@@ -40,26 +26,25 @@
   b { color: var(--color-darkslateblue-200); }
 }
 
-.ph-sort {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border: 1px solid var(--color-lightgray-200);
-  border-radius: 4px;
-  background: #fff;
-  color: var(--color-gray-100);
+.ph-crumbs--page {
+  padding: 20px 32px 0;
   font-size: 13px;
-  img { width: 14px; height: 14px; }
 }
 
 .ph-title {
   margin: 0;
-  padding: 20px 32px 16px;
-  border-bottom: 1px solid var(--color-lightgray-100);
+  padding: 12px 32px 4px;
   font-family: var(--font-fraunces);
   font-size: 28px;
   font-weight: 600;
+}
+
+.ph-description {
+  margin: 0;
+  padding: 0 32px 16px;
+  border-bottom: 1px solid var(--color-lightgray-100);
+  color: var(--color-dimgray);
+  font-size: 14px;
 }
 
 .ph-grid {
@@ -69,33 +54,11 @@
   padding: 28px 32px;
 }
 
-.ph-back {
-  margin: 20px 32px 0;
-  padding: 0;
-  background: transparent;
-  color: var(--color-darkslateblue-200);
-  font-size: 13px;
-  font-weight: 500;
-  &:hover { text-decoration: underline; }
-}
-
-.ph-toast {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 30;
-  padding: 12px 16px;
-  border-radius: 6px;
-  background: var(--color-gray-100);
-  color: #fff;
-  font: 500 14px var(--font-ibm-plex-sans);
-  box-shadow: var(--shadow-drop-1);
-}
-
 @media (max-width: 750px) {
   .prestamo-herramientas-page { display: block; }
   .prestamo-herramientas-page .app-sidebar { min-height: 0; }
   .ph-content { padding-top: 0; }
-  .ph-subbar, .ph-title, .ph-grid { padding-left: 16px; padding-right: 16px; }
+  .ph-crumbs--page, .ph-title, .ph-description, .ph-grid { padding-left: 16px; padding-right: 16px; }
+  .ph-crumbs--page { padding-top: 16px; }
   .ph-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 }

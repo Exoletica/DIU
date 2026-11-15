@@ -1,8 +1,11 @@
 // Datos de ejemplo para la página "Mis Préstamos".
 // Cuando exista backend, esto se reemplaza por una llamada a la API.
 
-// Fecha "de hoy" fija para que los estados calcen con el diseño de Figma.
-export const HOY = "2024-05-14";
+import { diasDesdeHoy } from "../utils/fechas";
+
+// Las fechas se calculan desde hoy para que los estados (activo, por vencer, atrasado)
+// se vean igual que en el diseño de Figma sin importar cuándo se abra la página.
+export const HOY = diasDesdeHoy(0);
 
 export const MAX_PRESTAMOS = 5;
 export const MAX_RENOVACIONES = 2;
@@ -15,9 +18,9 @@ export const prestamosIniciales = [
     id: "calculus",
     titulo: "Calculus",
     autor: "Michael Spivak",
-    portada: "/prestamos/Container10@2x.png",
-    fechaPrestamo: "2024-05-10",
-    fechaDevolucion: "2024-05-24",
+    portada: "/calculus.webp",
+    fechaPrestamo: diasDesdeHoy(-4),
+    fechaDevolucion: diasDesdeHoy(10),
     isbn: "978-607-32-2190-3",
     ubicacion: "Central - Piso 3",
     renovaciones: 0,
@@ -28,9 +31,9 @@ export const prestamosIniciales = [
     id: "matematicas",
     titulo: "El libro de las matemáticas",
     autor: "DK",
-    portada: "/prestamos/Container6@2x.png",
-    fechaPrestamo: "2024-05-01",
-    fechaDevolucion: "2024-05-15",
+    portada: "/el-libro-de-las-matematicas.webp",
+    fechaPrestamo: diasDesdeHoy(-13),
+    fechaDevolucion: diasDesdeHoy(1),
     isbn: "978-8262833848",
     ubicacion: "Central - Piso 2",
     renovaciones: 1,
@@ -39,10 +42,10 @@ export const prestamosIniciales = [
   {
     id: "gatsby",
     titulo: "El Gran Gatsby",
-    autor: "Scott Fitzgerald",
-    portada: "/prestamos/Container11@2x.png",
-    fechaPrestamo: "2024-04-20",
-    fechaDevolucion: "2024-05-04",
+    autor: "F. Scott Fitzgerald",
+    portada: "/el-gran-gatsby.webp",
+    fechaPrestamo: diasDesdeHoy(-24),
+    fechaDevolucion: diasDesdeHoy(-10),
     isbn: "978-0199270293",
     ubicacion: "Central - Piso 3",
     renovaciones: 0,
@@ -55,15 +58,15 @@ export const solicitudesIniciales = [
     id: "sol-1",
     tipo: "Renovación",
     titulo: "El libro de las matemáticas",
-    fecha: "2024-05-08",
+    fecha: diasDesdeHoy(-6),
     estado: "aprobada",
-    detalle: "Nueva fecha de devolución: 2024-05-15",
+    detalle: `Nueva fecha de devolución: ${diasDesdeHoy(1)}`,
   },
   {
     id: "sol-2",
     tipo: "Préstamo especial",
     titulo: "Física Universitaria Vol. 1",
-    fecha: "2024-05-12",
+    fecha: diasDesdeHoy(-2),
     estado: "pendiente",
     detalle: "En revisión por el personal de biblioteca",
   },
@@ -71,7 +74,7 @@ export const solicitudesIniciales = [
     id: "sol-3",
     tipo: "Renovación",
     titulo: "El libro de las matemáticas",
-    fecha: "2024-05-13",
+    fecha: diasDesdeHoy(-1),
     estado: "rechazada",
     detalle: "Otro usuario tiene una reserva activa para este ejemplar",
   },
@@ -79,9 +82,9 @@ export const solicitudesIniciales = [
 
 // Préstamos ya devueltos (para "Ver Historial")
 export const historialPrestamos = [
-  { id: "h1", titulo: "El Miedo en Occidente", autor: "Jean Delumeau", fechaPrestamo: "2024-03-04", fechaDevolucion: "2024-03-18", fechaEntrega: "2024-03-15" },
-  { id: "h2", titulo: "Cálculo Trascendentes Tempranas", autor: "James Stewart", fechaPrestamo: "2024-03-20", fechaDevolucion: "2024-04-03", fechaEntrega: "2024-04-06" },
-  { id: "h3", titulo: "Don Quijote de la Mancha", autor: "Miguel de Cervantes", fechaPrestamo: "2024-04-08", fechaDevolucion: "2024-04-22", fechaEntrega: "2024-04-22" },
+  { id: "h1", titulo: "El Miedo en Occidente", autor: "Jean Delumeau", fechaPrestamo: diasDesdeHoy(-71), fechaDevolucion: diasDesdeHoy(-57), fechaEntrega: diasDesdeHoy(-60) },
+  { id: "h2", titulo: "Cálculo Trascendentes Tempranas", autor: "James Stewart", fechaPrestamo: diasDesdeHoy(-55), fechaDevolucion: diasDesdeHoy(-41), fechaEntrega: diasDesdeHoy(-38) },
+  { id: "h3", titulo: "Don Quijote de la Mancha", autor: "Miguel de Cervantes", fechaPrestamo: diasDesdeHoy(-36), fechaDevolucion: diasDesdeHoy(-22), fechaEntrega: diasDesdeHoy(-22) },
 ];
 
 // ---------- Helpers ----------

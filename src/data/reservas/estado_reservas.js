@@ -1,12 +1,16 @@
 import { useSyncExternalStore } from 'react'
 
-import INITIAL_RESERVATIONS, { describeCapacity } from './reservas'
+import INITIAL_RESERVATIONS, { describeCapacity, isOpen } from './reservas'
+import { leer, guardar } from '../../utils/almacenamiento'
 
-let reservations = INITIAL_RESERVATIONS
+const STORAGE_KEY = 'bibliotecausm:reservas'
+
+let reservations = leer(STORAGE_KEY, INITIAL_RESERVATIONS)
 const listeners = new Set()
 
 const setReservations = (update) => {
   reservations = update(reservations)
+  guardar(STORAGE_KEY, reservations)
   listeners.forEach((listener) => listener())
 }
 
@@ -17,7 +21,12 @@ const subscribe = (listener) => {
 
 const getSnapshot = () => reservations
 
+// Devuelve false si ya hay una reserva abierta de sala en esa fecha y horario.
 export const addReservation = (room, date, time) => {
+  const slotTaken = reservations.some(
+    (reservation) => isOpen(reservation) && reservation.type === 'room' && reservation.date === date && reservation.time === time
+  )
+  if (slotTaken) return false
   setReservations((current) => [
     ...current,
     {
@@ -32,6 +41,7 @@ export const addReservation = (room, date, time) => {
       status: 'pending'
     }
   ])
+  return true
 }
 
 export const updateStatus = (reservationId, status) => {

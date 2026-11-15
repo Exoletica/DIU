@@ -159,19 +159,6 @@
   &:hover img { transform: translateY(-3px); }
 }
 
-.bdv-toast {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 30;
-  max-width: 420px;
-  padding: 12px 16px;
-  border-radius: 6px;
-  background: var(--color-gray-100);
-  color: #fff;
-  font-size: 14px;
-  box-shadow: var(--shadow-drop-1);
-}
 
 @media (max-width: 900px) {
   .bdv-top { grid-template-columns: 1fr; }

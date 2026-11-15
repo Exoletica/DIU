@@ -11,7 +11,10 @@ Interfaz web de una biblioteca universitaria para consultar recursos, reservar s
 - Diseño responsive con sidebar y barra superior.
 - Catálogo de préstamo de herramientas (libros físicos, Arduinos y calculadoras).
 - Fichas de detalle del libro con resumen, ficha técnica (ISBN, páginas, editorial, idioma) y recomendados.
-- Navegación entre el inicio y el catálogo de préstamos desde el sidebar.
+- Buscador de libros en Inicio y en la barra superior, con filtros por disponibilidad, área y año.
+- Mis Préstamos: renovaciones, historial, solicitudes y comprobante imprimible.
+- Préstamo de calculadoras y Arduinos.
+- Chat de asesoría con un bibliotecario.
 - Reserva de salas de estudio con calendario, horarios, filtros por capacidad y disponibilidad, y límite diario por estudiante.
 - Mis Reservas: reservas activas e historial de libros y salas, con vista de calendario, confirmación, cancelación y ayuda (FAQ y contacto con soporte).
 
@@ -56,26 +59,31 @@ El build se genera en la carpeta `build/`.
 ```text
 src/
 ├── components/
-│   ├── common/      # Encabezados y elementos compartidos
-│   ├── home/        # Secciones y tarjetas de la página de inicio
-│   ├── layout/      # Sidebar, barra superior y footer
-│   ├── book-detail/ # Sidebar, barra superior, ficha técnica y tarjetas del detalle del libro
-│   ├── loans/       # Catálogo y tarjetas de préstamo de herramientas
+│   ├── book-view/         # Ficha de detalle de un libro (BookDetailView)
+│   ├── busqueda/          # Layout de Resultados, Contacto y página 404
+│   ├── common/            # Encabezados, avisos (Toast) y hook de modales accesibles
+│   ├── home/              # Secciones y tarjetas de la página de inicio
+│   ├── layout/            # Sidebar, barra superior (con buscador) y footer
+│   ├── my-loans/          # Tarjetas, tabla y modales de Mis Préstamos
+│   ├── recommendations/   # Filtro y tarjetas de Recomendaciones
+│   ├── tool-loans/        # Tarjeta de herramienta/equipo
 │   ├── mis-reservas/      # Tarjeta de reserva y ayuda de Mis Reservas
 │   ├── reservas-de-sala/  # Tarjeta de sala, filtros y recordatorios de Reservas de Sala
-│   └── reservas-comun/    # Layout, encabezado y calendario compartidos por ambas páginas
+│   └── reservas-comun/    # Layout, encabezado y calendario compartidos por las reservas
 ├── data/
-│   └── reservas/    # Salas, reservas de ejemplo y estado compartido de las reservas
-├── pages/           # Inicio, préstamo de herramientas, detalle del libro,
-│                    # mis_reservas.jsx y reservas_de_sala.jsx
-├── styles/          # Tokens acotados a las páginas de préstamos y detalle
-│   └── reservas/    # Estilos BEM de reservas: una carpeta por bloque y un archivo por elemento
-├── utils/           # fechas.js: utilidades de fechas
-├── App.jsx
-├── global.scss      # Variables y estilos globales
+│   ├── libros.js          # Catálogo central de libros y fichas de detalle
+│   ├── equipos.js         # Calculadoras y Arduinos para préstamo
+│   ├── misPrestamos.js    # Préstamos de ejemplo (fechas relativas a hoy)
+│   └── reservas/          # Salas, reservas de ejemplo y estado compartido de las reservas
+├── pages/                 # Una página por ruta
+├── styles/reservas/       # Estilos BEM de reservas: una carpeta por bloque
+├── utils/                 # fechas.js y almacenamiento.js (guardado en el navegador)
+├── routes.js              # Rutas de la app y navegación compartida
+├── App.jsx                # Rutas, títulos y descripciones por página
+├── global.scss            # Variables y estilos globales
 └── index.jsx
-public/              # Imágenes, iconos y assets estáticos
-└── prestamos/       # Assets de las páginas de préstamos y detalle del libro
+public/                    # Imágenes (WebP), iconos SVG y favicon
+└── herramientas/          # Imágenes de libros físicos, calculadoras y Arduinos
 ```
 
 ## Rutas
@@ -83,16 +91,31 @@ public/              # Imágenes, iconos y assets estáticos
 | Ruta | Página |
 | --- | --- |
 | `/` | Inicio |
+| `/resultados-de-busqueda?q=texto` | Resultados de búsqueda |
+| `/recomendaciones` | Recomendaciones de estudio |
 | `/prestamos` | Préstamo de Herramientas |
+| `/prestamos/calculadoras` | Préstamo de calculadoras |
+| `/prestamos/arduinos` | Préstamo de Arduinos |
 | `/prestamos/detalle-del-libro-1` | Calculus — Michael Spivak |
 | `/prestamos/detalle-del-libro-2` | El Miedo en Occidente — Jean Delumeau |
 | `/prestamos/detalle-del-libro-4` | Cálculo Trascendentes Tempranas — James Stewart |
+| `/mis-prestamos` | Mis Préstamos |
 | `/mis-reservas` | Mis Reservas |
 | `/reservas-de-sala` | Reservas de Sala |
+| `/contacto-bibliotecario` | Chat con bibliotecario |
+| cualquier otra | Página no encontrada (404) |
+
+## Cómo agregar contenido
+
+- **Un libro al catálogo:** agrega una entrada en `catalogo` de `src/data/libros.js`. Aparece en Inicio, Resultados y Recomendaciones con la misma portada, área y disponibilidad.
+- **Una ficha de libro:** agrega su bloque en `libros`, crea su página como `<BookDetailView libroId="..." />`, su ruta en `src/routes.js` y `src/App.jsx`, y pon esa ruta en `catalogo`.
+- **Un tipo de equipo:** agrega un bloque en `src/data/equipos.js` y su ruta con `<PrestamoEquipos tipo="..." />`.
 
 ## Notas
 
-- El script `npm run lint` requiere configurar `eslint.config.js` para ESLint 9.
+- Las reservas, renovaciones y solicitudes se guardan en el navegador (`localStorage`). Para volver a los datos de ejemplo, borra los datos del sitio.
+- Despliegue: `vercel.json` y `public/_redirects` (Netlify) redirigen todas las rutas a `index.html`, así recargar cualquier página funciona.
+- `npm run lint` revisa el código con ESLint 9 (`eslint.config.js`).
 - Foto de la sección de novedades: [Eric Lozaga en Pexels](https://www.pexels.com/photo/spacious-library-aisle-with-bookshelves-and-study-tables-31138995/).
 
 ## Autores

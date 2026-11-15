@@ -1,30 +1,38 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigationType } from "react-router-dom";
-import Inicio from "./pages/Inicio";
-import Recomendaciones from "./pages/Recomendaciones";
-import PrestamoHerramientas from "./pages/PrestamoHerramientas";
-import MisPrestamos from "./pages/MisPrestamos";
-import DetalleLibroCalculus from "./pages/DetalleLibroCalculus";
-import DetalleLibroMiedoOccidente from "./pages/DetalleLibroMiedoOccidente";
-import DetalleLibroCalculoTrascendentes from "./pages/DetalleLibroCalculoTrascendentes";
-import MisReservas from "./pages/mis_reservas";
-import ReservasDeSala from "./pages/reservas_de_sala";
-import ResultadosDeBusqueda from "./pages/ResultadosDeBsqueda";
-import ContactoBibliotecario from "./pages/ContactoBibliotecario";
-import PrestamoCalculadoras from "./pages/PrestamoCalculadoras";
+import { RUTAS } from "./routes";
+
+// Cada página se descarga recién cuando se visita.
+const Inicio = lazy(() => import("./pages/Inicio"));
+const Recomendaciones = lazy(() => import("./pages/Recomendaciones"));
+const PrestamoHerramientas = lazy(() => import("./pages/PrestamoHerramientas"));
+const PrestamoEquipos = lazy(() => import("./pages/PrestamoEquipos"));
+const MisPrestamos = lazy(() => import("./pages/MisPrestamos"));
+const DetalleLibroCalculus = lazy(() => import("./pages/DetalleLibroCalculus"));
+const DetalleLibroMiedoOccidente = lazy(() => import("./pages/DetalleLibroMiedoOccidente"));
+const DetalleLibroCalculoTrascendentes = lazy(() => import("./pages/DetalleLibroCalculoTrascendentes"));
+const MisReservas = lazy(() => import("./pages/MisReservas"));
+const ReservasDeSala = lazy(() => import("./pages/ReservasDeSala"));
+const ResultadosDeBusqueda = lazy(() => import("./pages/ResultadosDeBusqueda"));
+const ContactoBibliotecario = lazy(() => import("./pages/ContactoBibliotecario"));
+const NoEncontrada = lazy(() => import("./pages/NoEncontrada"));
+
+const DESCRIPCION_GENERAL = "BibliotecaUSM: recursos, reservas y apoyo académico.";
 
 const metadataPorRuta = {
-  "/": ["BibliotecaUSM | Inicio", "BibliotecaUSM: recursos, reservas y apoyo académico."],
-  "/recomendaciones": ["BibliotecaUSM | Recomendaciones de Estudio", "Selección académica de materiales de estudio de BibliotecaUSM."],
-  "/prestamos": ["BibliotecaUSM | Préstamo de Herramientas", "Catálogo de préstamo de libros físicos, Arduinos y calculadoras."],
-  "/mis-prestamos": ["BibliotecaUSM | Mis Préstamos", "Tus préstamos activos, devoluciones pendientes y solicitudes de renovación."],
-  "/prestamos/detalle-del-libro-1": ["BibliotecaUSM | Calculus", "Calculus de Michael Spivak: disponibilidad, reseñas y ficha técnica."],
-  "/prestamos/detalle-del-libro-2": ["BibliotecaUSM | El Miedo en Occidente", "El Miedo en Occidente de Jean Delumeau: disponibilidad, reseñas y ficha técnica."],
-  "/prestamos/detalle-del-libro-4": ["BibliotecaUSM | Cálculo Trascendentes Tempranas", "Cálculo Trascendentes Tempranas de James Stewart: disponibilidad, reseñas y ficha técnica."],
-  "/mis-reservas": ["BibliotecaUSM | Mis Reservas", "Gestiona tus reservas actuales de libros y salas de estudio."],
-  "/reservas-de-sala": ["BibliotecaUSM | Reservas de Sala", "Reserva salas de estudio y colaboración grupal en la biblioteca."],
-  "/resultados-de-busqueda": ["BibliotecaUSM | Resultados de búsqueda"],
-  "/contacto-bibliotecario": ["BibliotecaUSM | Contacto con bibliotecario"],
+  [RUTAS.inicio]: ["BibliotecaUSM | Inicio", DESCRIPCION_GENERAL],
+  [RUTAS.recomendaciones]: ["BibliotecaUSM | Recomendaciones de Estudio", "Selección académica de materiales de estudio de BibliotecaUSM."],
+  [RUTAS.prestamos]: ["BibliotecaUSM | Préstamo de Herramientas", "Catálogo de préstamo de libros físicos, Arduinos y calculadoras."],
+  [RUTAS.calculadoras]: ["BibliotecaUSM | Préstamo de Calculadoras", "Reserva calculadoras científicas y graficadoras para tus pruebas y laboratorios."],
+  [RUTAS.arduinos]: ["BibliotecaUSM | Préstamo de Arduinos", "Reserva placas Arduino para tus proyectos y laboratorios."],
+  [RUTAS["mis-prestamos"]]: ["BibliotecaUSM | Mis Préstamos", "Tus préstamos activos, devoluciones pendientes y solicitudes de renovación."],
+  [RUTAS["libro-1"]]: ["BibliotecaUSM | Calculus", "Calculus de Michael Spivak: disponibilidad, reseñas y ficha técnica."],
+  [RUTAS["libro-2"]]: ["BibliotecaUSM | El Miedo en Occidente", "El Miedo en Occidente de Jean Delumeau: disponibilidad, reseñas y ficha técnica."],
+  [RUTAS["libro-4"]]: ["BibliotecaUSM | Cálculo Trascendentes Tempranas", "Cálculo Trascendentes Tempranas de James Stewart: disponibilidad, reseñas y ficha técnica."],
+  [RUTAS.reservas]: ["BibliotecaUSM | Mis Reservas", "Gestiona tus reservas actuales de libros y salas de estudio."],
+  [RUTAS.salas]: ["BibliotecaUSM | Reservas de Sala", "Reserva salas de estudio y colaboración grupal en la biblioteca."],
+  [RUTAS.catalogo]: ["BibliotecaUSM | Resultados de búsqueda", "Busca libros del catálogo de BibliotecaUSM y filtra por disponibilidad, área y año."],
+  [RUTAS.contacto]: ["BibliotecaUSM | Contacto con bibliotecario", "Conversa con un bibliotecario para encontrar el material que necesitas."],
 };
 
 function App() {
@@ -36,29 +44,31 @@ function App() {
   }, [action, pathname]);
 
   useEffect(() => {
-    const metadata = metadataPorRuta[pathname];
-    if (!metadata) return;
-    const [title, description] = metadata;
+    const [title, description] = metadataPorRuta[pathname] ?? ["BibliotecaUSM | Página no encontrada", DESCRIPCION_GENERAL];
     document.title = title;
     const tag = document.querySelector('head > meta[name="description"]');
     if (tag) tag.content = description;
   }, [pathname]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Inicio />} />
-      <Route path="/recomendaciones" element={<Recomendaciones />} />
-      <Route path="/prestamos" element={<PrestamoHerramientas />} />
-      <Route path="/mis-prestamos" element={<MisPrestamos />} />
-      <Route path="/prestamos/detalle-del-libro-1" element={<DetalleLibroCalculus />} />
-      <Route path="/prestamos/detalle-del-libro-2" element={<DetalleLibroMiedoOccidente />} />
-      <Route path="/prestamos/detalle-del-libro-4" element={<DetalleLibroCalculoTrascendentes />} />
-      <Route path="/mis-reservas" element={<MisReservas />} />
-      <Route path="/reservas-de-sala" element={<ReservasDeSala />} />
-      <Route path="/resultados-de-busqueda" element={<ResultadosDeBusqueda />} />
-      <Route path="/contacto-bibliotecario" element={<ContactoBibliotecario />} />
-      <Route path="/prestamos/calculadoras" element={<PrestamoCalculadoras />} />
-    </Routes>
+    <Suspense fallback={<div className="app-cargando" role="status">Cargando…</div>}>
+      <Routes>
+        <Route path={RUTAS.inicio} element={<Inicio />} />
+        <Route path={RUTAS.recomendaciones} element={<Recomendaciones />} />
+        <Route path={RUTAS.prestamos} element={<PrestamoHerramientas />} />
+        <Route path={RUTAS.calculadoras} element={<PrestamoEquipos tipo="calculadoras" />} />
+        <Route path={RUTAS.arduinos} element={<PrestamoEquipos tipo="arduinos" />} />
+        <Route path={RUTAS["mis-prestamos"]} element={<MisPrestamos />} />
+        <Route path={RUTAS["libro-1"]} element={<DetalleLibroCalculus />} />
+        <Route path={RUTAS["libro-2"]} element={<DetalleLibroMiedoOccidente />} />
+        <Route path={RUTAS["libro-4"]} element={<DetalleLibroCalculoTrascendentes />} />
+        <Route path={RUTAS.reservas} element={<MisReservas />} />
+        <Route path={RUTAS.salas} element={<ReservasDeSala />} />
+        <Route path={RUTAS.catalogo} element={<ResultadosDeBusqueda />} />
+        <Route path={RUTAS.contacto} element={<ContactoBibliotecario />} />
+        <Route path="*" element={<NoEncontrada />} />
+      </Routes>
+    </Suspense>
   );
 }
 

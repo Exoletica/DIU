@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppSidebar from "../components/layout/AppSidebar";
 import AppTopBar from "../components/layout/AppTopBar";
@@ -8,6 +8,8 @@ import RenewLoanModal from "../components/my-loans/RenewLoanModal";
 import RequestsList from "../components/my-loans/RequestsList";
 import HistoryModal from "../components/my-loans/HistoryModal";
 import { descargarComprobante } from "../data/comprobante";
+import { leer, guardar } from "../utils/almacenamiento";
+import { useNavegacion } from "../routes";
 import { AlertIcon, BookIcon, CheckIcon, FileIcon, HistoryIcon, InfoIcon, RefreshIcon } from "../components/my-loans/LoanIcons";
 import {
   HOY, MAX_PRESTAMOS, MAX_RENOVACIONES, DIAS_POR_RENOVACION, MULTA_DIARIA,
@@ -17,8 +19,8 @@ import "./MisPrestamos.scss";
 
 const MisPrestamos = () => {
   const navigate = useNavigate();
-  const [prestamos, setPrestamos] = useState(prestamosIniciales);
-  const [solicitudes, setSolicitudes] = useState(solicitudesIniciales);
+  const [prestamos, setPrestamos] = useState(() => leer("bibliotecausm:prestamos", prestamosIniciales));
+  const [solicitudes, setSolicitudes] = useState(() => leer("bibliotecausm:solicitudes", solicitudesIniciales));
   const [pestana, setPestana] = useState("activos");
   const [prestamoARenovar, setPrestamoARenovar] = useState(null);
   const [toast, setToast] = useState(null);
@@ -30,16 +32,10 @@ const MisPrestamos = () => {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const handleNavigate = useCallback((destino) => {
-    const rutas = {
-      inicio: "/",
-      reservas: "/mis-reservas",
-      "mis-prestamos": "/mis-prestamos",
-      recomendaciones: "/recomendaciones",
-      salas: "/reservas-de-sala",
-    };
-    if (rutas[destino]) return navigate(rutas[destino]);
-  }, [navigate]);
+  useEffect(() => guardar("bibliotecausm:prestamos", prestamos), [prestamos]);
+  useEffect(() => guardar("bibliotecausm:solicitudes", solicitudes), [solicitudes]);
+
+  const handleNavigate = useNavegacion();
 
   const atrasados = prestamos.filter((p) => estadoPrestamo(p) === "atrasado");
   const porDevolver = useMemo(
@@ -84,7 +80,7 @@ const MisPrestamos = () => {
     <div className="mis-prestamos">
       <AppSidebar activeItem="mis-prestamos" onNavigate={handleNavigate} />
       <div className="mis-prestamos-main">
-        <AppTopBar breadcrumbs={["Inicio", "Mis Préstamos"]} userName="Estudiante" avatarSrc="/Container.svg" notificationCount={atrasados.length} />
+        <AppTopBar breadcrumbs={["Inicio", "Mis Préstamos"]} onBreadcrumbNavigate={() => navigate("/")} notificationCount={atrasados.length} showSearch />
 
         <main className="mis-prestamos-content">
           <header className="mp-header">

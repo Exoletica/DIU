@@ -12,7 +12,7 @@ const LoanCard = ({ prestamo, variante = "activo", onRenovar }) => {
 
   return (
     <article className={`loan-card loan-card--${estado}`}>
-      <img className="loan-card__cover" src={prestamo.portada} alt={`Portada de ${prestamo.titulo}`} />
+      <img className="loan-card__cover" src={prestamo.portada} alt={`Portada de ${prestamo.titulo}`} loading="lazy" />
       <div className="loan-card__body">
         <div className="loan-card__head">
           <div>

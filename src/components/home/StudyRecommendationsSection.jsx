@@ -1,15 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import SectionHeader from "../common/SectionHeader";
 import BookCard from "./BookCard";
+import { catalogo } from "../../data/libros";
 import "./StudyRecommendationsSection.scss";
 
-const books = [
-  ["/calculo-trascendentes-tempranas.png", "MATEMÁTICA", "4.9", "Cálculo Trascenden-tes Tempranas", "James Stewart", "libro-4"],
-  ["/los-miserables.png", "LITERATURA", "4.8", "Los Miserables", "Víctor Hugo", "libro-6"],
-  ["/el-miedo-de-occidente.png", "HISTORIA", "4.8", "El Miedo en Occidente", "Jean Delumeau", "libro-2"],
-  ["/historia-de-la-filosofia.png", "HISTORIA", "4.9", "Historia de la Filosofía", "Julián Marías", "libro-8"],
-  ["/don-quijote-de-la-mancha.png", "LITERATURA", "5", "Don Quijote de la Mancha", "Miguel de Cervantes", "libro-3"],
-];
+const destacados = ["stewart", "miserables", "miedo", "filosofia", "quijote"];
 
-const StudyRecommendationsSection = ({ onNavigate }) => <section className="study-recommendations"><SectionHeader title="Recomendaciones de Estudio" description="Basado en tus preferencias y área de estudio." action={<button className="study-recommendations__all" onClick={() => onNavigate("recomendaciones")}>Ver todo <img src="/Arrow-right.svg" alt="" /></button>} /><div className="study-recommendations__cards">{books.map(([coverSrc, category, rating, title, author, destination]) => <BookCard key={title} coverSrc={coverSrc} category={category} rating={rating} title={title} author={author} onDetails={() => onNavigate(destination)} />)}</div></section>;
+const StudyRecommendationsSection = ({ onNavigate, onBookUnavailable }) => {
+  const navigate = useNavigate();
+  return <section className="study-recommendations"><SectionHeader title="Recomendaciones de Estudio" description="Basado en tus preferencias y área de estudio." action={<button className="study-recommendations__all" onClick={() => onNavigate("recomendaciones")}>Ver todo <img src="/Arrow-right.svg" alt="" /></button>} /><div className="study-recommendations__cards">{destacados.map((id) => { const libro = catalogo[id]; return <BookCard key={id} coverSrc={libro.portada} category={libro.area.toUpperCase()} rating={String(libro.rating)} title={libro.titulo} author={libro.autor} onDetails={() => (libro.ruta ? navigate(libro.ruta) : onBookUnavailable(libro.titulo))} />; })}</div></section>;
+};
 
 export default StudyRecommendationsSection;

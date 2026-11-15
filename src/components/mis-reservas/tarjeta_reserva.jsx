@@ -1,4 +1,3 @@
-import React from 'react'
 import { BookOpen, MapPin, Calendar as CalendarIcon, Clock } from 'lucide-react'
 
 import { STATUS_LABELS, isOpen } from '../../data/reservas/reservas'

@@ -8,9 +8,9 @@ const AppSidebar = ({ activeItem, onNavigate }) => (
   <aside className="app-sidebar" aria-label="Navegación principal">
     <div className="app-sidebar__brand"><img src="/Container.svg" alt="" /><strong>BibliotecaUSM</strong></div>
     <nav className="app-sidebar__nav">
-      {navigationItems.map(([id, label, icon]) => <button className={id === activeItem ? "app-sidebar__item app-sidebar__item--active" : "app-sidebar__item"} key={id} onClick={() => onNavigate(id)}><img src={icon} alt="" />{label}</button>)}
+      {navigationItems.map(([id, label, icon]) => <button className={id === activeItem ? "app-sidebar__item app-sidebar__item--active" : "app-sidebar__item"} aria-current={id === activeItem ? "page" : undefined} key={id} onClick={() => onNavigate(id)}><img src={icon} alt="" />{label}</button>)}
     </nav>
-    <div className="app-sidebar__copyright">© 2024 Biblioteca USM</div>
+    <div className="app-sidebar__copyright">© {new Date().getFullYear()} Biblioteca USM</div>
   </aside>
 );
 

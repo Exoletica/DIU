@@ -38,7 +38,6 @@ h3 { min-height: var(--lh-20); margin: var(--padding-1) 0 var(--padding-4); colo
 .purpose em { color: var(--color-gray-300); font: italic var(--fs-11)/var(--lh-15) var(--font-ibm-plex-sans); }
 .details { width: 100%; min-height: var(--height-40); margin-top: auto; border-radius: var(--br-4); background: var(--color-darkslateblue-200); color: var(--color-aliceblue-100); display: flex; align-items: center; justify-content: space-between; padding: var(--padding-9) var(--padding-12); font: 500 var(--fs-14)/var(--lh-22) var(--font-ibm-plex-sans); }
 .details img { width: var(--width-16); height: var(--height-16); }
-.disabled { border: var(--border-lightgray-200); background: var(--color-whitesmoke); color: var(--color-gray-100); opacity: var(--opacity-50); cursor: not-allowed; }
 
 @media (max-width: 750px) { .cover { height: var(--height-300); } }
 

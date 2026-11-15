@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { WEEKDAYS, toDateKey, fromDateKey, formatMonth, buildMonthGrid } from '../../utils/fechas'
