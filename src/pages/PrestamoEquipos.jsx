@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppSidebar from "../components/layout/AppSidebar";
 import AppTopBar from "../components/layout/AppTopBar";
@@ -7,6 +6,7 @@ import Toast from "../components/common/Toast"
 import useToast from "../components/common/useToast";
 import { equipos } from "../data/equipos";
 import { RUTAS, useNavegacion } from "../routes";
+import { addItemReservation, findOpenItemReservation, useReservations } from "../data/reservas/estado_reservas";
 import "./PrestamoHerramientas.scss";
 
 // Equipos de un tipo (calculadoras, arduinos...). Uso: <PrestamoEquipos tipo="arduinos" />
@@ -14,12 +14,14 @@ const PrestamoEquipos = ({ tipo }) => {
   const navigate = useNavigate();
   const handleNavigate = useNavegacion();
   const { titulo, descripcion, items } = equipos[tipo];
-  const [reservados, setReservados] = useState([]);
+  const reservas = useReservations();
   const [toast, setToast] = useToast();
 
+  const itemId = (item) => `equipo-${tipo}-${item.id}`;
+
   const reservar = (item) => {
-    setReservados((lista) => [...lista, item.id]);
-    setToast(`${item.titulo} reservado. Retíralo en el mesón de préstamos.`);
+    addItemReservation({ itemId: itemId(item), type: "equipment", title: item.titulo, subtitle: item.detalle });
+    setToast(`${item.titulo} reservado. Retíralo en el mesón de préstamos; lo verás en Mis Reservas.`);
   };
 
   return (
@@ -41,16 +43,15 @@ const PrestamoEquipos = ({ tipo }) => {
 
           <div className="ph-grid">
             {items.map((item) => {
-              const yaReservado = reservados.includes(item.id);
+              const yaReservado = Boolean(findOpenItemReservation(reservas, itemId(item)));
               return (
                 <ToolCard
                   key={item.id}
                   imagen={item.imagen}
                   titulo={item.titulo}
                   descripcion={item.detalle}
-                  accion={yaReservado ? "Reservado ✓" : "Reservar"}
-                  deshabilitado={yaReservado}
-                  onAction={() => reservar(item)}
+                  accion={yaReservado ? "Reservado ✓ · Ver" : "Reservar"}
+                  onAction={() => (yaReservado ? navigate(RUTAS.reservas) : reservar(item))}
                 />
               );
             })}

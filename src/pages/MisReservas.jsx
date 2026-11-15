@@ -24,7 +24,7 @@ export const MisReservas = () => {
   const completedThisMonth = history.filter(
     (reservation) => reservation.status === 'completed' && reservation.date.slice(0, 7) === todayKey.slice(0, 7)
   ).length
-  const nextReservation = openReservations.find((reservation) => reservation.date >= todayKey)
+  const nextReservation = openReservations.find((reservation) => reservation.status !== 'waitlist' && reservation.date >= todayKey)
 
   const stats = [
     { label: 'Reservas Activas', value: openReservations.length, Icon: CalendarDays },
@@ -69,7 +69,7 @@ export const MisReservas = () => {
   return (
     <LayoutReservas activeItem='reservas' title='Mis Reservas'>
       <div className='pagina-mis-reservas'>
-        <EncabezadoPagina title='Mis Reservas' subtitle='Gestiona tus reservas actuales de libros y salas de estudio.'>
+        <EncabezadoPagina title='Mis Reservas' subtitle='Gestiona tus reservas de libros, equipos y salas de estudio.'>
           <button type='button' className='boton boton--secundario' onClick={() => setShowCalendar(!showCalendar)}>
             {showCalendar ? <List size={16} /> : <CalendarDays size={16} />}
             {showCalendar ? 'Ver Lista' : 'Ver Calendario'}

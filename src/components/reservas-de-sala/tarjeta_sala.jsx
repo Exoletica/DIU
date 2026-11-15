@@ -6,7 +6,7 @@ const STATUS_LABELS = {
   reservada: 'Reservada'
 }
 
-export const TarjetaSala = ({ room, isReserved, limitReached, slotTaken, onReserve, onCancel }) => {
+export const TarjetaSala = ({ room, isReserved, limitReached, blockedReason, onReserve, onCancel }) => {
   const { Icon } = room
   let status = 'disponible'
   if (!room.available) status = 'ocupada'
@@ -27,10 +27,10 @@ export const TarjetaSala = ({ room, isReserved, limitReached, slotTaken, onReser
         </button>
       )
     }
-    if (slotTaken) {
+    if (blockedReason) {
       return (
         <button type='button' className='boton boton--primario boton--ancho-completo boton--deshabilitado' disabled>
-          Ya tienes una sala a esta hora
+          {blockedReason}
         </button>
       )
     }

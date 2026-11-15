@@ -5,6 +5,7 @@ import Toast from "../components/common/Toast"
 import useToast from "../components/common/useToast";
 import { catalogo } from "../data/libros";
 import { RUTAS } from "../routes";
+import { addItemReservation, findOpenItemReservation, useReservations } from "../data/reservas/estado_reservas";
 import { CheckIcon, ClockIcon, ChevronIcon, InfoIcon } from "../components/my-loans/LoanIcons";
 import "./ResultadosDeBusqueda.scss";
 
@@ -66,7 +67,7 @@ const ResultadosDeBusqueda = () => {
   const [areas, setAreas] = useState([]);
   const [periodo, setPeriodo] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
-  const [reservados, setReservados] = useState([]);
+  const reservas = useReservations();
   const [orden, setOrden] = useState("relevancia");
   const [toast, setToast] = useToast();
 
@@ -86,8 +87,8 @@ const ResultadosDeBusqueda = () => {
 
   const verDetalle = (r) => (r.ruta ? navigate(r.ruta) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`));
   const reservar = (r) => {
-    setReservados((l) => [...l, r.id]);
-    setToast(r.disponible ? `Reserva solicitada: ${r.titulo}.` : `Te uniste a la lista de espera de "${r.titulo}".`);
+    addItemReservation({ itemId: `libro-${r.id}`, type: "book", title: r.titulo, subtitle: r.autor, available: r.disponible });
+    setToast(r.disponible ? `Reservaste "${r.titulo}". La verás en Mis Reservas.` : `Te uniste a la lista de espera de "${r.titulo}".`);
   };
 
   return (
@@ -148,7 +149,7 @@ const ResultadosDeBusqueda = () => {
           <ul className="rb-list">
             {visibles.map((r) => {
               const fav = favoritos.includes(r.id);
-              const reservado = reservados.includes(r.id);
+              const reservado = Boolean(findOpenItemReservation(reservas, `libro-${r.id}`));
               return (
                 <li key={r.id} className="rb-item">
                   <img className="rb-item__cover" src={r.portada} alt={`Portada de ${r.titulo}`} loading="lazy" />
@@ -174,8 +175,8 @@ const ResultadosDeBusqueda = () => {
                     <p className="rb-item__desc">{r.descripcion}</p>
                     <div className="rb-item__actions">
                       <button type="button" className="rb-btn rb-btn--ghost" onClick={() => verDetalle(r)}><InfoIcon size={14} /> Detalles</button>
-                      <button type="button" className={r.disponible ? "rb-btn rb-btn--primary" : "rb-btn rb-btn--outline"} disabled={reservado} onClick={() => reservar(r)}>
-                        {reservado ? "Solicitado ✓" : r.disponible ? "Reservar Ahora" : "Ver Lista de Espera"}
+                      <button type="button" className={r.disponible ? "rb-btn rb-btn--primary" : "rb-btn rb-btn--outline"} onClick={() => (reservado ? navigate(RUTAS.reservas) : reservar(r))}>
+                        {reservado ? "Reservado ✓ · Ver" : r.disponible ? "Reservar Ahora" : "Unirme a la Lista de Espera"}
                       </button>
                     </div>
                   </div>

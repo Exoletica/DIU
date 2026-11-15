@@ -10,7 +10,7 @@ import FiltrosSalas from '../components/reservas-de-sala/filtros_salas'
 import TarjetaSala from '../components/reservas-de-sala/tarjeta_sala'
 import Toast from '../components/common/Toast'
 import useToast from '../components/common/useToast'
-import ROOMS, { CAPACITY_OPTIONS, TIME_SLOTS, MAX_DAILY_ROOM_RESERVATIONS } from '../data/reservas/salas'
+import ROOMS, { CAPACITY_OPTIONS, TIME_SLOTS, MAX_DAILY_ROOM_RESERVATIONS, slotHasEnded } from '../data/reservas/salas'
 import { isOpen } from '../data/reservas/reservas'
 import { useReservations, addReservation, cancelReservation } from '../data/reservas/estado_reservas'
 import { toDateKey, formatLongDate } from '../utils/fechas'
@@ -46,16 +46,23 @@ export const ReservasDeSala = () => {
   )
   const limitReached = roomReservationsToday.length >= MAX_DAILY_ROOM_RESERVATIONS
 
+  // Si el bloque elegido ya terminó (hoy), se usa el siguiente que siga disponible.
+  const openSlots = TIME_SLOTS.filter((slot) => !slotHasEnded(slot, selectedDate))
+  const currentSlot = openSlots.includes(selectedSlot) ? selectedSlot : openSlots[0]
+
   const findReservation = (roomId) =>
-    roomReservationsToday.find((reservation) => reservation.roomId === roomId && reservation.time === selectedSlot)
-  const slotTaken = roomReservationsToday.some((reservation) => reservation.time === selectedSlot)
+    roomReservationsToday.find((reservation) => reservation.roomId === roomId && reservation.time === currentSlot)
+  const slotTaken = roomReservationsToday.some((reservation) => reservation.time === currentSlot)
+  let blockedReason = null
+  if (!currentSlot) blockedReason = 'Sin horarios disponibles hoy'
+  else if (slotTaken) blockedReason = 'Ya tienes una sala a esta hora'
 
   const reserve = (room) => {
-    if (!addReservation(room, selectedDate, selectedSlot)) {
+    if (!addReservation(room, selectedDate, currentSlot)) {
       setToast('Ya tienes una sala reservada en ese horario.')
       return
     }
-    setToast(`${room.name} reservada para el ${formatLongDate(selectedDate)}, ${selectedSlot}. Confírmala en Mis Reservas.`)
+    setToast(`${room.name} reservada para el ${formatLongDate(selectedDate)}, ${currentSlot}. Confírmala en Mis Reservas.`)
   }
 
   const showRules = () => {
@@ -102,17 +109,29 @@ export const ReservasDeSala = () => {
               <div className='pagina-reservas-de-sala__horario-bloque'>
                 <select
                   className='pagina-reservas-de-sala__horario-bloque-selector'
-                  value={selectedSlot}
+                  value={currentSlot ?? ''}
                   onChange={(event) => setSelectedSlot(event.target.value)}
                   aria-label='Horario de la reserva'
+                  disabled={!currentSlot}
                 >
-                  {TIME_SLOTS.map((slot) => (
-                    <option key={slot} value={slot}>{slot}</option>
-                  ))}
+                  {!currentSlot && <option value=''>Sin horarios</option>}
+                  {TIME_SLOTS.map((slot) => {
+                    const ended = !openSlots.includes(slot)
+                    return (
+                      <option key={slot} value={slot} disabled={ended}>
+                        {slot}{ended ? ' (terminado)' : ''}
+                      </option>
+                    )
+                  })}
                 </select>
                 <ChevronDown className='pagina-reservas-de-sala__horario-bloque-icono' size={16} />
               </div>
             </div>
+            {!currentSlot && (
+              <p className='pagina-reservas-de-sala__aviso'>
+                Ya no quedan bloques disponibles para hoy. Elige otro día en el calendario.
+              </p>
+            )}
             {limitReached && (
               <p className='pagina-reservas-de-sala__aviso'>
                 Ya tienes {MAX_DAILY_ROOM_RESERVATIONS} reservas de sala para este día (máximo 3 horas por estudiante).
@@ -131,7 +150,7 @@ export const ReservasDeSala = () => {
                       room={room}
                       isReserved={Boolean(reservation)}
                       limitReached={limitReached}
-                      slotTaken={slotTaken}
+                      blockedReason={blockedReason}
                       onReserve={() => reserve(room)}
                       onCancel={() => {
                         cancelReservation(reservation.id)

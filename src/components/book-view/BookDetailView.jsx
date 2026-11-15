@@ -6,6 +6,7 @@ import Toast from "../common/Toast"
 import useToast from "../common/useToast";
 import { libros, catalogo } from "../../data/libros";
 import { RUTAS, useNavegacion } from "../../routes";
+import { addItemReservation, findOpenItemReservation, useReservations } from "../../data/reservas/estado_reservas";
 import "./BookDetailView.scss";
 
 const Estrellas = ({ n }) => (
@@ -20,7 +21,6 @@ const BookDetailView = ({ libroId }) => {
   const libro = libros[libroId];
   const [pestana, setPestana] = useState("info");
   const [favorito, setFavorito] = useState(false);
-  const [reservado, setReservado] = useState(false);
   const [toast, setToast] = useToast();
   const handleNavigate = useNavegacion();
 
@@ -31,10 +31,13 @@ const BookDetailView = ({ libroId }) => {
     setToast(mensaje);
   };
 
+  const reserva = findOpenItemReservation(useReservations(), `libro-${libroId}`);
+  const enEspera = reserva?.status === "waitlist";
+
   const reservar = () => {
-    setReservado(true);
+    addItemReservation({ itemId: `libro-${libroId}`, type: "book", title: libro.titulo, subtitle: libro.autor, available: disponibles > 0 });
     setToast(disponibles > 0
-      ? `Reserva solicitada: ${libro.titulo}. Te avisaremos cuando esté lista para retirar.`
+      ? `Reservaste "${libro.titulo}". Retíralo en el mesón de préstamos; la verás en Mis Reservas.`
       : `Te uniste a la lista de espera de "${libro.titulo}". Te avisaremos cuando se libere un ejemplar.`);
   };
 
@@ -66,9 +69,15 @@ const BookDetailView = ({ libroId }) => {
           <div className="bdv-top">
             <aside className="bdv-left">
               <img className="bdv-cover" src={libro.portada} alt={`Portada de ${libro.titulo}`} />
-              <button type="button" className="bdv-primary" onClick={reservar} disabled={reservado}>
-                {reservado ? (disponibles > 0 ? "Reserva solicitada ✓" : "En lista de espera ✓") : (disponibles > 0 ? "Reservar ahora" : "Unirme a la lista de espera")}
-              </button>
+              {reserva ? (
+                <button type="button" className="bdv-primary" onClick={() => navigate(RUTAS.reservas)}>
+                  {enEspera ? "En lista de espera ✓ · Ver" : "Reservado ✓ · Ver en Mis Reservas"}
+                </button>
+              ) : (
+                <button type="button" className="bdv-primary" onClick={reservar}>
+                  {disponibles > 0 ? "Reservar ahora" : "Unirme a la lista de espera"}
+                </button>
+              )}
               <button type="button" className="bdv-secondary" onClick={() => setToast("La muestra online estará disponible pronto.")}>
                 <img src="/prestamos/Book-open.svg" alt="" /> Leer Muestra Online
               </button>

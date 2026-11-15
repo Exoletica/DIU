@@ -16,7 +16,7 @@ Interfaz web de una biblioteca universitaria para consultar recursos, reservar s
 - Préstamo de calculadoras y Arduinos.
 - Chat de asesoría con un bibliotecario.
 - Reserva de salas de estudio con calendario, horarios, filtros por capacidad y disponibilidad, y límite diario por estudiante.
-- Mis Reservas: reservas activas e historial de libros y salas, con vista de calendario, confirmación, cancelación y ayuda (FAQ y contacto con soporte).
+- Mis Reservas: reservas activas e historial de libros, equipos y salas (incluida la lista de espera), con vista de calendario, confirmación, cancelación con confirmación y ayuda (FAQ y contacto con soporte). Las reservas pasadas se mueven solas al historial.
 
 ## Tecnologías
 

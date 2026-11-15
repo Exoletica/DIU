@@ -3,11 +3,12 @@ import { diasDesdeHoy } from '../../utils/fechas'
 export const STATUS_LABELS = {
   active: 'Activa',
   pending: 'Pendiente',
+  waitlist: 'En espera',
   completed: 'Completada',
   cancelled: 'Cancelada'
 }
 
-export const isOpen = (reservation) => reservation.status === 'active' || reservation.status === 'pending'
+export const isOpen = (reservation) => ['active', 'pending', 'waitlist'].includes(reservation.status)
 
 export const describeCapacity = (capacity) => `Capacidad: ${capacity} ${capacity === 1 ? 'persona' : 'personas'}`
 
