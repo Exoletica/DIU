@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const EncabezadoPagina = ({ title, subtitle, children }) => {
   return (
     <div className='encabezado-pagina'>

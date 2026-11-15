@@ -30,19 +30,6 @@
   b { color: var(--color-darkslateblue-200); }
 }
 
-.pb-toast {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 30;
-  max-width: 420px;
-  padding: 12px 16px;
-  border-radius: 6px;
-  background: var(--color-gray-100);
-  color: #fff;
-  font-size: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
-}
 
 @media (max-width: 750px) {
   .pagina-biblioteca { display: block; }

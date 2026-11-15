@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" role="img" aria-label="Arduino Uno">
+<rect width="200" height="260" fill="#ffffff"/>
+<rect x="34.0" y="81.0" width="146" height="108" rx="7" fill="#000" opacity=".12"/>
+<rect x="31.0" y="76.0" width="146" height="108" rx="7" fill="#00878f"/>
+<circle cx="40.0" cy="85.0" r="3.5" fill="#fff" opacity=".85"/>
+<circle cx="168.0" cy="85.0" r="3.5" fill="#fff" opacity=".85"/>
+<circle cx="40.0" cy="175.0" r="3.5" fill="#fff" opacity=".85"/>
+<circle cx="168.0" cy="175.0" r="3.5" fill="#fff" opacity=".85"/>
+<rect x="24.0" y="92.0" width="26" height="22" rx="2" fill="#c9ccd1" stroke="#9aa0a6"/>
+<rect x="26.0" y="142.0" width="22" height="20" rx="3" fill="#2b2b2b"/>
+<rect x="55.0" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="58.0" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="64.2" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="67.2" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="73.3" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="76.3" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="82.5" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="85.5" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="91.7" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="94.6" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="100.8" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="103.8" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="110.0" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="113.0" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="119.2" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="122.1" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="128.3" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="131.3" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="137.5" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="140.5" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="146.7" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="149.7" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="155.8" y="83.0" width="7.6" height="7" fill="#1d1f23"/><rect x="158.8" y="85.0" width="2" height="3" fill="#d4af37"/>
+<rect x="55.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="58.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="66.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="69.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="77.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="80.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="88.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="91.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="99.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="102.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="110.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="113.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="121.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="124.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="132.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="135.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="143.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="146.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="154.0" y="170.0" width="9.4" height="7" fill="#1d1f23"/><rect x="157.9" y="172.0" width="2" height="3" fill="#d4af37"/>
+<rect x="82.0" y="118.0" width="60" height="24" rx="2" fill="#1d1f23"/>
+<rect x="85.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="85.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="92.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="92.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="99.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="99.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="106.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="106.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="113.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="113.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="120.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="120.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="127.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="127.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<rect x="134.0" y="115.0" width="2.5" height="3" fill="#c9ccd1"/><rect x="134.0" y="142.0" width="2.5" height="3" fill="#c9ccd1"/>
+<text x="112.0" y="134.0" font-family="Arial, sans-serif" font-size="8" fill="#c9ccd1" text-anchor="middle">ATmega</text>
+<text x="165.0" y="156.0" font-family="Arial, sans-serif" font-weight="700" font-size="9" fill="#fff" text-anchor="end" opacity=".9">UNO</text>
+</svg>

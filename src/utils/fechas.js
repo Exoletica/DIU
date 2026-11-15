@@ -6,6 +6,13 @@ export const toDateKey = (date) => {
   return `${date.getFullYear()}-${month}-${day}`
 }
 
+// Fecha de hoy movida `dias` días (negativo = pasado), como "AAAA-MM-DD".
+export const diasDesdeHoy = (dias) => {
+  const date = new Date()
+  date.setDate(date.getDate() + dias)
+  return toDateKey(date)
+}
+
 export const fromDateKey = (key) => {
   const [year, month, day] = key.split('-').map(Number)
   return new Date(year, month - 1, day)

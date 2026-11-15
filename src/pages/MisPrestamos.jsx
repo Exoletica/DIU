@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppSidebar from "../components/layout/AppSidebar";
 import AppTopBar from "../components/layout/AppTopBar";
@@ -8,17 +8,20 @@ import RenewLoanModal from "../components/my-loans/RenewLoanModal";
 import RequestsList from "../components/my-loans/RequestsList";
 import HistoryModal from "../components/my-loans/HistoryModal";
 import { descargarComprobante } from "../data/comprobante";
+import { leer, guardar } from "../utils/almacenamiento";
+import { useNavegacion } from "../routes";
 import { AlertIcon, BookIcon, CheckIcon, FileIcon, HistoryIcon, InfoIcon, RefreshIcon } from "../components/my-loans/LoanIcons";
 import {
-  HOY, MAX_PRESTAMOS, MAX_RENOVACIONES, DIAS_POR_RENOVACION, MULTA_DIARIA,
+  HOY, CLAVE_PRESTAMOS, CLAVE_SOLICITUDES, MAX_PRESTAMOS, MAX_RENOVACIONES, DIAS_POR_RENOVACION, MULTA_DIARIA,
   prestamosIniciales, solicitudesIniciales, historialPrestamos, estadoPrestamo, necesitaDevolucion, diasEntre,
 } from "../data/misPrestamos";
+import { formatShortDate } from "../utils/fechas";
 import "./MisPrestamos.scss";
 
 const MisPrestamos = () => {
   const navigate = useNavigate();
-  const [prestamos, setPrestamos] = useState(prestamosIniciales);
-  const [solicitudes, setSolicitudes] = useState(solicitudesIniciales);
+  const [prestamos, setPrestamos] = useState(() => leer(CLAVE_PRESTAMOS, prestamosIniciales));
+  const [solicitudes, setSolicitudes] = useState(() => leer(CLAVE_SOLICITUDES, solicitudesIniciales));
   const [pestana, setPestana] = useState("activos");
   const [prestamoARenovar, setPrestamoARenovar] = useState(null);
   const [toast, setToast] = useState(null);
@@ -30,16 +33,10 @@ const MisPrestamos = () => {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const handleNavigate = useCallback((destino) => {
-    const rutas = {
-      inicio: "/",
-      reservas: "/mis-reservas",
-      "mis-prestamos": "/mis-prestamos",
-      recomendaciones: "/recomendaciones",
-      salas: "/reservas-de-sala",
-    };
-    if (rutas[destino]) return navigate(rutas[destino]);
-  }, [navigate]);
+  useEffect(() => guardar(CLAVE_PRESTAMOS, prestamos), [prestamos]);
+  useEffect(() => guardar(CLAVE_SOLICITUDES, solicitudes), [solicitudes]);
+
+  const handleNavigate = useNavegacion();
 
   const atrasados = prestamos.filter((p) => estadoPrestamo(p) === "atrasado");
   const porDevolver = useMemo(
@@ -58,10 +55,10 @@ const MisPrestamos = () => {
       titulo: prestamo.titulo,
       fecha: HOY,
       estado: "aprobada",
-      detalle: `Nueva fecha de devolución: ${nuevaFecha}`,
+      detalle: `Nueva fecha de devolución: ${formatShortDate(nuevaFecha)}`,
     }, ...lista]);
     setPrestamoARenovar(null);
-    setToast(`Préstamo renovado hasta el ${nuevaFecha}`);
+    setToast(`Préstamo renovado hasta el ${formatShortDate(nuevaFecha)}`);
   };
 
   const cancelarSolicitud = (solicitud) => {
@@ -84,7 +81,7 @@ const MisPrestamos = () => {
     <div className="mis-prestamos">
       <AppSidebar activeItem="mis-prestamos" onNavigate={handleNavigate} />
       <div className="mis-prestamos-main">
-        <AppTopBar breadcrumbs={["Inicio", "Mis Préstamos"]} userName="Estudiante" avatarSrc="/Container.svg" notificationCount={atrasados.length} />
+        <AppTopBar breadcrumbs={["Inicio", "Mis Préstamos"]} onBreadcrumbNavigate={() => navigate("/")} prestamos={prestamos} showSearch />
 
         <main className="mis-prestamos-content">
           <header className="mp-header">

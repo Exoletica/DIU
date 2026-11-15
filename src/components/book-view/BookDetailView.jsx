@@ -1,18 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import AppSidebar from "../layout/AppSidebar";
 import AppTopBar from "../layout/AppTopBar";
-import { libros, recomendadosInfo } from "../../data/libros";
+import Toast from "../common/Toast"
+import useToast from "../common/useToast";
+import { libros, catalogo } from "../../data/libros";
+import { RUTAS, useNavegacion } from "../../routes";
+import { addItemReservation, findOpenItemReservation, useReservations } from "../../data/reservas/estado_reservas";
 import "./BookDetailView.scss";
-
-const rutas = {
-  inicio: "/",
-  reservas: "/mis-reservas",
-  prestamos: "/prestamos",
-  "mis-prestamos": "/mis-prestamos",
-  recomendaciones: "/recomendaciones",
-  salas: "/reservas-de-sala",
-};
 
 const Estrellas = ({ n }) => (
   <span className="bdv-stars" aria-label={`${n} de 5 estrellas`}>
@@ -23,22 +18,12 @@ const Estrellas = ({ n }) => (
 // Página de detalle de un libro. Uso: <BookDetailView libroId="calculus" />
 const BookDetailView = ({ libroId }) => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const libro = libros[libroId];
   const [pestana, setPestana] = useState("info");
   const [favorito, setFavorito] = useState(false);
-  const [reservado, setReservado] = useState(false);
-  const [busqueda, setBusqueda] = useState("");
-  const [toast, setToast] = useState(null);
-
-  useEffect(() => {
-    if (!toast) return undefined;
-    const t = setTimeout(() => setToast(null), 3000);
-    return () => clearTimeout(t);
-  }, [toast]);
-
-  const handleNavigate = useCallback((destino) => {
-    if (rutas[destino]) navigate(rutas[destino]);
-  }, [navigate]);
+  const [toast, setToast] = useToast();
+  const handleNavigate = useNavegacion();
 
   const disponibles = libro.ejemplares.filter((e) => e.estado === "disponible").length;
 
@@ -47,9 +32,14 @@ const BookDetailView = ({ libroId }) => {
     setToast(mensaje);
   };
 
+  const reserva = findOpenItemReservation(useReservations(), `libro-${libroId}`);
+  const enEspera = reserva?.status === "waitlist";
+
   const reservar = () => {
-    setReservado(true);
-    setToast(`Reserva solicitada: ${libro.titulo}. Te avisaremos cuando esté lista para retirar.`);
+    addItemReservation({ itemId: `libro-${libroId}`, type: "book", title: libro.titulo, subtitle: libro.autor, available: disponibles > 0 });
+    setToast(disponibles > 0
+      ? `Reservaste "${libro.titulo}". Retíralo en el mesón de préstamos; la verás en Mis Reservas.`
+      : `Te uniste a la lista de espera de "${libro.titulo}". Te avisaremos cuando se libere un ejemplar.`);
   };
 
   const anio = libro.ficha.find(([k]) => k === "Publicación")?.[1] ?? "s.f.";
@@ -64,22 +54,15 @@ const BookDetailView = ({ libroId }) => {
 
   return (
     <div className="bdv-page">
-      <AppSidebar activeItem="inicio" onNavigate={handleNavigate} />
+      <AppSidebar onNavigate={handleNavigate} />
       <div className="bdv-main">
-        <AppTopBar
-          breadcrumbs={["Inicio", "Biblioteca"]}
-          userName="Estudiante"
-          avatarSrc="/Container.svg"
-          notificationCount={1}
-          onBreadcrumbNavigate={() => navigate("/")}
-          search={{ value: busqueda, onChange: setBusqueda, placeholder: "Buscar libros, salas...", ariaLabel: "Buscar libros o salas" }}
-        />
+        <AppTopBar breadcrumbs={["Inicio", "Biblioteca"]} onBreadcrumbNavigate={() => navigate("/")} showSearch />
 
         <main className="bdv-content">
           <nav className="bdv-crumbs" aria-label="Ruta">
             <button type="button" onClick={() => navigate("/")}>Inicio</button>
             <span aria-hidden="true">›</span>
-            <button type="button" onClick={() => navigate("/resultados-de-busqueda")}>Resultados</button>
+            <button type="button" onClick={() => navigate(RUTAS.catalogo + (state?.busqueda ?? ""))}>Resultados</button>
             <span aria-hidden="true">›</span>
             <b>{libro.titulo}</b>
           </nav>
@@ -87,9 +70,15 @@ const BookDetailView = ({ libroId }) => {
           <div className="bdv-top">
             <aside className="bdv-left">
               <img className="bdv-cover" src={libro.portada} alt={`Portada de ${libro.titulo}`} />
-              <button type="button" className="bdv-primary" onClick={reservar} disabled={reservado}>
-                {reservado ? "Reserva solicitada ✓" : "Reservar ahora"}
-              </button>
+              {reserva ? (
+                <button type="button" className="bdv-primary" onClick={() => navigate(RUTAS.reservas)}>
+                  {enEspera ? "En lista de espera ✓ · Ver" : "Reservado ✓ · Ver en Mis Reservas"}
+                </button>
+              ) : (
+                <button type="button" className="bdv-primary" onClick={reservar}>
+                  {disponibles > 0 ? "Reservar ahora" : "Unirme a la lista de espera"}
+                </button>
+              )}
               <button type="button" className="bdv-secondary" onClick={() => setToast("La muestra online estará disponible pronto.")}>
                 <img src="/prestamos/Book-open.svg" alt="" /> Leer Muestra Online
               </button>
@@ -164,16 +153,16 @@ const BookDetailView = ({ libroId }) => {
             <p>Basado en tus búsquedas de Ciencias e Ingeniería</p>
             <div className="bdv-recs__grid">
               {libro.recomendados.map((id) => {
-                const r = recomendadosInfo[id];
+                const r = catalogo[id];
                 return (
                   <button
                     key={id}
                     type="button"
                     className="bdv-rec"
-                    onClick={() => (r.ruta ? navigate(r.ruta) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`))}
+                    onClick={() => (r.ruta ? navigate(r.ruta, { state }) : setToast(`La ficha de "${r.titulo}" aún no está disponible.`))}
                   >
-                    <img src={r.portada} alt="" />
-                    <small>{r.categoria}</small>
+                    <img src={r.portada} alt="" loading="lazy" />
+                    <small>{r.area}</small>
                     <b>{r.titulo}</b>
                     <span>{r.autor}</span>
                   </button>
@@ -184,7 +173,7 @@ const BookDetailView = ({ libroId }) => {
         </main>
       </div>
 
-      {toast && <div className="bdv-toast" role="status">{toast}</div>}
+      <Toast mensaje={toast} />
     </div>
   );
 };

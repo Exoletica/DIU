@@ -4,7 +4,7 @@ import "./ToolCard.scss";
 // Si no se pasa onAction, el botón queda deshabilitado.
 const ToolCard = ({ imagen, titulo, descripcion, accion = "Ver Detalles", onAction, deshabilitado = false }) => (
   <article className="tool-card">
-    <img className="tool-card__image" src={imagen} alt={titulo} />
+    <img className="tool-card__image" src={imagen} alt="" loading="lazy" />
     <div className="tool-card__body">
       <img className="tool-card__star" src="/prestamos/star.svg" alt="" />
       <h3>{titulo}</h3>

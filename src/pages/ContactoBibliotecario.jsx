@@ -19,6 +19,9 @@ const ContactoBibliotecario = () => {
   const [texto, setTexto] = useState("");
   const [escribiendo, setEscribiendo] = useState(false);
   const finRef = useRef(null);
+  const respuestaRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(respuestaRef.current), []);
 
   useEffect(() => {
     finRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -31,7 +34,8 @@ const ContactoBibliotecario = () => {
     setMensajes((m) => [...m, { id: Date.now(), de: "usuario", texto: consulta, hora: hora() }]);
     setTexto("");
     setEscribiendo(true);
-    setTimeout(() => {
+    clearTimeout(respuestaRef.current);
+    respuestaRef.current = setTimeout(() => {
       setEscribiendo(false);
       setMensajes((m) => [...m, {
         id: Date.now() + 1,
@@ -43,7 +47,7 @@ const ContactoBibliotecario = () => {
   };
 
   return (
-    <PaginaBiblioteca activeItem="inicio">
+    <PaginaBiblioteca>
       <nav className="pb-crumbs" aria-label="Ruta">
         <button type="button" onClick={() => navigate("/")}>Inicio</button>
         <span aria-hidden="true">›</span>

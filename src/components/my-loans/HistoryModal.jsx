@@ -1,19 +1,17 @@
-import { useEffect } from "react";
+import { createPortal } from "react-dom";
+import useModal from "../common/useModal";
 import { diasEntre, MULTA_DIARIA } from "../../data/misPrestamos";
 import { HistoryIcon, XIcon } from "./LoanIcons";
+import { formatShortDate } from "../../utils/fechas";
 import "./HistoryModal.scss";
 
 const HistoryModal = ({ historial, onCerrar }) => {
-  useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onCerrar();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onCerrar]);
+  const ref = useModal(onCerrar);
 
-  return (
+  return createPortal(
     <div className="history-modal__backdrop">
       <button type="button" className="history-modal__overlay" aria-label="Cerrar" onClick={onCerrar} />
-      <dialog open className="history-modal" aria-modal="true" aria-labelledby="history-title">
+      <div ref={ref} role="dialog" className="history-modal" aria-modal="true" aria-labelledby="history-title">
         <header className="history-modal__head">
           <h2 id="history-title"><HistoryIcon size={18} /> Historial de Préstamos</h2>
           <button onClick={onCerrar} aria-label="Cerrar"><XIcon size={18} /></button>
@@ -33,8 +31,8 @@ const HistoryModal = ({ historial, onCerrar }) => {
                     <small>{h.autor}</small>
                   </div>
                   <div className="history-modal__dates">
-                    <span>Prestado: {h.fechaPrestamo}</span>
-                    <span>Devuelto: {h.fechaEntrega}</span>
+                    <span>Prestado: {formatShortDate(h.fechaPrestamo)}</span>
+                    <span>Devuelto: {formatShortDate(h.fechaEntrega)}</span>
                   </div>
                   {atraso > 0 ? (
                     <span className="history-modal__tag history-modal__tag--late">
@@ -48,8 +46,9 @@ const HistoryModal = ({ historial, onCerrar }) => {
             })}
           </ul>
         )}
-      </dialog>
-    </div>
+      </div>
+    </div>,
+    document.body,
   );
 };
 

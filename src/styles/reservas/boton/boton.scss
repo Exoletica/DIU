@@ -46,7 +46,16 @@
     }
   }
 
-  &--sutil {
+  &--peligro {
+    background-color: var(--color-danger);
+    color: var(--color-on-primary);
+
+    &:hover {
+      background-color: var(--color-danger-strong);
+    }
+  }
+
+    &--sutil {
     background-color: transparent;
     color: var(--color-text-muted);
 

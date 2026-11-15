@@ -1,5 +1,7 @@
 import { Users, BookOpen, User, MonitorPlay } from 'lucide-react'
 
+import { toDateKey } from '../../utils/fechas'
+
 export const CAPACITY_OPTIONS = [
   { value: 'all', label: 'Todas (1-10)', min: 1, max: 10 },
   { value: 'individual', label: 'Individual (1)', min: 1, max: 1 },
@@ -15,6 +17,14 @@ export const TIME_SLOTS = [
   '15:30 - 17:00',
   '17:00 - 18:30'
 ]
+
+// true si el bloque ya terminó (día pasado, o hoy con la hora de término cumplida).
+export const slotHasEnded = (slot, dateKey, now = new Date()) => {
+  const today = toDateKey(now)
+  if (dateKey !== today) return dateKey < today
+  const end = slot.split(' - ')[1]
+  return end <= now.toTimeString().slice(0, 5)
+}
 
 export const MAX_DAILY_ROOM_RESERVATIONS = 2
 
