@@ -2,6 +2,7 @@
 // Cuando exista backend, esto se reemplaza por una llamada a la API.
 
 import { diasDesdeHoy, formatShortDate } from "../utils/fechas";
+import { asset } from "../utils/assetUrl";
 
 // Las fechas se calculan desde hoy para que los estados (activo, por vencer, atrasado)
 // se vean igual que en el diseño de Figma sin importar cuándo se abra la página.
@@ -22,7 +23,7 @@ export const prestamosIniciales = [
     id: "calculus",
     titulo: "Calculus",
     autor: "Michael Spivak",
-    portada: "/calculus.webp",
+    portada: asset("/calculus.webp"),
     fechaPrestamo: diasDesdeHoy(-4),
     fechaDevolucion: diasDesdeHoy(10),
     isbn: "978-607-32-2190-3",
@@ -35,7 +36,7 @@ export const prestamosIniciales = [
     id: "matematicas",
     titulo: "El libro de las matemáticas",
     autor: "DK",
-    portada: "/el-libro-de-las-matematicas.webp",
+    portada: asset("/el-libro-de-las-matematicas.webp"),
     fechaPrestamo: diasDesdeHoy(-13),
     fechaDevolucion: diasDesdeHoy(1),
     isbn: "978-8262833848",
@@ -47,7 +48,7 @@ export const prestamosIniciales = [
     id: "gatsby",
     titulo: "El Gran Gatsby",
     autor: "F. Scott Fitzgerald",
-    portada: "/el-gran-gatsby.webp",
+    portada: asset("/el-gran-gatsby.webp"),
     fechaPrestamo: diasDesdeHoy(-24),
     fechaDevolucion: diasDesdeHoy(-10),
     isbn: "978-0199270293",

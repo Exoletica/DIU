@@ -1,3 +1,4 @@
+import { asset } from "../../utils/assetUrl";
 import "./ToolCard.scss";
 
 // Tarjeta de una herramienta (Libros Físicos, Arduinos, Calculadoras, etc.)
@@ -6,7 +7,7 @@ const ToolCard = ({ imagen, titulo, descripcion, accion = "Ver Detalles", onActi
   <article className="tool-card">
     <img className="tool-card__image" src={imagen} alt="" loading="lazy" />
     <div className="tool-card__body">
-      <img className="tool-card__star" src="/prestamos/star.svg" alt="" />
+      <img className="tool-card__star" src={asset("/prestamos/star.svg")} alt="" />
       <h3>{titulo}</h3>
       {descripcion && <p>{descripcion}</p>}
       <button

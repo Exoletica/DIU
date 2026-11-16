@@ -1,5 +1,6 @@
 import SectionHeader from "../common/SectionHeader";
 import QuickActionCard from "./QuickActionCard";
+import { asset } from "../../utils/assetUrl";
 import "./QuickActionsSection.scss";
 
 const actions = [
@@ -8,6 +9,6 @@ const actions = [
   { title:"Pedir Prórroga", description:"¿Necesitas más tiempo? Extiende el plazo de tus préstamos vigentes con un solo clic.", tone:"extended", destination:"mis-prestamos" },
 ];
 
-const QuickActionsSection = ({ onNavigate }) => <section className="quick-actions-section"><SectionHeader title="Acciones Rápidas" description="Todo lo que necesitas para tu día académico en un solo lugar." /><div className="quick-actions-section__cards">{actions.map((action) => <QuickActionCard key={action.title} iconSrc="/Container.svg" {...action} onClick={() => onNavigate(action.destination)} />)}</div></section>;
+const QuickActionsSection = ({ onNavigate }) => <section className="quick-actions-section"><SectionHeader title="Acciones Rápidas" description="Todo lo que necesitas para tu día académico en un solo lugar." /><div className="quick-actions-section__cards">{actions.map((action) => <QuickActionCard key={action.title} iconSrc={asset("/Container.svg")} {...action} onClick={() => onNavigate(action.destination)} />)}</div></section>;
 
 export default QuickActionsSection;

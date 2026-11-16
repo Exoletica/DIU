@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "postbuild": "node -e \"require('fs').copyFileSync('build/index.html', 'build/404.html')\"",
     "lint": "eslint src",
     "preview": "vite preview",
     "start": "vite"

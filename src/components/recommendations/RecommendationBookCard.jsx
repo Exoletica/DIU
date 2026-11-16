@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { asset } from "../../utils/assetUrl";
 import styles from "./RecommendationBookCard.module.scss";
 
 const RecommendationBookCard = ({ coverSrc, category, rating, title, authorEdition, description, studyPurpose, available, onDetails, layout = "grid" }) => {
@@ -10,13 +11,13 @@ const RecommendationBookCard = ({ coverSrc, category, rating, title, authorEditi
         <span className={available ? styles.status : `${styles.status} ${styles.statusLoan}`}>{available ? "Disponible" : "En Préstamo"}</span>
       </div>
       <div className={styles.content}>
-        <div className={styles.metadata}><strong>{category}</strong><span><img src="/star.svg" alt="" />{rating}</span></div>
+        <div className={styles.metadata}><strong>{category}</strong><span><img src={asset("/star.svg")} alt="" />{rating}</span></div>
         <h3>{title}</h3>
         <p className={styles.author}>{authorEdition}</p>
         <p className={styles.description}>{description}</p>
         <div className={styles.purpose}><strong>Propósito de estudio:</strong><em>{studyPurpose}</em></div>
         <button className={styles.details} type="button" onClick={onDetails}>
-          <span>{actionLabel}</span><img src="/Arrow-up-right.svg" alt="" />
+          <span>{actionLabel}</span><img src={asset("/Arrow-up-right.svg")} alt="" />
         </button>
       </div>
     </article>

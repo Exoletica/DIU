@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { rutaBusqueda } from "../../routes";
+import { asset } from "../../utils/assetUrl";
 import useNotificaciones from "./useNotificaciones";
 import "./AppTopBar.scss";
 
-const AppTopBar = ({ breadcrumbs, userName = "Estudiante", avatarSrc = "/Container.svg", prestamos, showSearch = false, onBreadcrumbNavigate = null }) => {
+const AppTopBar = ({ breadcrumbs, userName = "Estudiante", avatarSrc = asset("/Container.svg"), prestamos, showSearch = false, onBreadcrumbNavigate = null }) => {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const consulta = params.get("q") ?? "";
@@ -50,14 +51,14 @@ const AppTopBar = ({ breadcrumbs, userName = "Estudiante", avatarSrc = "/Contain
         </nav>
         {showSearch && (
           <form className="app-top-bar__search" role="search" onSubmit={buscar}>
-            <img src="/Search.svg" alt="" />
+            <img src={asset("/Search.svg")} alt="" />
             <input value={busqueda} onChange={(event) => setBusqueda(event.target.value)} placeholder="Buscar libros, autores, materias..." aria-label="Buscar en el catálogo" type="search" />
           </form>
         )}
         <div className="app-top-bar__user">
           <div className="app-top-bar__notifications" ref={campanaRef}>
             <button type="button" className="app-top-bar__notification" aria-expanded={avisosAbiertos} aria-controls="panel-avisos" aria-label={avisos.length > 0 ? `Notificaciones: ${avisos.length} sin leer` : "Notificaciones: no hay avisos"} onClick={() => setAvisosAbiertos(!avisosAbiertos)}>
-              <img src="/notification-bell.svg" alt="" />{avisos.length > 0 && <i aria-hidden="true" />}
+              <img src={asset("/notification-bell.svg")} alt="" />{avisos.length > 0 && <i aria-hidden="true" />}
             </button>
             {avisosAbiertos && (
               <div className="app-top-bar__panel" id="panel-avisos" role="region" aria-label="Notificaciones">

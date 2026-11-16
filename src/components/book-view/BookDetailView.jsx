@@ -7,6 +7,7 @@ import useToast from "../common/useToast";
 import { libros, catalogo } from "../../data/libros";
 import { RUTAS, useNavegacion } from "../../routes";
 import { addItemReservation, findOpenItemReservation, useReservations } from "../../data/reservas/estado_reservas";
+import { asset } from "../../utils/assetUrl";
 import "./BookDetailView.scss";
 
 const Estrellas = ({ n }) => (
@@ -80,17 +81,17 @@ const BookDetailView = ({ libroId }) => {
                 </button>
               )}
               <button type="button" className="bdv-secondary" onClick={() => setToast("La muestra online estará disponible pronto.")}>
-                <img src="/prestamos/Book-open.svg" alt="" /> Leer Muestra Online
+                <img src={asset("/prestamos/Book-open.svg")} alt="" /> Leer Muestra Online
               </button>
               <div className="bdv-actions">
                 <button type="button" className={favorito ? "bdv-action bdv-action--on" : "bdv-action"} aria-pressed={favorito} onClick={() => setFavorito(!favorito)}>
-                  <img src="/prestamos/heart.svg" alt="" /> Favorito
+                  <img src={asset("/prestamos/heart.svg")} alt="" /> Favorito
                 </button>
                 <button type="button" className="bdv-action" onClick={() => copiar(window.location.href, "Enlace copiado al portapapeles.")}>
-                  <img src="/prestamos/share-2.svg" alt="" /> Compartir
+                  <img src={asset("/prestamos/share-2.svg")} alt="" /> Compartir
                 </button>
                 <button type="button" className="bdv-action" onClick={() => copiar(cita, "Cita copiada al portapapeles.")}>
-                  <img src="/prestamos/download.svg" alt="" /> Citar
+                  <img src={asset("/prestamos/download.svg")} alt="" /> Citar
                 </button>
               </div>
             </aside>
@@ -114,7 +115,7 @@ const BookDetailView = ({ libroId }) => {
 
               {pestana === "info" && (
                 <>
-                  <h2 className="bdv-h2"><img src="/prestamos/file-text.svg" alt="" /> Resumen</h2>
+                  <h2 className="bdv-h2"><img src={asset("/prestamos/file-text.svg")} alt="" /> Resumen</h2>
                   <p className="bdv-summary">{libro.resumen}</p>
                   <dl className="bdv-ficha">
                     {libro.ficha.map(([k, v]) => (

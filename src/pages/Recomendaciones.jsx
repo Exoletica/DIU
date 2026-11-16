@@ -6,15 +6,16 @@ import Toast from "../components/common/Toast"
 import useToast from "../components/common/useToast";
 import { catalogo } from "../data/libros";
 import { RUTAS, useNavegacion } from "../routes";
+import { asset } from "../utils/assetUrl";
 import RecommendationAreaFilter from "../components/recommendations/RecommendationAreaFilter";
 import RecommendationBookCard from "../components/recommendations/RecommendationBookCard";
 import styles from "./Recomendaciones.module.scss";
 
 const areas = [
-  { id: "todos", label: "Todos", iconSrc: "/book-open.svg" },
-  { id: "matematicas", label: "Matemáticas", iconSrc: "/graduation-cap.svg" },
-  { id: "literatura", label: "Literatura", iconSrc: "/book-text.svg" },
-  { id: "historia", label: "Historia", iconSrc: "/history.svg" },
+  { id: "todos", label: "Todos", iconSrc: asset("/book-open.svg") },
+  { id: "matematicas", label: "Matemáticas", iconSrc: asset("/graduation-cap.svg") },
+  { id: "literatura", label: "Literatura", iconSrc: asset("/book-text.svg") },
+  { id: "historia", label: "Historia", iconSrc: asset("/history.svg") },
 ];
 
 // Selección curada. Título, portada, área, valoración, ficha y disponibilidad vienen del catálogo central.
@@ -71,8 +72,8 @@ const Recomendaciones = () => {
         <AppTopBar breadcrumbs={["Inicio", "Recomendaciones"]} onBreadcrumbNavigate={() => navigate("/")} showSearch />
         <main className={styles.content}>
           <section className={styles.hero}>
-            <div className={styles.heroCopy}><div className={styles.eyebrow}><img src="/trending-up.svg" alt="" />Curaduría Académica</div><h1>Recomendaciones de Estudio</h1><p>Selección curada por académicos y bibliotecarios de la USM para potenciar tu desempeño en las asignaturas críticas de este semestre.</p></div>
-            <div className={styles.updated}><div><strong>Actualizado</strong><span>{todayLabel}</span></div><img src="/Container.svg" alt="" /></div>
+            <div className={styles.heroCopy}><div className={styles.eyebrow}><img src={asset("/trending-up.svg")} alt="" />Curaduría Académica</div><h1>Recomendaciones de Estudio</h1><p>Selección curada por académicos y bibliotecarios de la USM para potenciar tu desempeño en las asignaturas críticas de este semestre.</p></div>
+            <div className={styles.updated}><div><strong>Actualizado</strong><span>{todayLabel}</span></div><img src={asset("/Container.svg")} alt="" /></div>
           </section>
           <section className={styles.filters} aria-label="Filtrar por área de estudio">
             <div className={styles.areaOptions}>{areas.map((area) => <RecommendationAreaFilter key={area.id} {...area} isSelected={selectedArea === area.id} onSelect={() => setSelectedArea(area.id)} />)}</div>
@@ -81,7 +82,7 @@ const Recomendaciones = () => {
             <div className={styles.materialHeader}><div><h2 id="materials-title">Listado de Material Seleccionado</h2><p>Mostrando {visibleRecommendations.length} {visibleRecommendations.length === 1 ? "recurso recomendado" : "recursos recomendados"}</p></div><div className={styles.viewToggle}><button className={viewMode === "grid" ? styles.activeView : ""} type="button" aria-pressed={viewMode === "grid"} onClick={() => setViewMode("grid")}>Vista Cuadrícula</button><button className={viewMode === "list" ? styles.activeView : ""} type="button" aria-pressed={viewMode === "list"} onClick={() => setViewMode("list")}>Vista Listado</button></div></div>
             <div className={viewMode === "grid" ? styles.cardGrid : styles.cardList}>{visibleRecommendations.map(({ id, areaId, featured, detailPath, ...recommendation }) => <RecommendationBookCard key={id} layout={viewMode} {...recommendation} onDetails={() => handleDetails({ ...recommendation, detailPath })} />)}</div>
           </section>
-          <section className={styles.cta}><div className={styles.ctaGlow} /><img className={styles.ctaIcon} src="/Container.svg" alt="" /><div><h2>¿No encuentras lo que buscas?</h2><p>Si necesitas material específico para tu proyecto de tesis o investigación que no figura en nuestras recomendaciones semanales, puedes solicitar una adquisición bibliográfica o consultar con un bibliotecario referencista en el mesón central.</p><div className={styles.ctaActions}><button type="button" onClick={() => setToast("Solicitud de adquisición enviada. Un bibliotecario te contactará por correo.")}>Solicitar Adquisición</button><button type="button" onClick={() => navigate(RUTAS.contacto)}>Contactar Bibliotecario</button></div></div></section>
+          <section className={styles.cta}><div className={styles.ctaGlow} /><img className={styles.ctaIcon} src={asset("/Container.svg")} alt="" /><div><h2>¿No encuentras lo que buscas?</h2><p>Si necesitas material específico para tu proyecto de tesis o investigación que no figura en nuestras recomendaciones semanales, puedes solicitar una adquisición bibliográfica o consultar con un bibliotecario referencista en el mesón central.</p><div className={styles.ctaActions}><button type="button" onClick={() => setToast("Solicitud de adquisición enviada. Un bibliotecario te contactará por correo.")}>Solicitar Adquisición</button><button type="button" onClick={() => navigate(RUTAS.contacto)}>Contactar Bibliotecario</button></div></div></section>
         </main>
       </div>
       <Toast mensaje={toast} />

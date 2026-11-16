@@ -3,26 +3,27 @@ import AppSidebar from "../components/layout/AppSidebar";
 import AppTopBar from "../components/layout/AppTopBar";
 import ToolCard from "../components/tool-loans/ToolCard";
 import { RUTAS, useNavegacion } from "../routes";
+import { asset } from "../utils/assetUrl";
 import "./PrestamoHerramientas.scss";
 
 const herramientas = [
   {
     id: "libros",
-    imagen: "/herramientas/libros-fisicos.webp",
+    imagen: asset("/herramientas/libros-fisicos.webp"),
     titulo: "Libros Físicos",
     descripcion: "Catálogo de más de 800 libros.",
     ruta: RUTAS.catalogo,
   },
   {
     id: "arduinos",
-    imagen: "/herramientas/arduinos.webp",
+    imagen: asset("/herramientas/arduinos.webp"),
     titulo: "Arduinos",
     descripcion: "Más de 3 versiones y 50 unidades disponibles.",
     ruta: RUTAS.arduinos,
   },
   {
     id: "calculadoras",
-    imagen: "/herramientas/calculadoras.webp",
+    imagen: asset("/herramientas/calculadoras.webp"),
     titulo: "Calculadoras",
     descripcion: "Calculadoras científicas y TI.",
     ruta: RUTAS.calculadoras,

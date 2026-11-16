@@ -114,7 +114,9 @@ public/                    # Imágenes (WebP), iconos SVG y favicon
 ## Notas
 
 - Las reservas, renovaciones y solicitudes se guardan en el navegador (`localStorage`). Para volver a los datos de ejemplo, borra los datos del sitio.
-- Despliegue: `vercel.json` y `public/_redirects` (Netlify) redirigen todas las rutas a `index.html`, así recargar cualquier página funciona.
+- Despliegue en GitHub Pages: el workflow `.github/workflows/deploy-pages.yml` compila y publica en cada push a `main`. En el repositorio, ve a **Settings → Pages → Source** y elige **GitHub Actions**. El `base` se calcula solo según el nombre del repositorio (`https://usuario.github.io/repo/`).
+- `postbuild` copia `index.html` a `404.html` para que recargar rutas profundas funcione en GitHub Pages. `public/.nojekyll` evita el procesamiento de Jekyll.
+- Despliegue en Vercel/Netlify: `vercel.json` y `public/_redirects` redirigen todas las rutas a `index.html`.
 - `npm run lint` revisa el código con ESLint 9 (`eslint.config.js`).
 - Foto de la sección de novedades: [Eric Lozaga en Pexels](https://www.pexels.com/photo/spacious-library-aisle-with-bookshelves-and-study-tables-31138995/).
 
